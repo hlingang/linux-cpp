@@ -1,0 +1,11 @@
+!<arch>
+singletest.cpp/ 0           0     0     644     164       `
+#include "singletest.h"
+#include <stdio.h>
+
+// SingleTest::SingleTest() {}
+// SingleTest::~SingleTest() {}
+void SingleTest::test()
+{
+    printf("Single Test\n");
+}
