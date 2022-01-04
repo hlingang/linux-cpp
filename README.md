@@ -14,7 +14,7 @@ personal study repo
 
 1. 每个cpp文件夹为独立的demo
 2. 运行make 编译可执行文件
-3. ./out 执行
+3. ./out 运行可执行文件
 
 #### 参与贡献
 
