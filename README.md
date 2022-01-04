@@ -1,7 +1,7 @@
 # cplusplus
 
 #### 介绍
-personal study repo 
+for C++ study 
 
 #### 软件架构
 无
