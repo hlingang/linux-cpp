@@ -12,6 +12,7 @@ int main()
     object_json.toFile( "test001.json" );
     CJson tmp_json;
     tmp_json.add( "123", 123 );
+    tmp_json.add( "456", CJson( 1 ) );
     object_json.add( "obj", tmp_json );
     array_json.append( object_json );
     array_json.append( "qwert" );

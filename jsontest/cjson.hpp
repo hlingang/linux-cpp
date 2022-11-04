@@ -53,56 +53,91 @@ public:
         data_ = other.data_;
         return *this;
     }
+
     template < typename T >
     typename std::enable_if< AndExpr< !std::is_same< T, Value >::value, !std::is_same< T, CJson >::value >::value,
                              void >::type
-    add( const string& key, T value )
+    add( const string& key, T& value )
     {
         data_[ key ] = value;
     }
     template < typename T >
     typename std::enable_if< AndExpr< !std::is_same< T, Value >::value, !std::is_same< T, CJson >::value >::value,
-                             T >::type
-    add( const char* key, T value )
+                             void >::type
+    add( const char* key, T& value )
     {
         data_[ key ] = value;
-        return value;
     }
-    CJson add( const char* key, CJson& value )
+
+    template < typename T >
+    typename std::enable_if< AndExpr< !std::is_same< T, Value >::value, !std::is_same< T, CJson >::value >::value,
+                             void >::type
+    add( const string& key, T&& value )
+    {
+        return add( key, value );
+    }
+    template < typename T >
+    typename std::enable_if< AndExpr< !std::is_same< T, Value >::value, !std::is_same< T, CJson >::value >::value,
+                             void >::type
+    add( const char* key, T&& value )
+    {
+        return add( key, value );
+    }
+
+    void add( const string& key, CJson& value )
     {
         data_[ key ] = value.data_;
-        return value;
     }
-    Value add( const char* key, Value& value )
+    void add( const string& key, Value& value )
     {
         data_[ key ] = value;
-        return value;
     }
+    void add( const char* key, CJson& value )
+    {
+        data_[ key ] = value.data_;
+    }
+    void add( const char* key, Value& value )
+    {
+        data_[ key ] = value;
+    }
+    void add( const char* key, CJson&& value )
+    {
+        return add( key, value );
+    }
+    void add( const char* key, Value&& value )
+    {
+        return add( key, value );
+    }
+    void add( const string& key, CJson&& value )
+    {
+        return add( key, value );
+    }
+    void add( const string& key, Value&& value )
+    {
+        return add( key, value );
+    }
+
     template < typename T >
     typename std::enable_if< AndExpr< !std::is_same< T, Value >::value, !std::is_same< T, CJson >::value >::value,
-                             T >::type
+                             void >::type
     append( T& value )
     {
         data_.push_back( value );
-        return value;
     }
     template < typename T >
     typename std::enable_if< AndExpr< !std::is_same< T, Value >::value, !std::is_same< T, CJson >::value >::value,
-                             T >::type
+                             void >::type
     append( T&& value )
     {
         data_.push_back( value );
-        return value;
     }
-    CJson append( CJson& value )
+    void append( CJson& value )
     {
-        data_.push_back( value.getData() );
-        return value;
+        data_.push_back( value.data_ );
     }
-    Value append( Value& value )
+    void append( Value& value )
     {
         data_.push_back( value );
-        return value;
     }
     template < typename T > T get( const string& key )
     {
@@ -160,11 +195,19 @@ public:
     {
         return data_.contains( key );
     }
+    bool hasMember( const char* key )
+    {
+        return data_.contains( key );
+    }
     bool empty()
     {
         return data_.empty();
     }
     SizeType remove( const string& key )
+    {
+        return data_.erase( key );
+    }
+    SizeType remove( const char* key )
     {
         return data_.erase( key );
     }
