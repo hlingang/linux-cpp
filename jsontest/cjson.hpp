@@ -30,28 +30,27 @@ template <> struct AndExpr< true, true > : BoolType< true >
 {
 };
 /**
- * CJson class
+ * \brief CJson class
  */
 class CJson
 {
 public:
-    using Value     = nlohmann::json;
-    using value_t   = nlohmann::detail::value_t;
-    using Iterator  = nlohmann::json::iterator;
-    using ValueType = nlohmann::json::value_t;
-    using SizeType  = nlohmann::json::size_type;
+    using Value     = nlohmann::json;             ///< json class
+    using Iterator  = nlohmann::json::iterator;   ///< iterator
+    using ValueType = nlohmann::json::value_t;    ///< json value type
+    using SizeType  = nlohmann::json::size_type;  ///< json size type
     // kType define
     enum kType
     {
-        kNull   = ( uint8_t )value_t::null,             ///< null value
-        kObject = ( uint8_t )value_t::object,           ///< object (unordered set of name/value pairs)
-        kArray  = ( uint8_t )value_t::array,            ///< array (ordered collection of values)
-        kString = ( uint8_t )value_t::string,           ///< string value
-        kBool   = ( uint8_t )value_t::boolean,          ///< boolean value
-        kInt    = ( uint8_t )value_t::number_integer,   ///< number value (signed integer)
-        kUint   = ( uint8_t )value_t::number_unsigned,  ///< number value (unsigned integer)
-        kFloat  = ( uint8_t )value_t::number_float,     ///< number value (floating-point)
-        kBinary = ( uint8_t )value_t::binary,           ///< binary array (ordered collection of bytes)
+        kNull   = ( uint8_t )ValueType::null,             ///< null value
+        kObject = ( uint8_t )ValueType::object,           ///< object (unordered set of name/value pairs)
+        kArray  = ( uint8_t )ValueType::array,            ///< array (ordered collection of values)
+        kString = ( uint8_t )ValueType::string,           ///< string value
+        kBool   = ( uint8_t )ValueType::boolean,          ///< boolean value
+        kInt    = ( uint8_t )ValueType::number_integer,   ///< number value (signed integer)
+        kUint   = ( uint8_t )ValueType::number_unsigned,  ///< number value (unsigned integer)
+        kFloat  = ( uint8_t )ValueType::number_float,     ///< number value (floating-point)
+        kBinary = ( uint8_t )ValueType::binary,           ///< binary array (ordered collection of bytes)
         kTypeCount,
     };
     CJson() = default;
