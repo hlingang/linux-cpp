@@ -1,13 +1,13 @@
-src=cjson.cpp
-target=out
+src=test.cpp
+target=test
 
 $(target):$(src)
-	g++ -o $@ $^ -I./include -g -ggdb -fPIC
+	g++ -o $@ $^ -I./ -I./include -g -ggdb -fPIC
 
 .PHONY:
 	clear
 
 all:$(target)
 clean:
-	rm -rf out
+	rm -rf test
 	rm -rf *.json

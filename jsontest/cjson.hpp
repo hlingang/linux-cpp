@@ -2,8 +2,35 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <type_traits>
 using namespace std;
-
+/**
+ * \brief bool struct
+ */
+template < bool cond > struct BoolType
+{
+    static const bool value = cond;
+};
+/**
+ * \brief And expression struct
+ *
+ * \tparam cond1 bool condition
+ * \tparam cond2 bool condition
+ */
+template < bool cond1, bool cond2 > struct AndExpr : BoolType< false >
+{
+};
+/**
+ * \brief And expression struct
+ *
+ * \tparam null
+ */
+template <> struct AndExpr< true, true > : BoolType< true >
+{
+};
+/**
+ * CJson class
+ */
 class CJson
 {
 public:
@@ -40,18 +67,24 @@ public:
         data_ = other.data_;
         return *this;
     }
-    template < typename T > void add( const string& key, T value )
+    template < typename T >
+    typename std::enable_if< AndExpr< !std::is_same< T, Value >::value, !std::is_same< T, CJson >::value >::value,
+                             void >::type
+    add( const string& key, T value )
     {
         data_[ key ] = value;
     }
-    template < typename T > T add( const char* key, T value )
+    template < typename T >
+    typename std::enable_if< AndExpr< !std::is_same< T, Value >::value, !std::is_same< T, CJson >::value >::value,
+                             T >::type
+    add( const char* key, T value )
     {
         data_[ key ] = value;
         return value;
     }
     CJson add( const char* key, CJson& value )
     {
-        data_[ key ] = value.getData();
+        data_[ key ] = value.data_;
         return value;
     }
     Value add( const char* key, Value& value )
@@ -59,12 +92,18 @@ public:
         data_[ key ] = value;
         return value;
     }
-    template < typename T > T append( T& value )
+    template < typename T >
+    typename std::enable_if< AndExpr< !std::is_same< T, Value >::value, !std::is_same< T, CJson >::value >::value,
+                             T >::type
+    append( T& value )
     {
         data_.push_back( value );
         return value;
     }
-    template < typename T > T append( T&& value )
+    template < typename T >
+    typename std::enable_if< AndExpr< !std::is_same< T, Value >::value, !std::is_same< T, CJson >::value >::value,
+                             T >::type
+    append( T&& value )
     {
         data_.push_back( value );
         return value;
@@ -81,11 +120,11 @@ public:
     }
     template < typename T > T get( const string& key )
     {
-        return data_.at( key ).get< T >();
+        return data_[ key ].get< T >();
     }
     template < typename T > T get( const char* key )
     {
-        return data_.at( key ).get< T >();
+        return data_[ key ].get< T >();
     }
     CJson fromFile( const char* fileName )
     {
@@ -138,21 +177,3 @@ public:
 private:
     Value data_;
 };
-
-int main()
-{
-    CJson array_json;
-    CJson object_json;
-    char  name[ 20 ] = "abcdefgh";
-    object_json.add( "a", 60 );
-    object_json.add( name, name );
-    cout << object_json.get< string >( name ) << endl;
-    object_json.toFile( "test001.json" );
-    CJson tmp_json;
-    tmp_json.add( "123", 123 );
-    object_json.add( "obj", tmp_json );
-    array_json.append( object_json );
-    array_json.append( "qwert" );
-    array_json.append( 123 );
-    array_json.toFile( "test002.json" );
-}
