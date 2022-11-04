@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../libs/libctestlib.a CMakeFiles/test_lib_static.dir/src/ctestlib.cpp.o
+/usr/bin/ranlib ../libs/libctestlib.a

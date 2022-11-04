@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/ctestlib.h
+
+/home/huanglingang/test/swigtest/swig/testlib.i
+ctestlib.h
+/home/huanglingang/test/swigtest/swig/ctestlib.h
+ctestlib.h
+/home/huanglingang/test/swigtest/swig/ctestlib.h
+
