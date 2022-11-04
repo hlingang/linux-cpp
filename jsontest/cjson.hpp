@@ -35,25 +35,11 @@ template <> struct AndExpr< true, true > : BoolType< true >
 class CJson
 {
 public:
-    using Value     = nlohmann::json;             ///< json class
+    using Value     = nlohmann::json;             ///< json value
     using Iterator  = nlohmann::json::iterator;   ///< iterator
     using ValueType = nlohmann::json::value_t;    ///< json value type
     using SizeType  = nlohmann::json::size_type;  ///< json size type
-    // kType define
-    enum kType
-    {
-        kNull   = ( uint8_t )ValueType::null,             ///< null value
-        kObject = ( uint8_t )ValueType::object,           ///< object (unordered set of name/value pairs)
-        kArray  = ( uint8_t )ValueType::array,            ///< array (ordered collection of values)
-        kString = ( uint8_t )ValueType::string,           ///< string value
-        kBool   = ( uint8_t )ValueType::boolean,          ///< boolean value
-        kInt    = ( uint8_t )ValueType::number_integer,   ///< number value (signed integer)
-        kUint   = ( uint8_t )ValueType::number_unsigned,  ///< number value (unsigned integer)
-        kFloat  = ( uint8_t )ValueType::number_float,     ///< number value (floating-point)
-        kBinary = ( uint8_t )ValueType::binary,           ///< binary array (ordered collection of bytes)
-        kTypeCount,
-    };
-    CJson() = default;
+    CJson()         = default;
     CJson( const Value& value )
     {
         data_ = value;
@@ -166,14 +152,6 @@ public:
     {
         return data_;
     }
-    Iterator begin()
-    {
-        return data_.begin();
-    }
-    Iterator end()
-    {
-        return data_.end();
-    }
     size_t size() const
     {
         return data_.size();
@@ -185,6 +163,18 @@ public:
     bool empty()
     {
         return data_.empty();
+    }
+    SizeType remove( const string& key )
+    {
+        return data_.erase( key );
+    }
+    Iterator begin()
+    {
+        return data_.begin();
+    }
+    Iterator end()
+    {
+        return data_.end();
     }
 
 private:

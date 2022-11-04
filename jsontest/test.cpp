@@ -7,7 +7,6 @@ int main()
     CJson array_json;
     CJson object_json;
     char  name[ 20 ] = "abcdefgh";
-    int*  p;
     object_json.add( "a", 60 );
     object_json.add( name, string( name ) );
     object_json.toFile( "test001.json" );
