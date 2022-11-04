@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <type_traits>
 using namespace std;
 /**
@@ -134,12 +135,17 @@ public:
         infile.close();
         return CJson( data );
     }
-
     void toFile( const char* fileName )
     {
         ofstream outfile( fileName );
         outfile << data_;
         outfile.close();
+    }
+    string toString()
+    {
+        stringstream outs;
+        outs << data_;
+        return outs.str();
     }
     bool isArray()
     {
@@ -172,6 +178,14 @@ public:
     size_t size() const
     {
         return data_.size();
+    }
+    bool hasMember( const string& key )
+    {
+        return data_.contains( key );
+    }
+    bool empty()
+    {
+        return data_.empty();
     }
 
 private:

@@ -10,7 +10,6 @@ int main()
     int*  p;
     object_json.add( "a", 60 );
     object_json.add( name, string( name ) );
-    cout << object_json.get< string >( name ) << endl;
     object_json.toFile( "test001.json" );
     CJson tmp_json;
     tmp_json.add( "123", 123 );
@@ -18,5 +17,6 @@ int main()
     array_json.append( object_json );
     array_json.append( "qwert" );
     array_json.append( 123 );
+    cout << array_json.toString() << endl;
     array_json.toFile( "test002.json" );
 }
