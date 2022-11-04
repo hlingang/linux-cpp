@@ -87,7 +87,7 @@ public:
     {
         return data_.at( key ).get< T >();
     }
-    CJson parseFile( const char* fileName )
+    CJson fromFile( const char* fileName )
     {
         ifstream infile( fileName );
         Value    data;
