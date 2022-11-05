@@ -1,8 +1,8 @@
 #include "nlohmann/json.hpp"
 #include <fstream>
 #include <iostream>
-#include <string>
 #include <sstream>
+#include <string>
 #include <type_traits>
 using namespace std;
 /**
@@ -223,3 +223,20 @@ public:
 private:
     Value data_;
 };
+
+template <> CJson CJson::get< CJson >( const string& key )
+{
+    return data_[ key ].get< CJson::Value >();
+}
+template <> CJson::Value CJson::get< CJson::Value >( const string& key )
+{
+    return data_[ key ].get< CJson::Value >();
+}
+template <> CJson::Value CJson::get< CJson::Value >( const char* key )
+{
+    return data_[ key ].get< CJson::Value >();
+}
+template <> CJson CJson::get< CJson >( const char* key )
+{
+    return data_[ key ].get< CJson::Value >();
+}
