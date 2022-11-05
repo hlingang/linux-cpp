@@ -4,6 +4,7 @@
 #include <sstream>
 #include <string>
 #include <type_traits>
+#include <initializer_list>
 using namespace std;
 /**
  * \brief bool struct
@@ -40,6 +41,10 @@ public:
     using ValueType = nlohmann::json::value_t;    ///< json value type
     using SizeType  = nlohmann::json::size_type;  ///< json size type
     CJson()         = default;
+    CJson( initializer_list< Value > li )
+    {
+        data_ = Value( li );
+    }
     CJson( const Value& value )
     {
         data_ = value;
