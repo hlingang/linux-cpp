@@ -3,6 +3,6 @@ out
 test
 .vscode/
 *.json
-**build/
-**__pycache__/
+build/
+__pycache__/
 
