@@ -1,6 +1,0 @@
-/home/huanglingang/linux-cpp/swigtest/build/CMakeFiles/test_lib_static.dir
-/home/huanglingang/linux-cpp/swigtest/build/CMakeFiles/test_lib_shared.dir
-/home/huanglingang/linux-cpp/swigtest/build/CMakeFiles/ctestlib.dir
-/home/huanglingang/linux-cpp/swigtest/build/CMakeFiles/ctestlib_swig_compilation.dir
-/home/huanglingang/linux-cpp/swigtest/build/CMakeFiles/edit_cache.dir
-/home/huanglingang/linux-cpp/swigtest/build/CMakeFiles/rebuild_cache.dir

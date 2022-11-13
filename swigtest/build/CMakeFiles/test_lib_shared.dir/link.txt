@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC -Wall -Werror -Wextra -Wno-dev -fPIC -g -ggdb -O0 -shared -Wl,-soname,libctestlib.so -o ../libs/libctestlib.so CMakeFiles/test_lib_shared.dir/src/ctestlib.cpp.o   -L/home/huanglingang/linux-cpp/swigtest/libs 
