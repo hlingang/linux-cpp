@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/huanglingang/test/swigtest/src/ctestlib.cpp" "CMakeFiles/test_lib_static.dir/src/ctestlib.cpp.o" "gcc" "CMakeFiles/test_lib_static.dir/src/ctestlib.cpp.o.d"
+  "/home/huanglingang/linux-cpp/swigtest/src/ctestlib.cpp" "CMakeFiles/test_lib_static.dir/src/ctestlib.cpp.o" "gcc" "CMakeFiles/test_lib_static.dir/src/ctestlib.cpp.o.d"
   )
 
 # Targets to which this target links.

@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/huanglingang/test/swigtest
+CMAKE_SOURCE_DIR = /home/huanglingang/linux-cpp/swigtest
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/huanglingang/test/swigtest/build
+CMAKE_BINARY_DIR = /home/huanglingang/linux-cpp/swigtest/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/test_lib_static.dir/depend.make
@@ -72,16 +72,16 @@ include CMakeFiles/test_lib_static.dir/flags.make
 CMakeFiles/test_lib_static.dir/src/ctestlib.cpp.o: CMakeFiles/test_lib_static.dir/flags.make
 CMakeFiles/test_lib_static.dir/src/ctestlib.cpp.o: ../src/ctestlib.cpp
 CMakeFiles/test_lib_static.dir/src/ctestlib.cpp.o: CMakeFiles/test_lib_static.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/huanglingang/test/swigtest/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/test_lib_static.dir/src/ctestlib.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_lib_static.dir/src/ctestlib.cpp.o -MF CMakeFiles/test_lib_static.dir/src/ctestlib.cpp.o.d -o CMakeFiles/test_lib_static.dir/src/ctestlib.cpp.o -c /home/huanglingang/test/swigtest/src/ctestlib.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/huanglingang/linux-cpp/swigtest/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/test_lib_static.dir/src/ctestlib.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_lib_static.dir/src/ctestlib.cpp.o -MF CMakeFiles/test_lib_static.dir/src/ctestlib.cpp.o.d -o CMakeFiles/test_lib_static.dir/src/ctestlib.cpp.o -c /home/huanglingang/linux-cpp/swigtest/src/ctestlib.cpp
 
 CMakeFiles/test_lib_static.dir/src/ctestlib.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test_lib_static.dir/src/ctestlib.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanglingang/test/swigtest/src/ctestlib.cpp > CMakeFiles/test_lib_static.dir/src/ctestlib.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huanglingang/linux-cpp/swigtest/src/ctestlib.cpp > CMakeFiles/test_lib_static.dir/src/ctestlib.cpp.i
 
 CMakeFiles/test_lib_static.dir/src/ctestlib.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test_lib_static.dir/src/ctestlib.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanglingang/test/swigtest/src/ctestlib.cpp -o CMakeFiles/test_lib_static.dir/src/ctestlib.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huanglingang/linux-cpp/swigtest/src/ctestlib.cpp -o CMakeFiles/test_lib_static.dir/src/ctestlib.cpp.s
 
 # Object files for target test_lib_static
 test_lib_static_OBJECTS = \
@@ -93,7 +93,7 @@ test_lib_static_EXTERNAL_OBJECTS =
 ../libs/libctestlib.a: CMakeFiles/test_lib_static.dir/src/ctestlib.cpp.o
 ../libs/libctestlib.a: CMakeFiles/test_lib_static.dir/build.make
 ../libs/libctestlib.a: CMakeFiles/test_lib_static.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/huanglingang/test/swigtest/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library ../libs/libctestlib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/huanglingang/linux-cpp/swigtest/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library ../libs/libctestlib.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/test_lib_static.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_lib_static.dir/link.txt --verbose=$(VERBOSE)
 
@@ -106,6 +106,6 @@ CMakeFiles/test_lib_static.dir/clean:
 .PHONY : CMakeFiles/test_lib_static.dir/clean
 
 CMakeFiles/test_lib_static.dir/depend:
-	cd /home/huanglingang/test/swigtest/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/huanglingang/test/swigtest /home/huanglingang/test/swigtest /home/huanglingang/test/swigtest/build /home/huanglingang/test/swigtest/build /home/huanglingang/test/swigtest/build/CMakeFiles/test_lib_static.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/huanglingang/linux-cpp/swigtest/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/huanglingang/linux-cpp/swigtest /home/huanglingang/linux-cpp/swigtest /home/huanglingang/linux-cpp/swigtest/build /home/huanglingang/linux-cpp/swigtest/build /home/huanglingang/linux-cpp/swigtest/build/CMakeFiles/test_lib_static.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/test_lib_static.dir/depend
 

@@ -25,6 +25,9 @@ int main()
     CJson cvalue = object_json.get< CJson::Value >( "obj" );
     cout << "get cvalue = " << cvalue.toString() << endl;
 
-    cout << array_json.toString() << endl;
     array_json.toFile( "test002.json" );
+    cout << "write to file : " << array_json.toString() << endl;
+    CJson array_json_01;
+    array_json_01.fromFile( "test002.json" );
+    cout << "read from file: " << array_json_01.toString() << endl;
 }

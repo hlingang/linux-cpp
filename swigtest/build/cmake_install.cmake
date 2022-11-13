@@ -1,4 +1,4 @@
-# Install script for directory: /home/huanglingang/test/swigtest
+# Install script for directory: /home/huanglingang/linux-cpp/swigtest
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/huanglingang/test/swigtest/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/huanglingang/linux-cpp/swigtest/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

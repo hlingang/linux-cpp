@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/huanglingang/test/swigtest
+CMAKE_SOURCE_DIR = /home/huanglingang/linux-cpp/swigtest
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/huanglingang/test/swigtest/build
+CMAKE_BINARY_DIR = /home/huanglingang/linux-cpp/swigtest/build
 
 # Utility rule file for ctestlib_swig_compilation.
 
@@ -70,10 +70,10 @@ CMakeFiles/ctestlib_swig_compilation: CMakeFiles/ctestlib.dir/testlibPYTHON.stam
 
 CMakeFiles/ctestlib.dir/testlibPYTHON.stamp: ../swig/testlib.i
 CMakeFiles/ctestlib.dir/testlibPYTHON.stamp: ../swig/testlib.i
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/huanglingang/test/swigtest/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Swig compile /home/huanglingang/test/swigtest/swig/testlib.i for python"
-	/usr/bin/cmake -E make_directory /home/huanglingang/test/swigtest/build/CMakeFiles/ctestlib.dir /home/huanglingang/test/swigtest/python /home/huanglingang/test/swigtest/python/cxx
-	/usr/bin/cmake -E touch /home/huanglingang/test/swigtest/build/CMakeFiles/ctestlib.dir/testlibPYTHON.stamp
-	/usr/bin/cmake -E env SWIG_LIB=/usr/share/swig4.0 /usr/bin/swig4.0 -python -outdir /home/huanglingang/test/swigtest/python -c++ -interface _ctestlib -I/home/huanglingang/test/swigtest/include -I/usr/include/python3.10 -o /home/huanglingang/test/swigtest/python/cxx/testlibPYTHON_wrap.cxx /home/huanglingang/test/swigtest/swig/testlib.i
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/huanglingang/linux-cpp/swigtest/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Swig compile /home/huanglingang/linux-cpp/swigtest/swig/testlib.i for python"
+	/usr/bin/cmake -E make_directory /home/huanglingang/linux-cpp/swigtest/build/CMakeFiles/ctestlib.dir /home/huanglingang/linux-cpp/swigtest/python /home/huanglingang/linux-cpp/swigtest/python/cxx
+	/usr/bin/cmake -E touch /home/huanglingang/linux-cpp/swigtest/build/CMakeFiles/ctestlib.dir/testlibPYTHON.stamp
+	/usr/bin/cmake -E env SWIG_LIB=/usr/share/swig4.0 /usr/bin/swig4.0 -python -outdir /home/huanglingang/linux-cpp/swigtest/python -c++ -interface _ctestlib -I/home/huanglingang/linux-cpp/swigtest/include -I/usr/include/python3.10 -o /home/huanglingang/linux-cpp/swigtest/python/cxx/testlibPYTHON_wrap.cxx /home/huanglingang/linux-cpp/swigtest/swig/testlib.i
 
 ctestlib_swig_compilation: CMakeFiles/ctestlib.dir/testlibPYTHON.stamp
 ctestlib_swig_compilation: CMakeFiles/ctestlib_swig_compilation
@@ -89,6 +89,6 @@ CMakeFiles/ctestlib_swig_compilation.dir/clean:
 .PHONY : CMakeFiles/ctestlib_swig_compilation.dir/clean
 
 CMakeFiles/ctestlib_swig_compilation.dir/depend:
-	cd /home/huanglingang/test/swigtest/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/huanglingang/test/swigtest /home/huanglingang/test/swigtest /home/huanglingang/test/swigtest/build /home/huanglingang/test/swigtest/build /home/huanglingang/test/swigtest/build/CMakeFiles/ctestlib_swig_compilation.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/huanglingang/linux-cpp/swigtest/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/huanglingang/linux-cpp/swigtest /home/huanglingang/linux-cpp/swigtest /home/huanglingang/linux-cpp/swigtest/build /home/huanglingang/linux-cpp/swigtest/build /home/huanglingang/linux-cpp/swigtest/build/CMakeFiles/ctestlib_swig_compilation.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ctestlib_swig_compilation.dir/depend
 

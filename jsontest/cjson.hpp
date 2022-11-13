@@ -152,13 +152,13 @@ public:
     {
         return data_[ key ].get< T >();
     }
-    CJson fromFile( const char* fileName )
+    CJson& fromFile( const char* fileName )
     {
         ifstream infile( fileName );
-        Value    data;
-        infile >> data;
+        data_.clear();
+        infile >> data_;
         infile.close();
-        return CJson( data );
+        return *this;
     }
     void toFile( const char* fileName )
     {

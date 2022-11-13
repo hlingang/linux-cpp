@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -Dtest_lib_shared_EXPORTS
 
-CXX_INCLUDES = -I/home/huanglingang/test/swigtest/include -I/usr/include/python3.10
+CXX_INCLUDES = -I/home/huanglingang/linux-cpp/swigtest/include -I/usr/include/python3.10
 
 CXX_FLAGS = -Wall -Werror -Wextra -Wno-dev -fPIC -g -ggdb -O0 -fPIC
 

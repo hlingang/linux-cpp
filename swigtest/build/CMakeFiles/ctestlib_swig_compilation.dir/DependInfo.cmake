@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/huanglingang/test/swigtest/swig/testlib.i" "/home/huanglingang/test/swigtest/build/CMakeFiles/ctestlib.dir/testlibPYTHON.stamp"
+  "/home/huanglingang/linux-cpp/swigtest/swig/testlib.i" "/home/huanglingang/linux-cpp/swigtest/build/CMakeFiles/ctestlib.dir/testlibPYTHON.stamp"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
