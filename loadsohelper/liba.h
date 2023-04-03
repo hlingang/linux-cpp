@@ -8,7 +8,7 @@ struct S_LIBASO
 {
     FuncSymbol< T_test01 > test01{ NULL, "test01" };  ///< function address
     FuncSymbol< T_test02 > test02{ NULL, "test02" };  ///< function address
-    void*                  _handler{ NULL };          ///< so handler
-    void*                  _so = ( void* )"liba.so";  ///< so name
+    void*                  handler{ NULL };           ///< so handler
+    void*                  so = ( void* )"liba.so";   ///< so name
 };
 #endif

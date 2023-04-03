@@ -12,10 +12,15 @@ template < typename T > struct FuncSymbol
 } __attribute__( ( packed ) );
 template < typename T > void* LoadSOHelper( T& sso )
 {
-    int    N       = sizeof( T ) / sizeof( FuncSymbol< void* > );
-    void** pcAddr  = ( void** )&sso;
-    char*  so      = ( char* )sso._so;
-    void*  handler = dlopen( so, RTLD_LAZY );
+    int    N      = sizeof( T ) / sizeof( FuncSymbol< void* > );
+    void** pcAddr = ( void** )&sso;
+    char*  so     = ( char* )sso.so;
+    if ( so == nullptr )
+    {
+        printf( "so name to load is null\n" );
+        return nullptr;
+    }
+    void* handler = dlopen( so, RTLD_LAZY );
     if ( handler == nullptr )
     {
         return nullptr;
@@ -34,14 +39,14 @@ template < typename T > void* LoadSOHelper( T& sso )
         }
         pcAddr += 2;
     }
-    *( void** )pcAddr = handler;
+    sso.handler = handler;
     return handler;
 }
 template < typename T > void CloseSOHelper( T& sso )
 {
-    if ( sso._handler )
+    if ( sso.handler )
     {
-        dlclose( sso._handler );
+        dlclose( sso.handler );
     }
 }
 #endif
