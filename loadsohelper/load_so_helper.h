@@ -29,6 +29,10 @@ template < typename T > void* LoadSOHelper( T& sso )
     {
         void** func   = pcAddr;                    // function address
         char** symbol = ( char** )( pcAddr + 1 );  // funcsymbol address
+        if ( *symbol == nullptr )
+        {
+            continue;
+        }
         if ( ( *func = dlsym( handler, *symbol ) ) == nullptr )
         {
             if ( handler )

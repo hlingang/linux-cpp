@@ -31,4 +31,3 @@ LANGUAGE python SOURCES ${swig_files}
 OUTPUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/python 
 OUTFILE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/python/cxx)
 swig_link_libraries(ctestlib libctestlib.a ${PYTHON_LIBRARIES})
-
