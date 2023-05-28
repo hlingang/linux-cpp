@@ -63,14 +63,26 @@ public:
             throw runtime_error( "empty error" );
         }
     }
+    T& front()
+    {
+        if ( size_ > 0 )
+        {
+            return data_[ 0 ];
+        }
+        else
+        {
+            throw runtime_error( "empty error" );
+        }
+    }
     template < typename... Args > T& emplace_back( Args... args )
     {
         if ( cap_ <= size_ )
+
         {
             resize( size_, cap_ );
         }
         size_t msz = size_;
-        new ( &data_[ size_++ ] ) T( std::forward( args )... );
+        new ( &data_[ size_++ ] ) T( std::forward< Args... >( args )... );
         return data_[ msz ];
     }
 
