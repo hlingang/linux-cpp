@@ -12,8 +12,13 @@ class MultiLock
 {
 public:
     MultiLock() : MultiLock( DEFAULT_NAME ) {}
-    MultiLock( const char* name ) : m_psem( nullptr ), m_name( name )
+    MultiLock( const char* name ) : m_psem( nullptr )
     {
+        if ( name == nullptr )
+        {
+            throw runtime_error( "argument name is null" );
+        }
+        m_name = name;
         m_psem = sem_open( m_name.c_str(), O_RDWR | O_CREAT, 0664, 1 );
         if ( m_psem == SEM_FAILED )
         {
