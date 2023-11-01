@@ -8,7 +8,7 @@ using namespace std;
 int main()
 {
     S_LIBASO liba_so;
-    if ( LoadSOHelper( liba_so, "libab.so" ) == nullptr )
+    if ( LoadSOHelper( liba_so ) == nullptr )
     {
         cout << "[ERROR]: load so fail" << endl;
         return -1;
