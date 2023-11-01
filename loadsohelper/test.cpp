@@ -13,8 +13,8 @@ int main()
         cout << "[ERROR]: load so fail" << endl;
         return -1;
     }
-    liba_so.test01.call( 10 );
-    liba_so.test02.call( "welcome!" );
+    liba_so.test01.__call( 10 );
+    liba_so.test02.__call( "welcome!" );
     CloseSOHelper( liba_so );
     return 0;
 }

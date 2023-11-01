@@ -5,10 +5,10 @@
 
 template < typename T > struct FuncSymbol
 {
-    T           call;
-    const char* sym;
-    FuncSymbol() : call( nullptr ), sym( nullptr ) {}
-    FuncSymbol( void* call_, const char* sym_ ) : call( ( T )call_ ), sym( sym_ ) {}
+    T           __call;
+    const char* __sym;
+    FuncSymbol() : __call( nullptr ), __sym( nullptr ) {}
+    FuncSymbol( void* call, const char* sym ) : __call( ( T )call ), __sym( sym ) {}
 } __attribute__( ( packed ) );
 template < typename T > void* LoadSOHelper( T& sso )
 {
@@ -16,7 +16,7 @@ template < typename T > void* LoadSOHelper( T& sso )
     void** pcAddr = ( void** )&sso;
     char*  so     = ( char* )sso.so;
     if ( so == nullptr )
-    {
+    { 
         printf( "so name to load is null\n" );
         return nullptr;
     }
