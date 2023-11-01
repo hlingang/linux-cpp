@@ -1,0 +1,24 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/huanglingang/Ubuntu/linux-cpp/multi_process_lock/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	//
+$(target)	Makefile	/^$(target):$(src)$/;"	t
+DEFAULT_NAME	multi_process_lock.h	/^#define DEFAULT_NAME /;"	d
+MultiLock	multi_process_lock.h	/^    MultiLock( const char* name ) : m_psem( nullptr ), m_name( name )$/;"	f	class:MultiLock
+MultiLock	multi_process_lock.h	/^    MultiLock() : MultiLock( DEFAULT_NAME ) {}$/;"	f	class:MultiLock
+MultiLock	multi_process_lock.h	/^class MultiLock$/;"	c
+all	Makefile	/^all:$(target)$/;"	t
+clean	Makefile	/^clean:$/;"	t
+m_name	multi_process_lock.h	/^    string m_name;$/;"	m	class:MultiLock	typeref:typename:string
+m_psem	multi_process_lock.h	/^    sem_t* m_psem;$/;"	m	class:MultiLock	typeref:typename:sem_t *
+main	test.cpp	/^int main()$/;"	f	typeref:typename:int
+src	Makefile	/^src:=test.cpp $/;"	m
+target	Makefile	/^target:=test $/;"	m
+~MultiLock	multi_process_lock.h	/^    ~MultiLock()$/;"	f	class:MultiLock
