@@ -10,11 +10,11 @@ template < typename T > struct FuncSymbol
     FuncSymbol() : __call( nullptr ), __sym( nullptr ) {}
     FuncSymbol( void* call, const char* sym ) : __call( ( T )call ), __sym( sym ) {}
 } __attribute__( ( packed ) );
-template < typename T > void* LoadSOHelper( T& sso )
+template < typename T > void* LoadSOHelper( T& sso, const char* _so = nullptr )
 {
     int    N      = sizeof( T ) / sizeof( FuncSymbol< void* > );
     void** pcAddr = ( void** )&sso;
-    char*  so     = ( char* )sso.so;
+    const char*  so     = _so? _so : (const char* )sso.so;
     if ( so == nullptr )
     { 
         printf( "so name to load is null\n" );
@@ -23,6 +23,7 @@ template < typename T > void* LoadSOHelper( T& sso )
     void* handler = dlopen( so, RTLD_LAZY );
     if ( handler == nullptr )
     {
+        printf("[ERROR]: %s\n", dlerror());
         return nullptr;
     }
     for ( int i = 0; i < N - 1; i++ )
