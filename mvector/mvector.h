@@ -8,9 +8,34 @@ using namespace std;
 template < typename T > class mvector
 {
 public:
-    mvector() : mvector( DEFAULT_SIZE ) {}
-    mvector( size_t sz ) : size_( 0 ), cap_( sz )
+    class Iterator
     {
+    public:
+        Iterator( T* ptr ) : _ptr( ptr ) {}
+        Iterator( const Iterator& rth )           = delete;
+        Iterator operator=( const Iterator& rth ) = delete;
+
+        T& operator*()
+        {
+            return *_ptr;
+        }
+        Iterator& operator++()
+        {
+            ++_ptr;
+            return *this;
+        }
+        bool operator!=( const Iterator& rth )
+        {
+            return _ptr != rth._ptr;
+        }
+
+    private:
+        T* _ptr;
+    };
+    mvector() : mvector( DEFAULT_SIZE ) {}
+    mvector( size_t sz ) : size_( 0 )
+    {
+        cap_  = sz > 0 ? sz : DEFAULT_SIZE;
         data_ = ( T* )malloc( cap_ * sizeof( mvector ) );
         memset( data_, 0x00, cap_ * sizeof( mvector ) );
     }
@@ -25,7 +50,7 @@ public:
     }
     T& append( T& t )
     {
-        if ( cap_ <= size_ )
+        if ( cap_ <= size_ + 1 )
         {
             resize( size_, cap_ );
         }
@@ -39,7 +64,7 @@ public:
     }
     void print()
     {
-        cout << " size=" << size_ << " cap=" << cap_ << endl;
+        cout << " size=" << size_ << " cap=" << cap_ << " addr=0x" << data_ << endl;
     }
     T& operator[]( size_t index )
     {
@@ -49,7 +74,7 @@ public:
         }
         else
         {
-            throw runtime_error( "index out of range" );
+            throw out_of_range( "index out of range" );
         }
     }
     T& back()
@@ -60,7 +85,7 @@ public:
         }
         else
         {
-            throw runtime_error( "empty error" );
+            throw out_of_range( "empty error" );
         }
     }
     T& front()
@@ -84,6 +109,70 @@ public:
         size_t msz = size_;
         new ( &data_[ size_++ ] ) T( std::forward< Args >( args )... );
         return data_[ msz ];
+    }
+    size_t size()
+    {
+        return size_;
+    }
+    bool empty()
+    {
+        return size_ == 0;
+    }
+    T remove( size_t index )
+    {
+        if ( index < size_ )
+        {
+            T t = data_[ index ];
+            if ( index < size_ - 1 )
+            {
+                memmove( &data_[ index ], &data_[ index + 1 ], sizeof( T ) * ( size_ - index - 1 ) );
+                data_[ size_ - 1 ] = t;
+                --size_;
+            }
+            return t;
+        }
+        else
+        {
+            throw out_of_range( "index out of range" );
+        }
+    }
+
+    void to_string()
+    {
+        if ( empty() )
+        {
+            cout << "null" << endl;
+        }
+        else
+        {
+            for ( size_t i = 0; i < size_; i++ )
+            {
+                cout << "[" << i << "]: " << data_[ i ] << endl;
+            }
+        }
+    }
+
+    Iterator begin()
+    {
+        if ( size_ > 0 )
+        {
+            return Iterator( data_ );
+        }
+        else
+        {
+            return nullptr;
+        }
+    }
+    Iterator end()
+    {
+        if ( size_ > 0 )
+        {
+            return &data_[ size_ - 1 + 1 ];
+        }
+        else
+        {
+            return nullptr;
+        }
     }
 
 private:
