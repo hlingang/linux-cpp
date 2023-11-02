@@ -82,7 +82,7 @@ public:
             resize( size_, cap_ );
         }
         size_t msz = size_;
-        new ( &data_[ size_++ ] ) T( std::forward< Args... >( args )... );
+        new ( &data_[ size_++ ] ) T( std::forward< Args >( args )... );
         return data_[ msz ];
     }
 
