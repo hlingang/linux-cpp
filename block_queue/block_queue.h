@@ -9,12 +9,12 @@ using namespace std;
 template < typename T > class BlockQueue
 {
 public:
-    BlockQueue() : BlockQueue( _MAX_SIZE ) {}
-    BlockQueue( size_t size_ ) : _max_size( size_ )
+    BlockQueue() : BlockQueue( _DEFAULT_CAPACITY ) {}
+    BlockQueue( size_t cap ) : _cap( cap )
     {
-        if ( _max_size == 0 )
+        if ( _cap == 0 )
         {
-            _max_size = _MAX_SIZE;
+            _cap = _DEFAULT_CAPACITY;
         }
     }
     bool empty()
@@ -23,23 +23,23 @@ public:
     }
     bool full()
     {
-        return _data.size() == _max_size;
+        return _data.size() == _cap;
     }
     T& put( T& t )
     {
         unique_lock< mutex > lock( _mtx );
-        full_cond.wait( lock, [ this ]() { return !this->full(); } );
+        _full_cond.wait( lock, [ this ]() { return !this->full(); } );
         _data.push( t );
-        empty_cond.notify_all();
+        _empty_cond.notify_all();
         return _data.back();
     }
     T& get()
     {
         unique_lock< mutex > lock( _mtx );
-        empty_cond.wait( lock, [ this ]() { return !this->empty(); } );
+        _empty_cond.wait( lock, [ this ]() { return !this->empty(); } );
         T& _t = _data.front();
         _data.pop();
-        full_cond.notify_all();
+        _full_cond.notify_all();
         return _t;
     }
     size_t size()
@@ -48,10 +48,10 @@ public:
     }
 
 private:
-    mutex              _mtx;
-    size_t             _max_size;
-    condition_variable full_cond;
-    condition_variable empty_cond;
     queue< int >       _data;
-    static const int   _MAX_SIZE = 100;
+    mutex              _mtx;
+    size_t             _cap;
+    condition_variable _full_cond;
+    condition_variable _empty_cond;
+    static const int   _DEFAULT_CAPACITY = 1000;
 };
