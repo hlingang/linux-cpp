@@ -2,7 +2,7 @@ CC=g++
 CUR_DIR=$(shell pwd;)
 SRC=$(wildcard $(CUR_DIR)/*.cpp)
 OBJ=$(SRC:%.cpp=%.o)
-TARGET=out
+TARGET=test
 INC=-I./
 
 all:$(TARGET)
