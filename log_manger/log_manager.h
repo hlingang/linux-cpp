@@ -23,9 +23,10 @@ enum e_LogLevel
 class LogManager
 {
 private:
-    static mutex  m_mtx;
-    set< string > m_funcSet;
-    bitset< 8 >   m_logLevel;
+    static mutex       m_mtx;
+    static LogManager* pInstance;
+    set< string >      m_funcSet;
+    bitset< 8 >        m_logLevel;
     LogManager()
     {
         m_logLevel = 0;
@@ -42,13 +43,15 @@ private:
     }
 
 public:
-    static LogManager* pInstance;
     static LogManager* GetInstance()
     {
-        lock_guard< mutex > lock( m_mtx );
         if ( pInstance == nullptr )
         {
-            pInstance = new LogManager();
+            lock_guard< mutex > lock( m_mtx );
+            if ( pInstance == nullptr )
+            {
+                pInstance = new LogManager();
+            }
         }
         return pInstance;
     }
@@ -93,6 +96,15 @@ public:
         string __func = func.c_str();
         transform( __func.begin(), __func.end(), __func.begin(), []( char c ) { return tolower( c ); } );
         m_funcSet.insert( __func );
+    }
+    void addFunc( const vector< string >& func )
+    {
+        for ( auto& _func : func )
+        {
+            string __func = _func.c_str();
+            transform( __func.begin(), __func.end(), __func.begin(), []( char c ) { return tolower( c ); } );
+            m_funcSet.insert( __func );
+        }
     }
 };
 LogManager* LogManager::pInstance;

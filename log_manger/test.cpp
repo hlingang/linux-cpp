@@ -1,4 +1,5 @@
 #include "log_manager.h"
+#include "cxxopts.hpp"
 
 void testA()
 {
@@ -16,27 +17,26 @@ void testB()
 
 int main( int argc, char* argv[] )
 {
-    if ( argc > 1 )
+    int              log_level = 0;
+    vector< string > func_set;
+    cxxopts::Options options( "log-manager", "log-manager" );
+    options.positional_help( "[optional args]" ).set_width( 80 ).set_tab_expansion();
+    options.add_options(
+        "", {
+                { "loglevel", "set loglevel", cxxopts::value< int >( log_level )->default_value( "0xf" ) },
+                { "func", "set function set", cxxopts::value< vector< string > >( func_set )->default_value( "" ) },
+            } );
+    options.parse_positional( { "command", "positional" } );
+    auto result = options.parse( argc, argv );
+
+    SET_LOG_LEVEL_BIT( e_All );
+    if ( result.count( "loglevel" ) )
     {
-        int log_level = 0;
-        try
-        {
-            log_level = stoi( argv[ 1 ] );
-        }
-        catch ( const exception& e )
-        {
-            cout << "[error]: " << e.what() << endl;
-            throw runtime_error( "parse loglevel fail" );
-        }
         SET_LOG_LEVEL( log_level );
-        for ( int i = 2; i < argc; i++ )
-        {
-            ADD_FUNC( string( argv[ i ] ) );
-        }
     }
-    else
+    if ( result.count( "func" ) )
     {
-        SET_LOG_LEVEL_BIT( e_All );
+        ADD_FUNC( func_set );
     }
     testA();
     testB();
