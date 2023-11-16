@@ -9,6 +9,7 @@
 #include <mutex>
 #include <bitset>
 #include <algorithm>
+#include "singleton.h"
 
 using namespace std;
 
@@ -20,41 +21,21 @@ enum e_LogLevel
     e_All,
 };
 
-class LogManager
+class LogManager final : public Singleton< LogManager >
 {
 private:
-    static mutex       m_mtx;
-    static LogManager* pInstance;
-    set< string >      m_funcSet;
-    bitset< 8 >        m_logLevel;
+    set< string > m_funcSet;
+    bitset< 8 >   m_logLevel;
+
+public:
     LogManager()
     {
         m_logLevel = 0;
         m_funcSet.clear();
     }
-    ~LogManager()
-    {
-        lock_guard< mutex > lock( m_mtx );
-        if ( pInstance )
-        {
-            delete pInstance;
-            pInstance = nullptr;
-        }
-    }
+    ~LogManager() {}
 
 public:
-    static LogManager* GetInstance()
-    {
-        if ( pInstance == nullptr )
-        {
-            lock_guard< mutex > lock( m_mtx );
-            if ( pInstance == nullptr )
-            {
-                pInstance = new LogManager();
-            }
-        }
-        return pInstance;
-    }
     bool empty()
     {
         return m_funcSet.empty();
@@ -107,13 +88,11 @@ public:
         }
     }
 };
-LogManager* LogManager::pInstance;
-mutex       LogManager::m_mtx;
 
 #define LOG_OUT( LOG_LEVEL, FORMAT, ... )                                                                              \
     {                                                                                                                  \
-        if ( LogManager::GetInstance()->test( ( e_LogLevel )LOG_LEVEL )                                                \
-             && ( LogManager::GetInstance()->empty() || LogManager::GetInstance()->count( string( __FUNCTION__ ) ) ) ) \
+        if ( LogManager::getInstance()->test( ( e_LogLevel )LOG_LEVEL )                                                \
+             && ( LogManager::getInstance()->empty() || LogManager::getInstance()->count( string( __FUNCTION__ ) ) ) ) \
         {                                                                                                              \
             printf( "[%s:%s:%d] " FORMAT "\n", __FILE__, __FUNCTION__, __LINE__, ##__VA_ARGS__ );                      \
         }                                                                                                              \
@@ -121,16 +100,16 @@ mutex       LogManager::m_mtx;
 
 #define SET_LOG_LEVEL( LOG_LEVEL )                           \
     {                                                        \
-        LogManager::GetInstance()->setLogLevel( LOG_LEVEL ); \
+        LogManager::getInstance()->setLogLevel( LOG_LEVEL ); \
     }
 
 #define SET_LOG_LEVEL_BIT( LOG_LEVEL )                          \
     {                                                           \
-        LogManager::GetInstance()->setLogLevelBit( LOG_LEVEL ); \
+        LogManager::getInstance()->setLogLevelBit( LOG_LEVEL ); \
     }
 #define ADD_FUNC( FUNC )                            \
     {                                               \
-        LogManager::GetInstance()->addFunc( FUNC ); \
+        LogManager::getInstance()->addFunc( FUNC ); \
     }
 
 #endif

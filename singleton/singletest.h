@@ -1,14 +1,13 @@
-#ifndef _SINGLETEST_H_
-#define _SINGLETEST_H
+#ifndef __SINGLETEST_H_
+#define __SINGLETEST_H_
 #include "singleton.h"
-class SingleTest : public Singleton<SingleTest>
+class SingleTest : public Singleton< SingleTest >
 {
-    friend class Singleton<SingleTest>;
 
 public:
     void test();
 
-private:
+public:
     SingleTest() {}
     ~SingleTest() {}
 };
