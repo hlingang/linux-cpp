@@ -116,9 +116,10 @@ public:
             if ( _data.val.s._len > 0 )
             {
                 _data.val.s._len = rth._data.val.s._len;
-                char* p          = ( char* )malloc( _data.val.s._len );
+                char* p          = ( char* )malloc( _data.val.s._len + 1 );
                 memcpy( p, rth._data.val.s._str, _data.val.s._len );
-                _data.val.s._str = p;
+                p[ _data.val.s._len ] = '\0';
+                _data.val.s._str      = p;
             }
         case e_array:
         case e_object:
@@ -143,9 +144,10 @@ public:
             if ( rth._data.val.s._len > 0 )
             {
                 _data.val.s._len = rth._data.val.s._len;
-                char* p          = ( char* )malloc( _data.val.s._len );
+                char* p          = ( char* )malloc( _data.val.s._len + 1 );
                 memcpy( p, rth._data.val.s._str, _data.val.s._len );
-                _data.val.s._str = p;
+                p[ _data.val.s._len ] = '\0';
+                _data.val.s._str      = p;
             }
         case e_array:
         case e_object:
