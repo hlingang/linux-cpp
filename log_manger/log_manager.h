@@ -13,6 +13,8 @@
 
 using namespace std;
 
+#define LOG_LEVEL_BIT ( 8 )
+
 enum e_LogLevel
 {
     e_Trace,
@@ -24,8 +26,8 @@ enum e_LogLevel
 class LogManager final : public Singleton< LogManager >
 {
 private:
-    set< string > m_funcSet;
-    bitset< 8 >   m_logLevel;
+    set< string >           m_funcSet;
+    bitset< LOG_LEVEL_BIT > m_logLevel;
 
 public:
     LogManager()
