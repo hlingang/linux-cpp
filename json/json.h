@@ -49,8 +49,9 @@ class Json
 public:
     Json()
     {
+        memset( &_data, 0x00, sizeof( _data ) );
         _data.type = e_null;
-        _obj       = new std::map< CZString, Json* >;
+        _obj       = new std::map< CZString, Json >;
     }
     Json( int i ) : Json()
     {
@@ -90,17 +91,71 @@ public:
     }
     Json& operator[]( const CZString& sz )
     {
-        return *( ( *_obj )[ sz ] );
+        return ( *_obj )[ sz ];
     }
     Json& operator[]( const int index )
     {
         CZString sz( index );
-        return *( ( *_obj )[ sz ] );
+        return ( *_obj )[ sz ];
     }
     Json& operator[]( const char* s )
     {
         CZString sz( s );
-        return *( ( *_obj )[ sz ] );
+        return ( *_obj )[ sz ];
+    }
+    Json( const Json& rth )
+    {
+        _data.type = rth._data.type;
+        switch ( _data.type )
+        {
+        case e_int:
+            _data.val.i = rth._data.val.i;
+        case e_double:
+            _data.val.d = rth._data.val.d;
+        case e_string:
+            if ( _data.val.s._len > 0 )
+            {
+                _data.val.s._len = rth._data.val.s._len;
+                char* p          = ( char* )malloc( _data.val.s._len );
+                memcpy( p, rth._data.val.s._str, _data.val.s._len );
+                _data.val.s._str = p;
+            }
+        case e_array:
+        case e_object:
+            _obj = new std::map< CZString, Json >( *rth._obj );
+        }
+    }
+    const Json& operator=( const Json& rth )
+    {
+        _data.type = rth._data.type;
+        switch ( _data.type )
+        {
+        case e_int:
+            _data.val.i = rth._data.val.i;
+        case e_double:
+            _data.val.d = rth._data.val.d;
+        case e_string:
+            if ( _data.val.s._str && _data.val.s._len > 0 )
+            {
+                free( _data.val.s._str );
+                _data.val.s._len = 0;
+            }
+            if ( rth._data.val.s._len > 0 )
+            {
+                _data.val.s._len = rth._data.val.s._len;
+                char* p          = ( char* )malloc( _data.val.s._len );
+                memcpy( p, rth._data.val.s._str, _data.val.s._len );
+                _data.val.s._str = p;
+            }
+        case e_array:
+        case e_object:
+            if ( _obj )
+            {
+                delete _obj;
+            }
+            _obj = new std::map< CZString, Json >( *rth._obj );
+        }
+        return *this;
     }
     ~Json()
     {
@@ -124,8 +179,8 @@ public:
     }
 
 private:
-    Data                         _data;
-    std::map< CZString, Json* >* _obj;
+    Data                        _data;
+    std::map< CZString, Json >* _obj;
 };
 
 };  // namespace json
