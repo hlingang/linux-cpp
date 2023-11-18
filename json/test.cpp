@@ -5,6 +5,7 @@ using namespace std;
 
 int main()
 {
+    std::cout << "start..." << endl;
     json::Json j;
     j[ "a" ] = 1;
     j[ "b" ] = "hello";
