@@ -1,14 +1,16 @@
 #ifndef __JSON_H_
 #define __JSON_H_
 
+#include <bitset>
 #include <cstddef>
 #include <cstdlib>
+#include <iostream>
 #include <map>
+#include <memory>
 #include <string>
 #include <cstring>
 namespace json
 {
-
 enum value_type
 {
     e_int,
@@ -22,11 +24,50 @@ enum value_type
 class CZString
 {
 public:
-    CZString( int index ) : index_( index ) {}
-    CZString( const char* s ) : cstr_( s ){};
+    CZString() : type( e_null ) {}
+    CZString( int index ) : CZString()
+    {
+        if ( index >= 0 )
+        {
+            type   = e_int;
+            index_ = index;
+        }
+    }
+    CZString( const char* s ) : CZString()
+    {
+        if ( strlen( s ) > 0 )
+        {
+            type  = e_string;
+            cstr_ = s;
+        }
+    }
     CZString( const std::string& s ) : cstr_( s ){};
+    bool operator<( const CZString& rth ) const
+    {
+        switch ( type )
+        {
+        case e_int:
+            return index_ < rth.index_;
+        case e_string:
+            return cstr_ < rth.cstr_;
+        default:
+            return false;
+        }
+    }
+    std::string toString() const
+    {
+        if ( type == e_int )
+        {
+            return std::to_string( index_ );
+        }
+        else
+        {
+            return "\"" + cstr_ + "\"";
+        }
+    }
 
 private:
+    value_type  type;
     int         index_;
     std::string cstr_;
 };
@@ -47,6 +88,7 @@ struct Data
 class Json
 {
 public:
+    typedef std::map< CZString, Json >::iterator Iterator;
     Json()
     {
         memset( &_data, 0x00, sizeof( _data ) );
@@ -89,17 +131,37 @@ public:
             _data.val.s._str = p;
         }
     }
+    template < size_t N > Json( const char s[ N ] ) : Json()
+    {
+        _data.type = e_string;
+        if ( N > 0 )
+        {
+            char* p = ( char* )malloc( N );
+            memcpy( p, s, N );
+            _data.val.s._len = N - 1;
+            _data.val.s._str = p;
+        }
+    }
+    Json& operator=( int i )
+    {
+        _data.type  = e_int;
+        _data.val.i = i;
+        return *this;
+    }
     Json& operator[]( const CZString& sz )
     {
+        setType( e_object );
         return ( *_obj )[ sz ];
     }
     Json& operator[]( const int index )
     {
+        setType( e_array );
         CZString sz( index );
         return ( *_obj )[ sz ];
     }
     Json& operator[]( const char* s )
     {
+        setType( e_object );
         CZString sz( s );
         return ( *_obj )[ sz ];
     }
@@ -110,20 +172,25 @@ public:
         {
         case e_int:
             _data.val.i = rth._data.val.i;
+            break;
         case e_double:
             _data.val.d = rth._data.val.d;
+            break;
         case e_string:
-            if ( _data.val.s._len > 0 )
+            if ( rth._data.val.s._len > 0 )
             {
-                _data.val.s._len = rth._data.val.s._len;
-                char* p          = ( char* )malloc( _data.val.s._len + 1 );
-                memcpy( p, rth._data.val.s._str, _data.val.s._len );
-                p[ _data.val.s._len ] = '\0';
-                _data.val.s._str      = p;
+                size_t n = rth._data.val.s._len;
+                char*  p = ( char* )malloc( n + 1 );
+                memcpy( p, rth._data.val.s._str, n );
+                p[ n ]           = '\0';
+                _data.val.s._str = p;
+                _data.val.s._len = n;
             }
+            break;
         case e_array:
         case e_object:
             _obj = new std::map< CZString, Json >( *rth._obj );
+            break;
         }
     }
     const Json& operator=( const Json& rth )
@@ -132,9 +199,12 @@ public:
         switch ( _data.type )
         {
         case e_int:
+
             _data.val.i = rth._data.val.i;
+            break;
         case e_double:
             _data.val.d = rth._data.val.d;
+            break;
         case e_string:
             if ( _data.val.s._str && _data.val.s._len > 0 )
             {
@@ -143,12 +213,14 @@ public:
             }
             if ( rth._data.val.s._len > 0 )
             {
-                _data.val.s._len = rth._data.val.s._len;
-                char* p          = ( char* )malloc( _data.val.s._len + 1 );
-                memcpy( p, rth._data.val.s._str, _data.val.s._len );
-                p[ _data.val.s._len ] = '\0';
-                _data.val.s._str      = p;
+                size_t n = rth._data.val.s._len;
+                char*  p = ( char* )malloc( n + 1 );
+                memcpy( p, rth._data.val.s._str, n );
+                p[ n ]           = '\0';
+                _data.val.s._str = p;
+                _data.val.s._len = n;
             }
+            break;
         case e_array:
         case e_object:
             if ( _obj )
@@ -156,6 +228,7 @@ public:
                 delete _obj;
             }
             _obj = new std::map< CZString, Json >( *rth._obj );
+            break;
         }
         return *this;
     }
@@ -179,12 +252,101 @@ public:
             }
         }
     }
+    size_t size() const
+    {
+        return _obj->size();
+    }
+    Json& append( const Json& j )
+    {
+        if ( _data.type == e_null )
+        {
+            setType( e_array );
+        }
+        ( *_obj )[ size() ] = j;
+        return _obj->at( size() - 1 );
+    }
+    std::string toString() const
+    {
+        std::string s;
+        bool        start = false;
+        switch ( _data.type )
+        {
+        case e_null:
+            s = "null";
+            break;
+        case e_int:
+            s = std::to_string( _data.val.i );
+            break;
+        case e_double:
+            s = std::to_string( _data.val.d );
+            break;
+        case e_string:
+            s = "\"" + std::string( _data.val.s._str ) + "\"";
+            break;
+        case e_array:
+            start = false;
+            for ( auto it = _obj->begin(); it != _obj->end(); it++ )
+            {
+                if ( start )
+                {
+                    s += ", " + it->second.toString();
+                }
+                else
+                {
+                    s += it->second.toString();
+                    start = true;
+                }
+            }
+            s = "[" + s + "]";
+            break;
+        case e_object:
+            start = false;
+            for ( auto it = _obj->begin(); it != _obj->end(); it++ )
+            {
+                if ( start )
+                {
+                    s += ", " + it->first.toString() + ":" + it->second.toString();
+                }
+                else
+                {
+                    s += it->first.toString() + ":" + it->second.toString();
+                    start = true;
+                }
+            }
+            s = "{" + s + "}";
+            break;
+        }
+        return s;
+    }
+    int getDataType() const
+    {
+        return _data.type;
+    }
+    Iterator begin()
+    {
+        return _obj->begin();
+    }
+    Iterator end()
+    {
+        return _obj->end();
+    }
+
+private:
+    void setType( int type_ )
+    {
+        _data.type = type_;
+    }
 
 private:
     Data                        _data;
     std::map< CZString, Json >* _obj;
 };
 
+inline std::ostream& operator<<( std::ostream& out, const json::Json& j )
+{
+    out << j.toString();
+    return out;
+}
 };  // namespace json
 
 #endif
