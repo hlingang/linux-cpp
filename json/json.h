@@ -7,6 +7,7 @@
 #include <iostream>
 #include <map>
 #include <memory>
+#include <sstream>
 #include <string>
 #include <cstring>
 namespace json
@@ -267,56 +268,58 @@ public:
     }
     std::string toString() const
     {
-        std::string s;
-        bool        start = false;
+        std::ostringstream ss;
+        bool               start = false;
         switch ( _data.type )
         {
         case e_null:
-            s = "null";
+            ss << "null";
             break;
         case e_int:
-            s = std::to_string( _data.val.i );
+            ss << _data.val.i;
             break;
         case e_double:
-            s = std::to_string( _data.val.d );
+            ss << _data.val.d;
             break;
         case e_string:
-            s = "\"" + std::string( _data.val.s._str ) + "\"";
+            ss << "\"" << _data.val.s._str << "\"";
             break;
         case e_array:
             start = false;
+            ss << "[";
             for ( auto it = _obj->begin(); it != _obj->end(); it++ )
             {
                 if ( start )
                 {
-                    s += ", " + it->second.toString();
+                    ss << ", " << it->second.toString();
                 }
                 else
                 {
-                    s += it->second.toString();
+                    ss << it->second.toString();
                     start = true;
                 }
             }
-            s = "[" + s + "]";
+            ss << "]";
             break;
         case e_object:
             start = false;
+            ss << "{";
             for ( auto it = _obj->begin(); it != _obj->end(); it++ )
             {
                 if ( start )
                 {
-                    s += ", " + it->first.toString() + ":" + it->second.toString();
+                    ss << ", " << it->first.toString() << ":" << it->second.toString();
                 }
                 else
                 {
-                    s += it->first.toString() + ":" + it->second.toString();
+                    ss << it->first.toString() << ":" << it->second.toString();
                     start = true;
                 }
             }
-            s = "{" + s + "}";
+            ss << "}";
             break;
         }
-        return s;
+        return ss.str();
     }
     int getDataType() const
     {
