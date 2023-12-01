@@ -21,6 +21,7 @@ int main()
     o[ "a2" ]  = "123";
     o[ "a3" ]  = l;
     j[ "obj" ] = o;
+
     cout << j.toString() << endl;
     for ( auto& key : j )
     {

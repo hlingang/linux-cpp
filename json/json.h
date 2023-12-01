@@ -8,6 +8,7 @@
 #include <map>
 #include <memory>
 #include <sstream>
+#include <stdexcept>
 #include <string>
 #include <cstring>
 namespace json
@@ -20,6 +21,30 @@ enum value_type
     e_array,
     e_object,
     e_null,
+    e_count,
+};
+
+class JsonAlloc
+{
+public:
+    static void* Alloc( size_t sz )
+    {
+        void* p = malloc( sz + _pyload_sz );
+        if ( p )
+        {
+            char* _pc = static_cast< char* >( p ) + sz;
+            memset( _pc, 0x00, _pyload_sz );
+            return p;
+        }
+        return nullptr;
+    }
+
+private:
+    static const size_t _pyload_sz = 1;
+};
+
+const std::array< std::string, e_count > TYPE_NAME{
+    "int", "double", "string", "array", "object", "null",
 };
 
 class CZString
@@ -96,6 +121,10 @@ public:
         _data.type = e_null;
         _obj       = new std::map< CZString, Json >;
     }
+    Json( value_type _type ) : Json()
+    {
+        setType( _type );
+    }
     Json( int i ) : Json()
     {
         _data.type  = e_int;
@@ -112,9 +141,8 @@ public:
         int n      = strlen( s );
         if ( n > 0 )
         {
-            char* p = ( char* )malloc( n + 1 );
+            char* p = ( char* )JsonAlloc::Alloc( n );
             memcpy( p, s, n );
-            p[ n ]           = '\0';
             _data.val.s._len = n;
             _data.val.s._str = p;
         }
@@ -125,9 +153,8 @@ public:
         int n      = s.size();
         if ( n > 0 )
         {
-            char* p = ( char* )malloc( n + 1 );
+            char* p = ( char* )JsonAlloc::Alloc( n );
             memcpy( p, s.c_str(), n );
-            p[ n ]           = '\0';
             _data.val.s._len = n;
             _data.val.s._str = p;
         }
@@ -151,18 +178,42 @@ public:
     }
     Json& operator[]( const CZString& sz )
     {
-        setType( e_object );
+        if ( isNullType() )
+        {
+            setType( e_object );
+        }
+        if ( !isObjectType() )
+        {
+            std::string _error_msg = "type error! " + dumpTypeMsg( getType(), e_object );
+            throw std::runtime_error( _error_msg.c_str() );
+        }
         return ( *_obj )[ sz ];
     }
     Json& operator[]( const int index )
     {
-        setType( e_array );
+        if ( isNullType() )
+        {
+            setType( e_array );
+        }
+        if ( !isArrayType() )
+        {
+            std::string _error_msg = "type error! " + dumpTypeMsg( getType(), e_array );
+            throw std::runtime_error( _error_msg.c_str() );
+        }
         CZString sz( index );
         return ( *_obj )[ sz ];
     }
     Json& operator[]( const char* s )
     {
-        setType( e_object );
+        if ( isNullType() )
+        {
+            setType( e_object );
+        }
+        if ( !isObjectType() )
+        {
+            std::string _error_msg = "type error! " + dumpTypeMsg( getType(), e_object );
+            throw std::runtime_error( _error_msg.c_str() );
+        }
         CZString sz( s );
         return ( *_obj )[ sz ];
     }
@@ -181,9 +232,8 @@ public:
             if ( rth._data.val.s._len > 0 )
             {
                 size_t n = rth._data.val.s._len;
-                char*  p = ( char* )malloc( n + 1 );
+                char*  p = ( char* )JsonAlloc::Alloc( n );
                 memcpy( p, rth._data.val.s._str, n );
-                p[ n ]           = '\0';
                 _data.val.s._str = p;
                 _data.val.s._len = n;
             }
@@ -215,9 +265,8 @@ public:
             if ( rth._data.val.s._len > 0 )
             {
                 size_t n = rth._data.val.s._len;
-                char*  p = ( char* )malloc( n + 1 );
+                char*  p = ( char* )JsonAlloc::Alloc( n );
                 memcpy( p, rth._data.val.s._str, n );
-                p[ n ]           = '\0';
                 _data.val.s._str = p;
                 _data.val.s._len = n;
             }
@@ -262,6 +311,11 @@ public:
         if ( _data.type == e_null )
         {
             setType( e_array );
+        }
+        if ( !isArrayType() )
+        {
+            std::string _error_msg = "type error! " + dumpTypeMsg( getType(), e_array );
+            throw std::runtime_error( _error_msg.c_str() );
         }
         ( *_obj )[ size() ] = j;
         return _obj->at( size() - 1 );
@@ -321,7 +375,7 @@ public:
         }
         return ss.str();
     }
-    int getDataType() const
+    int getType() const
     {
         return _data.type;
     }
@@ -333,11 +387,37 @@ public:
     {
         return _obj->end();
     }
+    std::string dumpTypeMsg( int _cur_type, int _required_type )
+    {
+        std::string msg =
+            "current type is " + TYPE_NAME[ _cur_type ] + ", required type is " + TYPE_NAME[ _required_type ];
+        return msg;
+    }
 
 private:
     void setType( int type_ )
     {
         _data.type = type_;
+    }
+    bool isNullType() const
+    {
+        return _data.type == e_null;
+    }
+    bool isIntType() const
+    {
+        return _data.type == e_int;
+    }
+    bool isStringType() const
+    {
+        return _data.type == e_string;
+    }
+    bool isArrayType() const
+    {
+        return _data.type == e_array;
+    }
+    bool isObjectType() const
+    {
+        return _data.type == e_object;
     }
 
 private:
