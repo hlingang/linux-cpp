@@ -170,23 +170,13 @@ public:
             _data.val.s._str = p;
         }
     }
-    Json& operator=( int i )
-    {
-        _data.type  = e_int;
-        _data.val.i = i;
-        return *this;
-    }
     Json& operator[]( const CZString& sz )
     {
         if ( isNullType() )
         {
             setType( e_object );
         }
-        if ( !isObjectType() )
-        {
-            std::string _error_msg = "type error! " + dumpTypeMsg( getType(), e_object );
-            throw std::runtime_error( _error_msg.c_str() );
-        }
+        assertType( e_object );
         return ( *_obj )[ sz ];
     }
     Json& operator[]( const int index )
@@ -195,11 +185,7 @@ public:
         {
             setType( e_array );
         }
-        if ( !isArrayType() )
-        {
-            std::string _error_msg = "type error! " + dumpTypeMsg( getType(), e_array );
-            throw std::runtime_error( _error_msg.c_str() );
-        }
+        assertType( e_array );
         CZString sz( index );
         return ( *_obj )[ sz ];
     }
@@ -209,11 +195,7 @@ public:
         {
             setType( e_object );
         }
-        if ( !isObjectType() )
-        {
-            std::string _error_msg = "type error! " + dumpTypeMsg( getType(), e_object );
-            throw std::runtime_error( _error_msg.c_str() );
-        }
+        assertType( e_object );
         CZString sz( s );
         return ( *_obj )[ sz ];
     }
@@ -282,6 +264,19 @@ public:
         }
         return *this;
     }
+    //  implicit convert to Json object //
+    // Json& operator=( int i )
+    // {
+    //     _data.type  = e_int;
+    //     _data.val.i = i;
+    //     return *this;
+    // }
+    // Json& operator=( double d )
+    // {
+    //     _data.type  = e_double;
+    //     _data.val.d = d;
+    //     return *this;
+    // }
     ~Json()
     {
         if ( _data.type == e_string )
@@ -312,11 +307,7 @@ public:
         {
             setType( e_array );
         }
-        if ( !isArrayType() )
-        {
-            std::string _error_msg = "type error! " + dumpTypeMsg( getType(), e_array );
-            throw std::runtime_error( _error_msg.c_str() );
-        }
+        assertType( e_array );
         ( *_obj )[ size() ] = j;
         return _obj->at( size() - 1 );
     }
@@ -394,6 +385,22 @@ public:
         return msg;
     }
 
+    int getInt()
+    {
+        assertType( e_int );
+        return _data.val.i;
+    }
+    double getDouble()
+    {
+        assertType( e_double );
+        return _data.val.d;
+    }
+    std::string getString()
+    {
+        assertType( e_string );
+        return _data.val.s._str;
+    }
+
 private:
     void setType( int type_ )
     {
@@ -418,6 +425,14 @@ private:
     bool isObjectType() const
     {
         return _data.type == e_object;
+    }
+    void assertType( value_type _type )
+    {
+        if ( _type != getType() )
+        {
+            std::string _error_msg = dumpTypeMsg( getType(), _type );
+            throw std::runtime_error( _error_msg.c_str() );
+        }
     }
 
 private:

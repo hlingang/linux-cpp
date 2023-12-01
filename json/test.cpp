@@ -17,10 +17,11 @@ int main()
     l.append( "abc" );
     j[ "L" ] = l;
     json::Json o;
-    o[ "a1" ]  = 100;
-    o[ "a2" ]  = "123";
-    o[ "a3" ]  = l;
-    j[ "obj" ] = o;
+    o[ "a1" ]    = 100;
+    o[ "a2" ]    = "123";
+    o[ "a3" ]    = l;
+    j[ "obj" ]   = o;
+    j[ "float" ] = 3.14;
 
     cout << j.toString() << endl;
     for ( auto& key : j )
