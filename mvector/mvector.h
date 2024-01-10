@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string.h>
+#include <iterator>
 using namespace std;
 
 #define DEFAULT_SIZE 2
@@ -8,7 +9,7 @@ using namespace std;
 template < typename T > class mvector
 {
 public:
-    class Iterator
+    class Iterator : public std::iterator< input_iterator_tag, T >
     {
     public:
         Iterator( T* ptr ) : _ptr( ptr ) {}
@@ -27,6 +28,10 @@ public:
         bool operator!=( const Iterator& rth )
         {
             return _ptr != rth._ptr;
+        }
+        T* operator->()
+        {
+            return _ptr;
         }
 
     private:

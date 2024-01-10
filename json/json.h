@@ -15,12 +15,12 @@ namespace json
 {
 enum value_type
 {
+    e_null = 0,
     e_int,
     e_double,
     e_string,
     e_array,
     e_object,
-    e_null,
     e_count,
 };
 
@@ -44,7 +44,7 @@ private:
 };
 
 const std::array< std::string, e_count > TYPE_NAME{
-    "int", "double", "string", "array", "object", "null",
+    "null", "int", "double", "string", "array", "object",
 };
 
 class CZString
@@ -118,8 +118,8 @@ public:
     Json()
     {
         memset( &_data, 0x00, sizeof( _data ) );
-        _data.type = e_null;
-        _obj       = new std::map< CZString, Json >;
+        setType( e_null );
+        _obj = new std::map< CZString, Json >;
     }
     Json( value_type _type ) : Json()
     {
@@ -127,18 +127,18 @@ public:
     }
     Json( int i ) : Json()
     {
-        _data.type  = e_int;
+        setType( e_int );
         _data.val.i = i;
     }
     Json( double d ) : Json()
     {
-        _data.type  = e_double;
+        setType( e_double );
         _data.val.d = d;
     }
     Json( const char* s ) : Json()
     {
-        _data.type = e_string;
-        int n      = strlen( s );
+        setType( e_string );
+        int n = strlen( s );
         if ( n > 0 )
         {
             char* p = ( char* )JsonAlloc::Alloc( n );
@@ -149,8 +149,8 @@ public:
     }
     Json( const std::string& s ) : Json()
     {
-        _data.type = e_string;
-        int n      = s.size();
+        setType( e_string );
+        int n = s.size();
         if ( n > 0 )
         {
             char* p = ( char* )JsonAlloc::Alloc( n );
@@ -161,7 +161,7 @@ public:
     }
     template < size_t N > Json( const char s[ N ] ) : Json()
     {
-        _data.type = e_string;
+        setType( e_string );
         if ( N > 0 )
         {
             char* p = ( char* )malloc( N );
@@ -222,11 +222,11 @@ public:
             break;
         case e_array:
         case e_object:
-            _obj = new std::map< CZString, Json >( *rth._obj );
+            _obj = new std::map< CZString, Json >( *rth._obj );  // 借助STL实现快速复制
             break;
         }
     }
-    const Json& operator=( const Json& rth )
+    Json& operator=( const Json& rth )
     {
         _data.type = rth._data.type;
         switch ( _data.type )
@@ -264,19 +264,6 @@ public:
         }
         return *this;
     }
-    //  implicit convert to Json object //
-    // Json& operator=( int i )
-    // {
-    //     _data.type  = e_int;
-    //     _data.val.i = i;
-    //     return *this;
-    // }
-    // Json& operator=( double d )
-    // {
-    //     _data.type  = e_double;
-    //     _data.val.d = d;
-    //     return *this;
-    // }
     ~Json()
     {
         if ( _data.type == e_string )
