@@ -73,14 +73,14 @@ int main()
     B0 b0;
     B1 b1;
 
-    a1.test();
+    a1.test();  // 静态绑定
     // a1.test(10); // 无法调用
-    ( ( A0& )a1 ).test( 10 );  // 转换成父类引用来调用父类隐藏的方法
+    ( ( A0& )a1 ).test( 10 );  // 静态绑定  // 转换成父类引用来调用父类隐藏的方法
 
-    b1.test();
-    ( ( B0& )b1 ).test();
+    b1.test();             // 静态绑定
+    ( ( B0& )b1 ).test();  // 动态绑定
     // b1.test(10); // 无法调用
-    ( ( B0& )b1 ).test( 20 );
+    ( ( B0& )b1 ).test( 20 );  // 静态绑定
     cout << "sizeof(A0) = " << sizeof( A0 ) << endl;
     cout << "sizeof(A1) = " << sizeof( A1 ) << endl;
 
