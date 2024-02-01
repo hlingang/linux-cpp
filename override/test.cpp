@@ -6,6 +6,8 @@ using namespace std;
 1. 隐藏是一次针对一组方法（包括重载方法）
 2. 覆写是一次针对一个方法 （不包括重载的方法）
 3. 父类隐藏的方法可以通过将子类转换成父类的引用（或指针）来调用
+4. 模板函数不能为虚函数（虚函数需要在编译器确定虚函数表）
+5. 子类会继承父类的所有虚函数表（指针）
 */
 
 struct A0
@@ -18,6 +20,10 @@ struct A0
     void test( int a )
     {
         cout << "A0-test-" << a << endl;
+    }
+    template < typename T > void test( T t )
+    {
+        cout << "template A0 - " << t << endl;
     }
 };
 
@@ -75,4 +81,9 @@ int main()
     ( ( B0& )b1 ).test();
     // b1.test(10); // 无法调用
     ( ( B0& )b1 ).test( 20 );
+    cout << "sizeof(A0) = " << sizeof( A0 ) << endl;
+    cout << "sizeof(A1) = " << sizeof( A1 ) << endl;
+
+    cout << "sizeof(B0) = " << sizeof( B0 ) << endl;
+    cout << "sizeof(B1) = " << sizeof( B1 ) << endl;
 }
