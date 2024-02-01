@@ -25,7 +25,8 @@ add_library(test_lib_shared SHARED ${c_files})
 set_target_properties(test_lib_static PROPERTIES OUTPUT_NAME ctestlib)
 set_target_properties(test_lib_shared PROPERTIES OUTPUT_NAME ctestlib)
 
-set_property(SOURCE ${swig_files} PROPERTY CPLUSPLUS ON)
+set_source_files_properties(${swig_files} PROPERTIES CPLUSPLUS ON)
+# set_property(SOURCE ${swig_files} PROPERTY CPLUSPLUS ON)
 swig_add_library(ctestlib TYPE MODULE 
 LANGUAGE python SOURCES ${swig_files} 
 OUTPUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/python 
