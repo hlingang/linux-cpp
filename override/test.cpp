@@ -44,7 +44,7 @@ struct B0
     }
     void test( int a )
     {
-        cout << "B0-test-" << a << endl;
+        cout << "B0-test" << endl;
     }
 };
 
@@ -75,12 +75,15 @@ int main()
 
     a1.test();  // 静态绑定
     // a1.test(10); // 无法调用
-    ( ( A0& )a1 ).test( 10 );  // 静态绑定  // 转换成父类引用来调用父类隐藏的方法
+    ( ( A0& )a1 ).test( 10 );  // 静态绑定
+    ( ( A0 )a1 ).test( 10 );   // 静态绑定
 
     b1.test();             // 静态绑定
     ( ( B0& )b1 ).test();  // 动态绑定
+    ( ( B0 )b1 ).test();   // 静态绑定
     // b1.test(10); // 无法调用
     ( ( B0& )b1 ).test( 20 );  // 静态绑定
+    ( ( B0 )b1 ).test( 20 );   // 静态绑定
     cout << "sizeof(A0) = " << sizeof( A0 ) << endl;
     cout << "sizeof(A1) = " << sizeof( A1 ) << endl;
 
