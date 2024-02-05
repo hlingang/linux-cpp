@@ -33,11 +33,11 @@ public:
         _empty_cond.notify_all();
         return _data.back();
     }
-    T& get()
+    T get()
     {
         unique_lock< mutex > lock( _mtx );
         _empty_cond.wait( lock, [ this ]() { return !this->empty(); } );
-        T& _t = _data.front();
+        T _t = _data.front();
         _data.pop();
         _full_cond.notify_all();
         return _t;
