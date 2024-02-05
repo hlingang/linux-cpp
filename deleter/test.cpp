@@ -1,6 +1,8 @@
 #include <iostream>
 #include <memory>
 #include <map>
+#include <sstream>
+#include <fstream>
 
 using namespace std;
 
@@ -50,6 +52,12 @@ bool func_mySort( const Sample& a1, const Sample& a2 )
     return a1.a < a2.a;
 }
 
+ostream& operator<<( ostream& ss, const Sample& _a )
+{
+    ss << "Sample{" << _a.a << "}";
+    return ss;
+}
+
 int main()
 {
     shared_ptr< Sample >          sptr( new Sample, Deleter() );
@@ -58,11 +66,21 @@ int main()
     shared_ptr< Sample >                        _sptr( new Sample( 5 ), func_Deleter );
     unique_ptr< Sample, void ( * )( Sample* ) > _uptr( new Sample( 10 ), &func_Deleter );
 
-    map< int, Sample, mySort >                                           ms;
-    map< int, Sample, bool ( * )( const Sample& a1, const Sample& a2 ) > _ms( &func_mySort );
-    ms.insert( { 1, Sample( 1 ) } );
-    ms.insert( { 2, Sample( 2 ) } );
+    map< Sample, int, mySort >                                           ms;
+    map< Sample, int, bool ( * )( const Sample& a1, const Sample& a2 ) > _ms( &func_mySort );
+    ms.insert( { Sample( 1 ), 1 } );
+    ms.insert( { Sample( 2 ), 2 } );
 
-    _ms.insert( { 1, Sample( 2 ) } );
-    _ms.insert( { 2, Sample( 1 ) } );
+    for ( auto iter = ms.begin(); iter != ms.end(); iter++ )
+    {
+        cout << "key:" << iter->first << ", value:" << iter->second << endl;
+    }
+
+    _ms.insert( { Sample( 2 ), 2 } );
+    _ms.insert( { Sample( 1 ), 1 } );
+
+    for ( auto iter = _ms.begin(); iter != _ms.end(); iter++ )
+    {
+        cout << "key:" << iter->first << ", value:" << iter->second << endl;
+    }
 }
