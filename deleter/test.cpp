@@ -4,6 +4,13 @@
 
 using namespace std;
 
+/*
+1. 同时传递类型和对象 （类和函数）    unique_ptr
+2. 传递对象          （类和函数）    shared_ptr
+3. 传递类型          （类）         sort
+
+*/
+
 struct Sample
 {
     Sample() = default;
