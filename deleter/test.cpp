@@ -52,7 +52,7 @@ bool func_mySort( const Sample& a1, const Sample& a2 )
     return a1.a < a2.a;
 }
 
-ostream& operator<<( ostream& ss, const Sample& _a )
+ostream& operator<<( ostream& ss, const Sample& _a )  // 参数位置规则
 {
     ss << "Sample{" << _a.a << "}";
     return ss;
