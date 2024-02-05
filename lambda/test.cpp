@@ -2,6 +2,25 @@
 
 using namespace std;
 
+class A
+{
+public:
+    A( int& _a, int* _c ) : a( _a ), c( _c ), b( 90 ) {}
+
+    void test() const
+    {
+        a  = 100;
+        *c = 101;
+        // b  = 99;
+        // const 成员函数不允许直接修改成员变量的值，但是允许通过引用和指针间接修改
+    }
+
+private:
+    int& a;
+    int  b = 200;
+    int* c;
+};
+
 int main()
 {
     int a = 1;
