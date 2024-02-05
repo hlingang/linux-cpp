@@ -19,16 +19,18 @@ public:
     }
     bool empty()
     {
-        return _data.empty();
+        lock_guard< std::mutex > lock( _mtx );
+        return __empty();
     }
     bool full()
     {
-        return _data.size() == _cap;
+        lock_guard< std::mutex > lock( _mtx );
+        return __full();
     }
     T& put( T& t )
     {
         unique_lock< mutex > lock( _mtx );
-        _full_cond.wait( lock, [ this ]() { return !this->full(); } );
+        _full_cond.wait( lock, [ this ]() { return !this->__full(); } );
         _data.push( t );
         _empty_cond.notify_all();
         return _data.back();
@@ -36,7 +38,7 @@ public:
     T get()
     {
         unique_lock< mutex > lock( _mtx );
-        _empty_cond.wait( lock, [ this ]() { return !this->empty(); } );
+        _empty_cond.wait( lock, [ this ]() { return !this->__empty(); } );
         T _t = _data.front();
         _data.pop();
         _full_cond.notify_all();
@@ -44,7 +46,18 @@ public:
     }
     size_t size()
     {
+        lock_guard< std::mutex > lock( _mtx );
         return _data.size();
+    }
+
+private:
+    bool __empty()
+    {
+        return _data.empty();
+    }
+    bool __full()
+    {
+        return _data.size() == _cap;
     }
 
 private:
