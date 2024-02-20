@@ -39,6 +39,12 @@ int main()
         c -= 1;
         // 隐式捕获所有的局部变量(引用捕获方式), 无需构建成员变量,  默认是const 成员函数
     };
+    auto q = [ &, b, c ]() mutable -> void {
+        // todo
+    };
+    auto w = [ =, &b, &c ]() mutable -> void {
+        // todo
+    };
     f();
     cout << "a=" << a << ", b=" << b << ", c=" << c << endl;
     p();
