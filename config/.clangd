@@ -1,0 +1,18 @@
+CompileFlags:
+    Add:
+      - -std=c++11
+      - -Wall
+      - -Werror
+      - -I./include
+
+Diagnostics:
+  ClangTidy:
+    Add:
+      - clang-analyzer-*
+      - modernize-*
+      - performance-*
+      - readability-*
+
+    Remove:
+      - modernize-use-trailing-return-type
+      - readability-magic-numbers
