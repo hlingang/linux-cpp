@@ -35,6 +35,27 @@
 				"-I/usr/src/linux-headers-6.2.0-33-generic/arch/x86/include/generated",
 				"-I/usr/src/linux-headers-6.2.0-33-generic/arch/ia64/include",
 			]
+	2).clangd 文件配置
+
+		CompileFlags:
+			Add:
+			- -std=c++11
+			- -Wall
+			- -Werror
+			- -I./include
+
+		Diagnostics:
+		  ClangTidy:
+			Add:
+			- clang-analyzer-*
+			- modernize-*
+			- performance-*
+			- readability-*
+
+			Remove:
+			- modernize-use-trailing-return-type
+			- readability-magic-numbers
+			
 2. Virtualbox/ubuntu22.04 (虚拟机开发调试环境)   [opensource]
 	1) 网络连接方式的配置
 		- 网络地址转换 NAT, 通过host指定的端口访问虚拟机
