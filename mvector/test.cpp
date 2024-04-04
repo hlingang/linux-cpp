@@ -21,7 +21,7 @@ int main()
     am.remove( 2 );
     am.to_string();
     size_t id = 0;
-    for ( auto val : am )
+    for ( auto& val : am )
     {
         cout << "[" << id++ << "]"
              << " val: " << val << endl;

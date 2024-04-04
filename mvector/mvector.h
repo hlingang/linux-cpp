@@ -13,8 +13,8 @@ public:
     {
     public:
         Iterator( T* ptr ) : _ptr( ptr ) {}
-        Iterator( const Iterator& rth )           = delete;
-        Iterator operator=( const Iterator& rth ) = delete;
+        Iterator( const Iterator& rth )            = default;
+        Iterator& operator=( const Iterator& rth ) = default;
 
         T& operator*()
         {
@@ -174,10 +174,7 @@ public:
         {
             return &data_[ size_ - 1 + 1 ];
         }
-        else
-        {
-            return nullptr;
-        }
+        return nullptr;
     }
 
 private:
