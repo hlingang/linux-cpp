@@ -2,6 +2,7 @@
 #include <vector>
 #include <string.h>
 #include <iterator>
+#include <sstream>
 using namespace std;
 
 #define DEFAULT_SIZE 2
@@ -9,7 +10,7 @@ using namespace std;
 template < typename T > class mvector
 {
 public:
-    class Iterator : public std::iterator< input_iterator_tag, T >
+    class Iterator
     {
     public:
         Iterator( T* ptr ) : _ptr( ptr ) {}
@@ -20,18 +21,23 @@ public:
         {
             return *_ptr;
         }
+        T* operator->()
+        {
+            return _ptr;
+        }
         Iterator& operator++()
         {
             ++_ptr;
             return *this;
         }
+        Iterator& operator--()
+        {
+            --_ptr;
+            return *this;
+        }
         bool operator!=( const Iterator& rth )
         {
             return _ptr != rth._ptr;
-        }
-        T* operator->()
-        {
-            return _ptr;
         }
 
     private:
@@ -77,10 +83,7 @@ public:
         {
             return data_[ index ];
         }
-        else
-        {
-            throw out_of_range( "index out of range" );
-        }
+        throw out_of_range( "index out of range" );
     }
     T& back()
     {
@@ -88,10 +91,7 @@ public:
         {
             return data_[ size_ - 1 ];
         }
-        else
-        {
-            throw out_of_range( "empty error" );
-        }
+        throw out_of_range( "empty error" );
     }
     T& front()
     {
@@ -99,10 +99,7 @@ public:
         {
             return data_[ 0 ];
         }
-        else
-        {
-            throw runtime_error( "empty error" );
-        }
+        throw runtime_error( "empty error" );
     }
     template < typename... Args > T& emplace_back( Args... args )
     {
@@ -132,29 +129,39 @@ public:
             {
                 memmove( &data_[ index ], &data_[ index + 1 ], sizeof( T ) * ( size_ - index - 1 ) );
                 data_[ size_ - 1 ] = t;
-                --size_;
             }
+            --size_;
             return t;
         }
-        else
-        {
-            throw out_of_range( "index out of range" );
-        }
+        throw out_of_range( "index out of range" );
     }
 
-    void to_string()
+    string to_string()
     {
+        stringstream __ss;
         if ( empty() )
         {
-            cout << "null" << endl;
+            __ss << "null";
         }
         else
         {
+            __ss << "{";
+            bool __start = false;
             for ( size_t i = 0; i < size_; i++ )
             {
-                cout << "[" << i << "]: " << data_[ i ] << endl;
+                if ( !__start )
+                {
+                    __ss << data_[ i ];
+                    __start = true;
+                }
+                else
+                {
+                    __ss << "," << data_[ i ];
+                }
             }
+            __ss << "}";
         }
+        return __ss.str();
     }
 
     Iterator begin()
@@ -163,16 +170,13 @@ public:
         {
             return Iterator( data_ );
         }
-        else
-        {
-            return nullptr;
-        }
+        return nullptr;
     }
     Iterator end()
     {
         if ( size_ > 0 )
         {
-            return &data_[ size_ - 1 + 1 ];
+            return Iterator( data_ + size_ );
         }
         return nullptr;
     }
