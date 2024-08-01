@@ -102,11 +102,11 @@ inline void insert_node( int __val, node** head )
     *p             = new_node;
 }
 
-inline node* reverse_node( node** head )
+inline void reverse_node( node** head )
 {
     if ( !head )
     {
-        return nullptr;
+        return;
     }
     node** p    = head;
     node*  next = nullptr;
@@ -117,7 +117,7 @@ inline node* reverse_node( node** head )
         next         = *p;  // 备份前一个位置
         *p           = ( *p )->pre;
     }
-    return next;
+    *p = next;
 }
 
 #endif
