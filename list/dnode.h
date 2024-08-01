@@ -108,16 +108,14 @@ inline node* reverse_node( node** head )
     {
         return nullptr;
     }
-    node** p       = head;
-    node*  next    = nullptr;
-    node*  back_up = nullptr;
+    node** p    = head;
+    node*  next = nullptr;
     for ( ; *p; )
     {
-        back_up      = ( *p )->next;  // 备份后一个位置
-        ( *p )->next = ( *p )->pre;
-        ( *p )->pre  = back_up;
+        ( *p )->pre  = ( *p )->next;
+        ( *p )->next = next;
         next         = *p;  // 备份前一个位置
-        *p           = back_up;
+        *p           = ( *p )->pre;
     }
     return next;
 }
