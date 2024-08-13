@@ -7,42 +7,48 @@ using namespace std;
 
 #define DEFAULT_SIZE 2
 
+template < typename T > class Iterator
+{
+public:
+    Iterator( T* ptr ) : _ptr( ptr ) {}
+    Iterator( const Iterator& rth )            = default;
+    Iterator& operator=( const Iterator& rth ) = default;
+
+    T& operator*()
+    {
+        return *_ptr;
+    }
+    T* operator->()
+    {
+        return _ptr;
+    }
+    Iterator& operator++()
+    {
+        ++_ptr;
+        return *this;
+    }
+    Iterator& operator--()
+    {
+        --_ptr;
+        return *this;
+    }
+    bool operator!=( const Iterator& rth )
+    {
+        return _ptr != rth._ptr;
+    }
+    bool operator==( const Iterator& rth )
+    {
+        return _ptr == rth._ptr;
+    }
+
+private:
+    T* _ptr;
+};
+
 template < typename T > class mvector
 {
 public:
-    class Iterator
-    {
-    public:
-        Iterator( T* ptr ) : _ptr( ptr ) {}
-        Iterator( const Iterator& rth )            = default;
-        Iterator& operator=( const Iterator& rth ) = default;
-
-        T& operator*()
-        {
-            return *_ptr;
-        }
-        T* operator->()
-        {
-            return _ptr;
-        }
-        Iterator& operator++()
-        {
-            ++_ptr;
-            return *this;
-        }
-        Iterator& operator--()
-        {
-            --_ptr;
-            return *this;
-        }
-        bool operator!=( const Iterator& rth )
-        {
-            return _ptr != rth._ptr;
-        }
-
-    private:
-        T* _ptr;
-    };
+    using iterator = Iterator< T >;
     mvector() : mvector( DEFAULT_SIZE ) {}
     mvector( size_t sz ) : size_( 0 )
     {
@@ -164,19 +170,19 @@ public:
         return __ss.str();
     }
 
-    Iterator begin()
+    iterator begin()
     {
         if ( size_ > 0 )
         {
-            return Iterator( data_ );
+            return iterator( data_ );
         }
         return nullptr;
     }
-    Iterator end()
+    iterator end()
     {
         if ( size_ > 0 )
         {
-            return Iterator( data_ + size_ );
+            return iterator( data_ + size_ );
         }
         return nullptr;
     }
