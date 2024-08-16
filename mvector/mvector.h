@@ -154,6 +154,25 @@ public:
         ++_M_sz;
         return *( _M_end - 1 );
     }
+    template < typename... Args > T& emplace( iterator __pos, Args... args )
+    {
+        if ( __pos == end() )
+        {
+            return emplace_back( std::forward< Args >( args )... );
+        }
+        T*     old_start = _M_start;
+        size_t offset    = begin() - __pos;
+        if ( _M_sz == _M_cap )
+        {
+            resize( 1 );
+        }
+        T __temp;
+        ::new ( ( void* )&__temp ) T( std::forward< Args >( args )... );
+        std::copy_backward( begin() + offset, end(), end() + 1 );
+        *( _M_start + offset ) = std::move( __temp );
+        ++_M_sz;
+        ++_M_end;
+    }
     size_t size()
     {
         return _M_sz;
@@ -190,11 +209,10 @@ public:
         {
             resize( _M_sz + insert_n - _M_cap + 1 );
         }
-        iterator __pos   = begin() + __offset;
-        iterator new_end = std::copy_backward( __pos, end(), __pos + insert_n );
-        std::copy( __first1, __last1, __pos );
-        _M_end = new_end.base();
+        std::copy_backward( begin() + __offset, end(), end() + insert_n );
+        std::copy( __first1, __last1, begin() + __offset );
         _M_sz += insert_n;
+        _M_end += insert_n;
     }
 
     string to_string()
