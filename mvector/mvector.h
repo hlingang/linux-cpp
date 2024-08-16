@@ -93,7 +93,6 @@ public:
         _M_cap   = sz;
         _M_start = _M_end = new T[ _M_cap ];
         _M_storage        = _M_start + _M_cap;
-        memset( _M_start, 0x00, sizeof( T ) * _M_cap );
     }
     ~mvector()
     {
@@ -172,7 +171,7 @@ public:
         T t = *( _M_start + index );
         if ( index != _M_sz - 1 )
         {
-            memmove( _M_start + index, _M_start + index + 1, sizeof( T ) * ( _M_sz - index - 1 ) );
+            std::copy( _M_start + index + 1, _M_end, _M_start + index );
             *( _M_end - 1 ) = t;
         }
         --_M_end;
