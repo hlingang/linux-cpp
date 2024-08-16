@@ -171,7 +171,7 @@ public:
         T t = *( _M_start + index );
         if ( index != _M_sz - 1 )
         {
-            std::copy( _M_start + index + 1, _M_end, _M_start + index );
+            std::copy( iterator( _M_start + index + 1 ), iterator( _M_end ), iterator( _M_start + index ) );
             *( _M_end - 1 ) = t;
         }
         --_M_end;
