@@ -35,7 +35,37 @@
 #include <node.h>
 #include <tree.h>
 
+#include "nlist.hpp"
+#include "fwlist.hpp"
+
 using namespace std;
+
+class TX
+{
+public:
+    TX( int __x )
+    {
+        _M_ptr = new int( __x );
+        cout << "create TX(" << __x << ")" << endl;
+    }
+    ~TX()
+    {
+        cout << "*~TX(" << *_M_ptr << ")" << endl;
+    }
+
+private:
+    int* _M_ptr;
+};
+
+void test_abc()
+{
+    cout << "abc" << endl;
+}
+
+void test_123()
+{
+    cout << "123" << endl;
+}
 
 int main( int argc, char* argv[] )
 {
@@ -115,5 +145,49 @@ int main( int argc, char* argv[] )
         }
         ++__name;
     }
+
+    List< int > iList( 2, 16 );
+    iList.assign( 3, 15 );
+    iList.emplace( 1 );
+    iList.emplace( 10 );
+    iList.emplace( 20 );
+    iList.erase( iList.begin() );
+    iList.insert( iList.begin(), iList.begin(), iList.end() );
+
+    for ( auto& val : iList )
+    {
+        cout << "iList val = " << val << endl;
+    }
+    cout << "-----------------------------------" << endl;
+    iList.reverse();
+    for ( auto& val : iList )
+    {
+        cout << "iList val = " << val << endl;
+    }
+    iList.clear();
+
+    FWList< int > fwList;
+    fwList.assign( 10, 3 );
+    for ( auto& val : fwList )
+    {
+        cout << "fwList val = " << val << endl;
+    }
+    cout << "---------------------------------" << endl;
+    fwList.clear();
+    fwList.emplace( 1024 );
+    fwList.insert_after( fwList.begin_before(), 24 );
+    fwList.insert_after( fwList.begin_before(), 32 );
+
+    fwList.insert_after( fwList.begin_before(), 32 );
+
+    fwList.insert_after( fwList.begin_before(), fwList.begin(), fwList.end() );
+    fwList.erase_after( fwList.begin_before() );
+    fwList.erase_after( fwList.begin() );
+
+    for ( auto& val : fwList )
+    {
+        cout << "fwList val = " << val << endl;
+    }
+    map< string, int > __map{ { "a", 10 }, { "b", 89 } };
     return 0;
 }
