@@ -31,11 +31,6 @@ struct TX
     }
 };
 
-class MyClass
-{
-    constexpr static int value = 1;
-};
-
 int main()
 {
     mvector< int > mvec;
