@@ -157,8 +157,7 @@ private:
     }
     void _M_start_produce()
     {
-        std::thread __t = thread( &ThreadPool::_M_produce, this );
-        std::cout << __t.joinable() << std::endl;
+        std::thread __t   = thread( &ThreadPool::_M_produce, this );
         _M_produce_thread = std::move( __t );
     }
     void _M_work()
