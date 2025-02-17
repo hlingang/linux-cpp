@@ -1,0 +1,933 @@
+setup cache[num=22, npages=1, nlimit=25]
+cache num = 22
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 21/22
+ nslab     .size = 1
+id = 1
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 20/22
+ nslab     .size = 1
+id = 2
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 19/22
+ nslab     .size = 1
+id = 3
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 18/22
+ nslab     .size = 1
+id = 4
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 17/22
+ nslab     .size = 1
+id = 5
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 16/22
+ nslab     .size = 1
+id = 6
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 15/22
+ nslab     .size = 1
+id = 7
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 14/22
+ nslab     .size = 1
+id = 8
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 13/22
+ nslab     .size = 1
+id = 9
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 12/22
+ nslab     .size = 1
+id = 10
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 11/22
+ nslab     .size = 1
+id = 11
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 10/22
+ nslab     .size = 1
+id = 12
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 9/22
+ nslab     .size = 1
+id = 13
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 8/22
+ nslab     .size = 1
+id = 14
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 7/22
+ nslab     .size = 1
+id = 15
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 6/22
+ nslab     .size = 1
+id = 16
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 5/22
+ nslab     .size = 1
+id = 17
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 4/22
+ nslab     .size = 1
+id = 18
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 3/22
+ nslab     .size = 1
+id = 19
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 2/22
+ nslab     .size = 1
+id = 20
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 1/22
+ nslab     .size = 1
+id = 21
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 0
+ l3.full   .size = 1
+ nfree     .size = 0/22
+ nslab     .size = 1
+id = 22
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 21/44
+ nslab     .size = 2
+id = 23
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 20/44
+ nslab     .size = 2
+id = 24
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 19/44
+ nslab     .size = 2
+id = 25
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 18/44
+ nslab     .size = 2
+id = 26
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 17/44
+ nslab     .size = 2
+id = 27
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 16/44
+ nslab     .size = 2
+id = 28
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 15/44
+ nslab     .size = 2
+id = 29
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 14/44
+ nslab     .size = 2
+id = 30
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 13/44
+ nslab     .size = 2
+id = 31
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 12/44
+ nslab     .size = 2
+id = 32
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 11/44
+ nslab     .size = 2
+id = 33
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 10/44
+ nslab     .size = 2
+id = 34
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 9/44
+ nslab     .size = 2
+id = 35
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 8/44
+ nslab     .size = 2
+id = 36
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 7/44
+ nslab     .size = 2
+id = 37
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 6/44
+ nslab     .size = 2
+id = 38
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 5/44
+ nslab     .size = 2
+id = 39
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 4/44
+ nslab     .size = 2
+id = 40
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 3/44
+ nslab     .size = 2
+id = 41
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 2/44
+ nslab     .size = 2
+id = 42
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 1/44
+ nslab     .size = 2
+id = 43
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 0
+ l3.full   .size = 2
+ nfree     .size = 0/44
+ nslab     .size = 2
+id = 44
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 21/66
+ nslab     .size = 3
+id = 45
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 20/66
+ nslab     .size = 3
+id = 46
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 19/66
+ nslab     .size = 3
+id = 47
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 18/66
+ nslab     .size = 3
+id = 48
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 17/66
+ nslab     .size = 3
+id = 49
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 16/66
+ nslab     .size = 3
+id = 50
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 15/66
+ nslab     .size = 3
+id = 51
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 14/66
+ nslab     .size = 3
+id = 52
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 13/66
+ nslab     .size = 3
+id = 53
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 12/66
+ nslab     .size = 3
+id = 54
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 11/66
+ nslab     .size = 3
+id = 55
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 10/66
+ nslab     .size = 3
+id = 56
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 9/66
+ nslab     .size = 3
+id = 57
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 8/66
+ nslab     .size = 3
+id = 58
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 7/66
+ nslab     .size = 3
+id = 59
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 6/66
+ nslab     .size = 3
+id = 60
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 5/66
+ nslab     .size = 3
+id = 61
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 4/66
+ nslab     .size = 3
+id = 62
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 3/66
+ nslab     .size = 3
+id = 63
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 2/66
+ nslab     .size = 3
+id = 64
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 1/66
+ nslab     .size = 3
+id = 65
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 0
+ l3.full   .size = 3
+ nfree     .size = 0/66
+ nslab     .size = 3
+id = 66
+---------------------------
+full.0: {id=0, val=1, name=tim->0:0}
+full.1: {id=1, val=2, name=tim->1:1}
+full.2: {id=2, val=3, name=tim->2:2}
+full.3: {id=3, val=4, name=tim->3:3}
+full.4: {id=4, val=5, name=tim->4:4}
+full.5: {id=5, val=6, name=tim->5:5}
+full.6: {id=6, val=7, name=tim->6:6}
+full.7: {id=7, val=8, name=tim->7:7}
+full.8: {id=8, val=9, name=tim->8:8}
+full.9: {id=9, val=10, name=tim->9:9}
+full.10: {id=10, val=11, name=tim->10:10}
+full.11: {id=11, val=12, name=tim->11:11}
+full.12: {id=12, val=13, name=tim->12:12}
+full.13: {id=13, val=14, name=tim->13:13}
+full.14: {id=14, val=15, name=tim->14:14}
+full.15: {id=15, val=16, name=tim->15:15}
+full.16: {id=16, val=17, name=tim->16:16}
+full.17: {id=17, val=18, name=tim->17:17}
+full.18: {id=18, val=19, name=tim->18:18}
+full.19: {id=19, val=20, name=tim->19:19}
+full.20: {id=20, val=21, name=tim->20:20}
+full.21: {id=21, val=22, name=tim->21:21}
+full.0: {id=22, val=23, name=tim->22:0}
+full.1: {id=23, val=24, name=tim->23:1}
+full.2: {id=24, val=25, name=tim->24:2}
+full.3: {id=25, val=26, name=tim->25:3}
+full.4: {id=26, val=27, name=tim->26:4}
+full.5: {id=27, val=28, name=tim->27:5}
+full.6: {id=28, val=29, name=tim->28:6}
+full.7: {id=29, val=30, name=tim->29:7}
+full.8: {id=30, val=31, name=tim->30:8}
+full.9: {id=31, val=32, name=tim->31:9}
+full.10: {id=32, val=33, name=tim->32:10}
+full.11: {id=33, val=34, name=tim->33:11}
+full.12: {id=34, val=35, name=tim->34:12}
+full.13: {id=35, val=36, name=tim->35:13}
+full.14: {id=36, val=37, name=tim->36:14}
+full.15: {id=37, val=38, name=tim->37:15}
+full.16: {id=38, val=39, name=tim->38:16}
+full.17: {id=39, val=40, name=tim->39:17}
+full.18: {id=40, val=41, name=tim->40:18}
+full.19: {id=41, val=42, name=tim->41:19}
+full.20: {id=42, val=43, name=tim->42:20}
+full.21: {id=43, val=44, name=tim->43:21}
+full.0: {id=44, val=45, name=tim->44:0}
+full.1: {id=45, val=46, name=tim->45:1}
+full.2: {id=46, val=47, name=tim->46:2}
+full.3: {id=47, val=48, name=tim->47:3}
+full.4: {id=48, val=49, name=tim->48:4}
+full.5: {id=49, val=50, name=tim->49:5}
+full.6: {id=50, val=51, name=tim->50:6}
+full.7: {id=51, val=52, name=tim->51:7}
+full.8: {id=52, val=53, name=tim->52:8}
+full.9: {id=53, val=54, name=tim->53:9}
+full.10: {id=54, val=55, name=tim->54:10}
+full.11: {id=55, val=56, name=tim->55:11}
+full.12: {id=56, val=57, name=tim->56:12}
+full.13: {id=57, val=58, name=tim->57:13}
+full.14: {id=58, val=59, name=tim->58:14}
+full.15: {id=59, val=60, name=tim->59:15}
+full.16: {id=60, val=61, name=tim->60:16}
+full.17: {id=61, val=62, name=tim->61:17}
+full.18: {id=62, val=63, name=tim->62:18}
+full.19: {id=63, val=64, name=tim->63:19}
+full.20: {id=64, val=65, name=tim->64:20}
+full.21: {id=65, val=66, name=tim->65:21}
+
+======================
+ l3.free   .size = 0
+ l3.partial.size = 0
+ l3.full   .size = 3
+ nfree     .size = 0/66
+ nslab     .size = 3
+id = 1
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 1/66
+ nslab     .size = 3
+id = 2
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 2/66
+ nslab     .size = 3
+id = 3
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 3/66
+ nslab     .size = 3
+id = 4
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 4/66
+ nslab     .size = 3
+id = 5
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 5/66
+ nslab     .size = 3
+id = 6
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 6/66
+ nslab     .size = 3
+id = 7
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 7/66
+ nslab     .size = 3
+id = 8
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 8/66
+ nslab     .size = 3
+id = 9
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 9/66
+ nslab     .size = 3
+id = 10
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 10/66
+ nslab     .size = 3
+id = 11
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 11/66
+ nslab     .size = 3
+id = 12
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 12/66
+ nslab     .size = 3
+id = 13
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 13/66
+ nslab     .size = 3
+id = 14
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 14/66
+ nslab     .size = 3
+id = 15
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 15/66
+ nslab     .size = 3
+id = 16
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 16/66
+ nslab     .size = 3
+id = 17
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 17/66
+ nslab     .size = 3
+id = 18
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 18/66
+ nslab     .size = 3
+id = 19
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 19/66
+ nslab     .size = 3
+id = 20
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 20/66
+ nslab     .size = 3
+id = 21
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 2
+ nfree     .size = 21/66
+ nslab     .size = 3
+id = 22
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 0
+ l3.full   .size = 2
+ nfree     .size = 0/44
+ nslab     .size = 2
+id = 23
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 1/44
+ nslab     .size = 2
+id = 24
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 2/44
+ nslab     .size = 2
+id = 25
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 3/44
+ nslab     .size = 2
+id = 26
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 4/44
+ nslab     .size = 2
+id = 27
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 5/44
+ nslab     .size = 2
+id = 28
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 6/44
+ nslab     .size = 2
+id = 29
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 7/44
+ nslab     .size = 2
+id = 30
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 8/44
+ nslab     .size = 2
+id = 31
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 9/44
+ nslab     .size = 2
+id = 32
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 10/44
+ nslab     .size = 2
+id = 33
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 11/44
+ nslab     .size = 2
+id = 34
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 12/44
+ nslab     .size = 2
+id = 35
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 13/44
+ nslab     .size = 2
+id = 36
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 14/44
+ nslab     .size = 2
+id = 37
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 15/44
+ nslab     .size = 2
+id = 38
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 16/44
+ nslab     .size = 2
+id = 39
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 17/44
+ nslab     .size = 2
+id = 40
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 18/44
+ nslab     .size = 2
+id = 41
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 19/44
+ nslab     .size = 2
+id = 42
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 20/44
+ nslab     .size = 2
+id = 43
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 1
+ nfree     .size = 21/44
+ nslab     .size = 2
+id = 44
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 0
+ l3.full   .size = 1
+ nfree     .size = 0/22
+ nslab     .size = 1
+id = 45
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 1/22
+ nslab     .size = 1
+id = 46
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 2/22
+ nslab     .size = 1
+id = 47
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 3/22
+ nslab     .size = 1
+id = 48
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 4/22
+ nslab     .size = 1
+id = 49
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 5/22
+ nslab     .size = 1
+id = 50
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 6/22
+ nslab     .size = 1
+id = 51
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 7/22
+ nslab     .size = 1
+id = 52
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 8/22
+ nslab     .size = 1
+id = 53
+---------------------------
+ l3.free   .size = 0
+ l3.partial.size = 1
+ l3.full   .size = 0
+ nfree     .size = 9/22
+ nslab     .size = 1
+id = 54
+---------------------------
+partial.0: {id=44, val=45, name=tim->44:0}
+partial.1: {id=45, val=46, name=tim->45:1}
+partial.2: {id=46, val=47, name=tim->46:2}
+partial.3: {id=47, val=48, name=tim->47:3}
+partial.4: {id=48, val=49, name=tim->48:4}
+partial.5: {id=49, val=50, name=tim->49:5}
+partial.6: {id=50, val=51, name=tim->50:6}
+partial.7: {id=51, val=52, name=tim->51:7}
+partial.8: {id=52, val=53, name=tim->52:8}
+partial.9: {id=53, val=54, name=tim->53:9}
+partial.10: {id=54, val=55, name=tim->54:10}
+partial.11: {id=55, val=56, name=tim->55:11}
+partial.12: {id=56, val=57, name=tim->56:12}
+partial.13: {id=57, val=58, name=tim->57:13}
+partial.14: {id=58, val=59, name=tim->58:14}
+partial.15: {id=59, val=60, name=tim->59:15}
+partial.16: {id=60, val=61, name=tim->60:16}
+partial.17: {id=61, val=62, name=tim->61:17}
+partial.18: {id=62, val=63, name=tim->62:18}
+partial.19: {id=63, val=64, name=tim->63:19}
+partial.20: {id=64, val=65, name=tim->64:20}
+partial.21: {id=65, val=66, name=tim->65:21}
+~KmemCache
