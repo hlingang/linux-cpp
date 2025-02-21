@@ -6,23 +6,24 @@
 
 using namespace std;
 
+struct proxy
+{
+    void (*start)();
+    void (*stop)();
+};
+
 class SyncBarrier
 {
 public:
     SyncBarrier(int __child_nthread) : inited(false), __tid(std::this_thread::get_id()), nwait(0), child_nthread(__child_nthread), total_nthread(__child_nthread + 1)
     {
-        init();
+        __init();
     }
     ~SyncBarrier()
     {
         __destroy();
     }
-    void init()
-    {
-        pthread_barrier_init(&barrier_stop, nullptr, total_nthread);
-        pthread_barrier_init(&barrier_prepare, nullptr, total_nthread);
-        inited = true;
-    }
+
     void start()
     {
         while (__get_nwait() < child_nthread)
@@ -49,6 +50,12 @@ public:
     }
 
 private:
+    void __init()
+    {
+        pthread_barrier_init(&barrier_stop, nullptr, total_nthread);
+        pthread_barrier_init(&barrier_prepare, nullptr, total_nthread);
+        inited = true;
+    }
     void __inc_wait()
     {
         std::lock_guard<std::mutex> lock(__mutex);
