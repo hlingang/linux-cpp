@@ -15,7 +15,7 @@ typedef unsigned int bufctl_t;
 #define get_cpu_id() (0)
 #define buf_ctl(s) ((unsigned int *)(s + 1))
 #define get_slab(o) ((slab *)(((unsigned long)o) & (~PAGE_MASK)))
-#define obj_to_index(o, s) (((char *)o - (char *)((s)->mem)) / sizeof(kobj_t<T>))
+#define obj_to_index(o, s) ((kobj_t<T> *)o - (kobj_t<T> *)(s)->mem)
 #define index_to_obj(n, s) ((kobj_t<T> *)s->mem + n)
 #define BUF_END (~0U)
 
