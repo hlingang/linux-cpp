@@ -10,107 +10,50 @@
 
 using namespace std;
 
-// C 语言不支持在调用的时候动态展开 [参数列表]
+// 如何接受动态参数并且进行保存 和 传递
 
-template <typename... Args>
-void debug(const char *fmt, Args &&...args)
+template < size_t... Is > struct __S_index_seq
 {
-    std::printf(fmt, std::forward<Args>(args)...); // std::forward<Args>(args)...
-}
-
-template <>
-void debug(const char *fmt)
+};
+template < size_t M, size_t... N > struct __S_index_helper : __S_index_helper< M - 1, M - 1, N... >
 {
-    std::printf("%s", fmt);
-}
-
-template <typename... Args>
-using valid_void_t = void;
-
-template <typename T, typename = void>
-/* 通配公式的默认参数， 用于匹配偏特化参数，同时完成参数的降维*输入参数只要一个就OK */
-/* 默认参数的存在是为了实现参数的降维 */
-struct __S_is_valid
+};
+template < size_t... N > struct __S_index_helper< 0, 0, N... >
 {
-    static const bool value = false;
+    using type = __S_index_seq< 0, N... >;
 };
 
-template <typename T>
-struct __S_is_valid<T,
-                    valid_void_t<decltype(std::declval<T>().valid())>>
-/*非独立模板参数* 以偏特化参数形式存在*/
-/*偏特化参数 可以覆盖通用模板里面的默认参数*/
+template < typename... Args > struct __S_fmt_aux
 {
-    static const bool value = true;
-};
-
-template <typename T>
-bool is_valid(const T &)
-{
-    return __S_is_valid<T>::value;
-}
-
-class Valid_clss
-{
-public:
-    int valid()
+    using index_helper_t = typename __S_index_helper< sizeof...( Args ) >::type;
+    tuple< Args... > m_tu;
+    __S_fmt_aux( Args&&... args ) : m_tu( std::forward< Args >( args )... ) {}
+    int operator()( const char* fmt )  // 类型萃取 //
     {
+        index_helper_t __instance;
+        __display_params( fmt, __instance );
         return 0;
     }
-};
-
-template <size_t... Is>
-struct __S_index_seq
-{
-};
-
-template <size_t M, size_t... N>
-struct __S_index_helper : __S_index_helper<M - 1, M - 1, N...>
-{
-};
-template <size_t... N>
-struct __S_index_helper<0, 0, N...>
-{
-    using type = __S_index_seq<0, N...>;
-};
-
-template <typename... Args>
-struct __S_fmt_aux
-{
-    tuple<Args...> m_tu;
-    __S_fmt_aux(Args &&...args) : m_tu(std::forward<Args>(args)...) {}
-    template <size_t... Is>
-    int operator()(const __S_index_seq<Is...> &) // 类型萃取 //
+    template < size_t... Is > void __display_params( const char* fmt, __S_index_seq< Is... >& t )
     {
-        printf("yes===%d, %s\n", get<Is>(m_tu)...);
-        return 0;
+        printf( fmt, get< Is >( m_tu )... );
     }
-    typename __S_index_helper<sizeof...(Args)>::type
+    typename __S_index_helper< sizeof...( Args ) >::type
     /*此处无法通过返回值进行类型萃取? */
     /* template<size_t...Is> __S_index_seq<Is...> */
     get_index_seq()
     {
-        return typename __S_index_helper<sizeof...(Args)>::type();
+        return typename __S_index_helper< sizeof...( Args ) >::type();
     }
 };
-template <typename... Args>
-__S_fmt_aux<Args...>
-fmt_aux(Args... args)
+template < typename... Args > __S_fmt_aux< Args... > fmt_aux( Args... args )
 {
-    return __S_fmt_aux<Args...>(std::forward<Args>(args)...);
+    return __S_fmt_aux< Args... >( std::forward< Args >( args )... );
 }
 
 int main()
 
 {
-    debug("Hello!\n");
-    std::cout << __S_is_valid<int>::value << std::endl;
-    std::cout << __S_is_valid<int, double>::value << std::endl;
-    std::cout << __S_is_valid<decltype(std::declval<Valid_clss>().valid())>::value << std::endl;
-    std::cout << is_valid(Valid_clss()) << std::endl;
-    std::shared_ptr<char[]> am(new char[10], [](char *p)
-                               { delete p; });
-    std::shared_ptr<char[]> an = am;
-    auto s = fmt_aux(1, "ab");
-    s(s.get_index_seq());
+    auto s = fmt_aux( 1, "ab", 'c', 3.14 );
+    s( "display parameters: $1=%d, $2=%s, $3=%c, $4=%.2f\n" );
 }
