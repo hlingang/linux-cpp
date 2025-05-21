@@ -1,63 +1,50 @@
-#include <chrono>
-#include <type_traits>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <iostream>
+#include <algorithm>
+#include <memory>
+#include <tuple>
+#include <sstream>
+#include <thread>
 
 using namespace std;
 
-struct my_demo
+template < typename... Args > using valid_void_t = void;
+
+template < typename T, typename = void >
+/* 通配公式的默认参数， 用于匹配偏特化参数，同时完成参数的降维*输入参数只要一个就OK */
+/* 默认参数的存在是为了实现参数的降维 */
+struct __S_is_valid
 {
-  void demo()
-  {
-    printf("i am demo\n");
-  }
+    static const bool value = false;
 };
 
-struct my_demo_no
+template < typename T > struct __S_is_valid< T, valid_void_t< decltype( std::declval< T >().valid() ) > >
+/*非独立模板参数* 以偏特化参数形式存在*/
+/*偏特化参数 可以覆盖通用模板里面的默认参数*/
 {
-  void demo_no()
-  {
-    printf("i am demo no\n");
-  }
+    static const bool value = true;
 };
 
-template <typename... T>
-using my_void_t = void;
-
-template <typename Tp, typename Ts = void>
-struct demo_check_t : false_type
+template < typename T > bool is_valid( const T& )
 {
-};
-
-// 偏特化至少 需要两个模板参数 //
-template <typename Tp> //< 编译器认为[类型Tp]为未知类型
-struct demo_check_t<Tp, my_void_t<decltype(declval<Tp>().demo())>> : true_type
-{
-};
-/*
-// this code can not work(compile error)
-template <typename Tp = void>
-struct demo_check_t : false_type
-{
-};
-
-// 偏特化至少 需要两个模板参数 //
-template <typename Tp> //< 编译器认为[类型Tp]为未知类型
-struct demo_check_t<my_void_t<decltype(declval<Tp>().demo())>> : true_type
-{
-};
-*/
-
-template <typename T>
-bool demo_check(T &__t)
-{
-  return demo_check_t<T>::value;
+    return __S_is_valid< T >::value;
 }
+
+class Valid_clss
+{
+public:
+    int valid()
+    {
+        return 0;
+    }
+};
 
 int main()
 {
-  my_demo __my_demo;
-  my_demo_no __my_demo_no;
-  cout << "__my_demo    : " << demo_check(__my_demo) << endl;
-  cout << "__my_demo_no : " << demo_check(__my_demo_no) << endl;
-  return 0;
+    std::cout << __S_is_valid< int >::value << std::endl;
+    std::cout << __S_is_valid< int, double >::value << std::endl;
+    std::cout << __S_is_valid< decltype( std::declval< Valid_clss >().valid() ) >::value << std::endl;
+    std::cout << is_valid( Valid_clss() ) << std::endl;
 }
