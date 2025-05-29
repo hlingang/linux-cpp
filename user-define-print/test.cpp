@@ -53,7 +53,13 @@ template <> struct __S_fmt_aux<>
         return 0;
     }
 };
-template < typename... Args > __S_fmt_aux< Args... > fmt_aux( Args&&... args )
+
+template < typename... Args > __S_fmt_aux< Args... > fmt_aux( Args&&... )
+{
+    return __S_fmt_aux< Args... >();
+}
+
+template < typename... Args > __S_fmt_aux< Args... > fmt_aux()
 {
     return __S_fmt_aux< Args... >();
 }
@@ -63,7 +69,10 @@ template < typename... Args > void debug( const char* fmt, Args&&... args )
     char buf[ 1024 ];
     memset( buf, 0x00, sizeof( buf ) );
     // 偏特化模板结构体 实现动态代码的最小化分离 //
-    fmt_aux( std::forward< Args >( args )... )( buf, sizeof( buf ), fmt, std::forward< Args >( args )... );
+    // fmt_aux( std::forward< Args >( args )... )( buf, sizeof( buf ), fmt, std::forward< Args >( args )... );
+    // 优先使用 显示模板参数 //
+    /////////////////////////////////////////
+    fmt_aux< Args... >()( buf, sizeof( buf ), fmt, std::forward< Args >( args )... );
     /////////////////////////////////////////
     std::printf( "[C++][Info] %s\n", buf );
 }
