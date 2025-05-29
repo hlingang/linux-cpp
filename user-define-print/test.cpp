@@ -12,7 +12,7 @@
 using namespace std;
 ///////////////////// C 语言实现 /////////////////////////////////
 
-void c_debug( const char* fmt, ... )
+void __c_debug( const char* fmt, ... )
 {
     char buf[ 1024 ];
     memset( buf, 0x00, sizeof( buf ) );
@@ -64,7 +64,7 @@ template < typename... Args > __S_fmt_aux< Args... > fmt_aux()
     return __S_fmt_aux< Args... >();
 }
 
-template < typename... Args > void debug( const char* fmt, Args&&... args )
+template < typename... Args > void cxx_debug( const char* fmt, Args&&... args )
 {
     char buf[ 1024 ];
     memset( buf, 0x00, sizeof( buf ) );
@@ -80,11 +80,11 @@ template < typename... Args > void debug( const char* fmt, Args&&... args )
 int main()
 
 {
-    debug( "Hello!" );
-    debug( "HELLO-WORLD %d:%s", 2025, "abc" );
+    cxx_debug( "Hello!" );
+    cxx_debug( "HELLO-WORLD %d:%s", 2025, "abc" );
 
-    c_debug( "Hello!" );
-    c_debug( "HELLO-WORLD %d:%s", 2025, "abc" );
+    __c_debug( "Hello!" );
+    __c_debug( "HELLO-WORLD %d:%s", 2025, "abc" );
 
     __macro_debug( "Hello!" );
     __macro_debug( "HELLO-WORLD %d:%s", 2025, "abc" );
