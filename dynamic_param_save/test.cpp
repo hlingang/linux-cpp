@@ -46,7 +46,7 @@ template < typename... Args > struct __S_params_saver
         return typename __S_index_helper< sizeof...( Args ) >::type();
     }
 };
-template < typename... Args > __S_params_saver< Args... > params_saver( Args... args )
+template < typename... Args > __S_params_saver< Args... > params_saver( Args&&... args )
 {
     return __S_params_saver< Args... >( std::forward< Args >( args )... );
 }
