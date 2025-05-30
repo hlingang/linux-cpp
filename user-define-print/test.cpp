@@ -54,6 +54,8 @@ template <> struct __S_fmt_aux<>
     }
 };
 
+///////////////// 注意：此处亦可使用 [函数的全特化实现] //////////////////////
+/////////////////////////////////////////////////////////////////////////
 template < typename... Args > __S_fmt_aux< Args... > fmt_aux( Args&&... )
 {
     return __S_fmt_aux< Args... >();
@@ -63,7 +65,7 @@ template < typename... Args > __S_fmt_aux< Args... > fmt_aux()
 {
     return __S_fmt_aux< Args... >();
 }
-
+//////////////////////////////////////////////////////////////////////////////
 template < typename... Args > void cxx_debug( const char* fmt, Args&&... args )
 {
     char buf[ 1024 ];
