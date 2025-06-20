@@ -74,6 +74,7 @@ typedef struct
         printf( "sizeof(%s) = %zu\n", #x, sizeof( x ) );                     \
         printf( "&b1 = %p\n", &x.b1 );                                       \
         printf( "&b2 = %p\n", &x.b2 );                                       \
+        printf( " &a = %p\n", &x.a );                                        \
         printf( "&b3 = %p\n", &x.b3 );                                       \
         printf( "&b4 = %p\n", &x.b4 );                                       \
         printf( " &c = %p\n", &x.c );                                        \
