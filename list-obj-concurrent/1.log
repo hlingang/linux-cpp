@@ -1,0 +1,98 @@
+125745978410688125745957439168 [__put_obj] Object ID: 7, Current Ref Count: 1
+125745957439168 Deleting Object ID: 7, Value: Object_7
+ Read Object ID: 3, Value: Object_3[2]
+125745967924928 Write Object ID: 6, Value: Object_6+[2]
+125745967924928 [__put_obj] Object ID: 6, Current Ref Count: 2
+125745978410688 [__put_obj] Object ID: 3, Current Ref Count: 2
+125745967924928 Write Object ID: 5, Value: Object_5+[2]
+125745978410688 Read Object ID: 3, Value: Object_3[2]
+125745957439168 [__put_obj] Object ID: 5, Current Ref Count: 2
+125745978410688 [__put_obj] Object ID: 3, Current Ref Count: 2
+125745967924928 [__put_obj] Object ID: 5, Current Ref Count: 1
+125745967924928 Deleting Object ID: 5, Value: Object_5+
+125745978410688 Read Object ID: 6, Value: Object_6+[2]
+125745967924928 Write Object ID: 2, Value: Object_2+[2]
+125745957439168 [__put_obj] Object ID: 9, Current Ref Count: 1
+125745957439168 Deleting Object ID: 9, Value: Object_9
+125745967924928 [__put_obj] Object ID: 2, Current Ref Count: 2
+125745978410688 [__put_obj] Object ID: 6, Current Ref Count: 2
+125745967924928 Write Object ID: 1, Value: Object_1+[2]
+125745978410688 Read Object ID: 2, Value: Object_2+[2]
+125745978410688 [__put_obj] Object ID: 2, Current Ref Count: 2
+125745967924928 [__put_obj] Object ID: 1, Current Ref Count: 2
+125745978410688 Read Object ID: 0, Value: Object_0[2]
+125745967924928 Write Object ID: 3, Value: Object_3+[2]
+125745978410688 [__put_obj] Object ID: 0, Current Ref Count: 2
+125745978410688 Read Object ID: 6, Value: Object_6+[2]
+125745967924928 [__put_obj] Object ID: 3, Current Ref Count: 2
+125745957439168 [__put_obj] Object ID: 0, Current Ref Count: 1
+125745957439168 Deleting Object ID: 0, Value: Object_0
+125745978410688 [__put_obj] Object ID: 6, Current Ref Count: 3
+125745967924928 Write Object ID: 6, Value: Object_6++[2]
+125745978410688 Read Object ID: 2, Value: Object_2+[2]
+125745967924928 [__put_obj] Object ID: 6, Current Ref Count: 2
+125745957439168 [__put_obj] Object ID: 6, Current Ref Count: 1
+125745957439168 Deleting Object ID: 6, Value: Object_6++
+125745978410688 [__put_obj] Object ID: 2, Current Ref Count: 2
+125745967924928 Write Object ID: 1, Value: Object_1++[2]
+125745978410688 Read Object ID: 8, Value: Object_8[2]
+125745967924928 [__put_obj] Object ID: 1, Current Ref Count: 2
+125745978410688 [__put_obj] Object ID: 8, Current Ref Count: 2
+125745978410688 Read Object ID: 2, Value: Object_2+[2]
+125745967924928 Write Object ID: 2, Value: Object_2++[3]
+125745978410688 [__put_obj] Object ID: 2, Current Ref Count: 3
+125745978410688 Read Object ID: 3, Value: Object_3+[2]
+125745967924928 [__put_obj] Object ID: 2, Current Ref Count: 2
+125745978410688 [__put_obj] Object ID: 3, Current Ref Count: 2
+125745978410688 Read Object ID: 2, Value: Object_2++[2]
+125745957439168 [__put_obj] Object ID: 8, Current Ref Count: 1
+125745957439168 Deleting Object ID: 8, Value: Object_8
+125745978410688 [__put_obj] Object ID: 2, Current Ref Count: 3
+125745967924928 Write Object ID: 2, Value: Object_2+++[2]
+125745967924928 [__put_obj] Object ID: 2, Current Ref Count: 2
+125745967924928 Write Object ID: 3, Value: Object_3++[2]
+125745957439168 [__put_obj] Object ID: 1, Current Ref Count: 1
+125745957439168 Deleting Object ID: 1, Value: Object_1++
+125745978410688 Read Object ID: 2, Value: Object_2+++[2]
+125745967924928 [__put_obj] Object ID: 3, Current Ref Count: 2
+125745978410688 [__put_obj] Object ID: 2, Current Ref Count: 2
+125745967924928 Write Object ID: 3, Value: Object_3+++[2]
+125745978410688 Read Object ID: 4, Value: Object_4[2]
+125745967924928 [__put_obj] Object ID: 3, Current Ref Count: 2
+125745978410688 [__put_obj] Object ID: 4, Current Ref Count: 2
+125745978410688 Read Object ID: 4, Value: Object_4[2]
+125745978410688 [__put_obj] Object ID: 4, Current Ref Count: 2
+125745967924928 Write Object ID: 3, Value: Object_3++++[2]
+125745967924928 [__put_obj] Object ID: 3, Current Ref Count: 2
+125745978410688 Read Object ID: 3, Value: Object_3++++[2]
+125745967924928 Write Object ID: 2, Value: Object_2++++[2]
+125745978410688 [__put_obj] Object ID: 3, Current Ref Count: 2
+125745967924928 [__put_obj] Object ID: 2, Current Ref Count: 2
+125745978410688 Read Object ID: 4, Value: Object_4[2]
+125745978410688 [__put_obj] Object ID: 4, Current Ref Count: 2
+125745967924928 Write Object ID: 3, Value: Object_3+++++[2]
+125745978410688 Read Object ID: 4, Value: Object_4[2]
+125745967924928 [__put_obj] Object ID: 3, Current Ref Count: 2
+125745967924928 Write Object ID: 2, Value: Object_2+++++[2]
+125745978410688 [__put_obj] Object ID: 4, Current Ref Count: 2
+125745967924928 [__put_obj] Object ID: 2, Current Ref Count: 2
+125745978410688 Read Object ID: 4, Value: Object_4[2]
+125745957439168 [__put_obj] Object ID: 4, Current Ref Count: 2
+125745967924928 Write Object ID: 4, Value: Object_4+[2]
+125745978410688 [__put_obj] Object ID: 4, Current Ref Count: 2
+125745978410688 Read Object ID: 3, Value: Object_3+++++[2]
+125745967924928 [__put_obj] Object ID: 4, Current Ref Count: 1
+125745967924928 Deleting Object ID: 4, Value: Object_4+
+125745978410688 [__put_obj] Object ID: 3, Current Ref Count: 2
+125745978410688 Read Object ID: 3, Value: Object_3+++++[2]
+125745978410688 [__put_obj] Object ID: 3, Current Ref Count: 2
+125745967924928 Write Object ID: 2, Value: Object_2++++++[2]
+125745967924928 [__put_obj] Object ID: 2, Current Ref Count: 2
+125745967924928 Write Object ID: 2, Value: Object_2+++++++[2]
+125745967924928 [__put_obj] Object ID: 2, Current Ref Count: 2
+125745978410688 Read Object ID: 2, Value: Object_2+++++++[2]
+125745978410688 [__put_obj] Object ID: 2, Current Ref Count: 3
+125745967924928 Write Object ID: 2, Value: Object_2++++++++[2]
+125745967924928 [__put_obj] Object ID: 2, Current Ref Count: 3
+125745978410688 Read Object ID: 2, Value: Object_2++++++++[3]
+125745978410688 [__put_obj] Object ID: 2, Current Ref Count: 2
