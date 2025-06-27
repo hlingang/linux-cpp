@@ -12,6 +12,16 @@ struct list_head {
     list_head *prev;
 };
 
+static inline int list_size(struct list_head *head)
+{
+    int n;
+    list_head *pos;
+    for (pos = head->next, n = 0; pos != head; pos = pos->next, n++)
+    {
+    }
+    return n;
+}
+
 inline void INIT_LIST_HEAD(list_head *list) {
     list->next = list;
     list->prev = list;
@@ -56,7 +66,7 @@ struct obj_data {
 LIST_HEAD(obj_list);
 std::mutex list_mutex;
 
-void __put_obj(obj_data *obj)
+int __put_obj(obj_data *obj)
 {
     size_t ref  = obj->s_count;
     cout <<this_thread::get_id()<<   " [__put_obj] Object ID: " << obj->id << ", Current Ref Count: " << ref << endl;
@@ -64,14 +74,18 @@ void __put_obj(obj_data *obj)
         list_del(&obj->node);
         cout <<this_thread::get_id()<< " Deleting Object ID: " << obj->id << ", Value: " << obj->val << endl;
         delete obj;
+        return 1;
     }
+    return 0;
 }
 
-void put_obj(obj_data *obj)
+int put_obj(obj_data *obj)
 {
+    int ret = 0;
     list_mutex.lock();
-    __put_obj(obj);
+    ret = __put_obj(obj);
     list_mutex.unlock();
+    return ret;
 }
 
 struct obj_data* get_obj(int id)
@@ -99,10 +113,32 @@ void func_read(int id)
     }
     obj->mtx.lock();
     cout << this_thread::get_id() << " Read Object ID: " << id << ", Value: " << obj->val << "[" << obj->s_count << "]" <<endl;
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    std::this_thread::sleep_for(std::chrono::milliseconds(50));
     obj->mtx.unlock();
     put_obj(obj);
-    
+}
+
+void func_read_all()
+{
+    struct obj_data *obj;
+    list_mutex.lock();
+    restart:
+    cout << this_thread::get_id() << " ReadAll: List-Size: "<< list_size(&obj_list) << endl;
+    list_for_each_entry(obj, &obj_list, node) {
+        obj->s_count++;
+        list_mutex.unlock();
+        obj->mtx.lock();
+        cout << this_thread::get_id() << " ReadAll: Object ID: " << obj->id << ", Value: " << obj->val << "[" << obj->s_count << "]" << endl;
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
+        obj->mtx.unlock();
+        list_mutex.lock();
+        if(__put_obj(obj))
+        {
+            cout << this_thread::get_id() << " [ReadAll Start] =======: Object ID: " << obj->id  << endl;
+            goto restart;
+        }
+    }
+    list_mutex.unlock();
 }
 
 void func_write(int id)
@@ -115,7 +151,7 @@ void func_write(int id)
     obj->mtx.lock();
     obj->val += "+";
     cout <<this_thread::get_id()<<  " Write Object ID: " << id << ", Value: " << obj->val << "[" << obj->s_count << "]" << endl;
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    std::this_thread::sleep_for(std::chrono::milliseconds(50));
     obj->mtx.unlock();
     put_obj(obj);
     
@@ -169,7 +205,16 @@ void t_delete_func(int size)
     {
         size_t id = rand() % size;
         func_delete(id);
-        std::this_thread::sleep_for(std::chrono::milliseconds(200));
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
+}
+
+void t_readall_func()
+{
+    for(;;)
+    {
+        func_read_all();
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 }
 
@@ -184,11 +229,13 @@ int main( int argc, char* argv[] )
         INIT_LIST_HEAD(&obj->node);
         list_add(&obj->node, &obj_list);
     }
-    thread t1 = thread(t_read_func, 10);
-    thread t2 = thread(t_write_func, 10);
-    thread t3 = thread(t_delete_func, 10);
+    thread t1 = thread(t_read_func, 100);
+    thread t2 = thread(t_write_func, 100);
+    thread t3 = thread(t_delete_func, 100);
+    thread t4 = thread(t_readall_func);
     t1.join();
     t2.join();
     t3.join();
+    t4.join();
     return 0;
 }
