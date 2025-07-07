@@ -42,6 +42,10 @@ inline void list_add(list_head *new_node, list_head *head) {
     head->next->prev = new_node;
     head->next = new_node;
 }
+inline void list_move(list_head *new_node, list_head *head) {
+    list_del(new_node);
+    list_add(new_node, head);
+}
 inline void list_del(list_head *entry) {
     entry->prev->next = entry->next;
     entry->next->prev = entry->prev;
@@ -83,6 +87,7 @@ void test_func(void *data) {
 
 vector<std::thread> threads;
 LIST_HEAD(work_list);
+LIST_HEAD(work_thread_list);
 std::mutex list_mutex;
 unsigned long nr_threads = 0;
 std::chrono::system_clock::time_point last_empty_time = std::chrono::system_clock::now();
@@ -116,12 +121,12 @@ void work_thread_func()
     work.func = nullptr;
     work.data = nullptr;
     work.who = std::this_thread::get_id();
-    INIT_LIST_HEAD(&work.node);
+    INIT_LIST_HEAD(&work.node); // 保证链表操作的安全性
     nr_threads++;
     list_mutex.lock(); 
     for(;;)
     {
-        list_add(&work.node, &work_list);
+        list_move(&work.node, &work_list); // 保证聊表添加的安全性，避免重复添加 
         cout << "Thread " << work.who << " added to work list." << std::endl;
         cout << "Current work list size: " << list_size(&work_list) << std::endl;
         list_mutex.unlock();
