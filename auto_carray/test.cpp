@@ -33,13 +33,13 @@ union Clock
     {
         if ( __name )
         {
-            printf( "%-10s Clock: %02d:%02d:%02d [%-8d][%08b][%08b][%08b] [%024b]\n", __name, ts.hour, ts.min, ts.sec,
-                    total, ts.hour, ts.min, ts.sec, total );
+            printf( "%-10s Clock: %02d:%02d:%02d [%-8d][%08b][%08b][%08b]\n", __name, ts.hour, ts.min, ts.sec, total,
+                    ts.hour, ts.min, ts.sec );
         }
         else
         {
-            printf( "Clock: %02d:%02d:%02d [%-8d][%08b][%08b][%08b] [%24b]\n", ts.hour, ts.min, ts.sec, total, ts.hour,
-                    ts.min, ts.sec, total );
+            printf( "Clock: %02d:%02d:%02d [%-8d][%08b][%08b][%08b]\n", ts.hour, ts.min, ts.sec, total, ts.hour, ts.min,
+                    ts.sec );
         }
     }
     Clock operator+( const Clock& other ) const
@@ -48,11 +48,11 @@ union Clock
         result.total = this->total + other.total;
 
         // Handle overflow for seconds and minutes
-        if ( result.ts.sec >= 60 )
+        if ( result.ts.sec >= NR_SECS_PER_MIN )
         {
             result.total += NSECS;
         }
-        if ( result.ts.min >= 60 )
+        if ( result.ts.min >= NR_MINS_PER_HOUR )
         {
             result.total += NMINS;
         }
