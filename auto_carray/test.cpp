@@ -50,11 +50,11 @@ union Clock
         // Handle overflow for seconds and minutes
         if ( result.ts.sec >= NR_SECS_PER_MIN )
         {
-            result.total += NSECS;
+            result.total += NSECS;  // 向高位进位
         }
         if ( result.ts.min >= NR_MINS_PER_HOUR )
         {
-            result.total += NMINS;
+            result.total += NMINS;  // 向高位进位
         }
         return result;
     }
@@ -66,11 +66,11 @@ union Clock
         // Handle overflow for seconds and minutes
         if ( result.ts.sec < 0 )
         {
-            result.ts.sec += NR_SECS_PER_MIN;
+            result.ts.sec += NR_SECS_PER_MIN;  // 低位补偿
         }
         if ( result.ts.min < 0 )
         {
-            result.ts.min += NR_MINS_PER_HOUR;
+            result.ts.min += NR_MINS_PER_HOUR;  // 低位补偿
         }
         return result;
     }
