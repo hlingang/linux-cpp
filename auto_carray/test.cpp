@@ -22,15 +22,25 @@ union Clock
     int total;
     struct
     {
-        signed char sec : 8;   // seconds(signed)
-        signed char min : 8;   // minutes(signed)
-        signed char hour : 8;  // hours(signed)
+        signed char sec;       // seconds(signed)
+        signed char min;       // minutes(signed)
+        signed char hour;      // hours(signed)
+        signed char reserved;  // reserved for future use
     } ts;
-    Clock( char __hour, char __min, char __sec ) : ts( { __sec, __min, __hour } ) {}
+    Clock( char __hour, char __min, char __sec ) : ts( { __sec, __min, __hour, 0 } ) {}
     Clock() : total( 0 ) {}
-    void print()
+    void print( const char* __name = 0 ) const
     {
-        printf( "Clock: %02d:%02d:%02d\n", ts.hour, ts.min, ts.sec );
+        if ( __name )
+        {
+            printf( "%-10s Clock: %02d:%02d:%02d [%-8d][%08b][%08b][%08b] [%024b]\n", __name, ts.hour, ts.min, ts.sec,
+                    total, ts.hour, ts.min, ts.sec, total );
+        }
+        else
+        {
+            printf( "Clock: %02d:%02d:%02d [%-8d][%08b][%08b][%08b] [%24b]\n", ts.hour, ts.min, ts.sec, total, ts.hour,
+                    ts.min, ts.sec, total );
+        }
     }
     Clock operator+( const Clock& other ) const
     {
@@ -56,7 +66,6 @@ union Clock
         // Handle overflow for seconds and minutes
         if ( result.ts.sec < 0 )
         {
-            printf( "result.ts.sec = %d\n", result.ts.sec );
             result.ts.sec += NR_SECS_PER_MIN;
         }
         if ( result.ts.min < 0 )
@@ -65,18 +74,35 @@ union Clock
         }
         return result;
     }
+    bool operator<( const Clock& other ) const
+    {
+        return this->total < other.total;
+    }
+    bool operator==( const Clock& other ) const
+    {
+        return this->total == other.total;
+    }
 };
 
 int main()
 {
-
-    Clock clock1( 35, 31, 21 );
-    Clock clock2( 30, 42, 40 );
-    Clock result1 = clock1 + clock2;
-    Clock result2 = clock1 - clock2;
-    clock1.print();
-    clock2.print();
-    result1.print();
-    result2.print();
+    int loop = 0;
+    for ( ;; )
+    {
+        printf( "============ Loop %d ==============\n", loop++ );
+        Clock clock1( random() % 24, random() % 60, random() % 60 );
+        Clock clock2( random() % 24, random() % 60, random() % 60 );
+        Clock result1 = clock1 + clock2;
+        Clock __max   = std::max< Clock >( clock1, clock2 );
+        Clock __min   = std::min< Clock >( clock1, clock2 );
+        Clock result2 = __max - __min;
+        clock1.print( "Clock1" );
+        clock2.print( "Clock2" );
+        __max.print( "Clock_max" );
+        __min.print( "Clock_min" );
+        result1.print( "Result(+)" );
+        result2.print( "Result(-)" );
+        sleep( 2 );
+    }
     return 0;
 }
