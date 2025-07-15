@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <cstdio>
 #include <iostream>
+//-------------------------------------------修饰函数---------------------------------------------------------//
 
 inline void                                    test_inline() __attribute__( ( always_inline ) );
 inline void __attribute__( ( always_inline ) ) test_inline()
@@ -40,6 +41,8 @@ void __attribute__( ( destructor ) ) test_destructor()
     printf( "This is an destroy function.\n" );
 }
 
+//-------------------------------------------修饰函数形参---------------------------------------------------------//
+
 void test_unused_params( int a __attribute__( ( unused ) ) = 10 );
 void test_unused_params( int a __attribute__( ( unused ) ) )
 {
@@ -52,7 +55,11 @@ void __attribute__( ( nonnull( 1 ) ) ) test_nonnull_params( int* a )
     printf( "This is an non-null params function.\n" );
 }
 
+//--------------------------------------------修饰变量--------------------------------------------------------//
+
 static int g_i __attribute__( ( used ) ) = 9999;
+
+//--------------------------------------------修饰结构体--------------------------------------------------------//
 
 #pragma pack( 2 )
 struct aliged_struct
@@ -62,6 +69,7 @@ struct aliged_struct
     double c;
 } __attribute__( ( aligned( 16 ) ) );
 #pragma pack()
+//---------------------------------------------THE-END-------------------------------------------------------//
 
 int main()
 {
