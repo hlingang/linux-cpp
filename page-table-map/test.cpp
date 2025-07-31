@@ -16,10 +16,8 @@
 
 using namespace std;
 ///////////////////// C 语言实现 /////////////////////////////////
-struct page_t
-{
-    char data[ 64 ];
-};
+#define PAGE_SIZE 64
+#define PAGE_MASK ( PAGE_SIZE - 1 )
 #define PTE_BITS 3
 #define PMD_BITS 3
 #define PGD_BITS 3
@@ -28,6 +26,11 @@ struct page_t
 #define PTE_MASK ( ( 1U << PTE_BITS ) - 1 )
 #define PMD_MASK ( ( 1U << PMD_BITS ) - 1 )
 #define PGD_MASK ( ( 1U << PGD_BITS ) - 1 )
+
+struct page_t
+{
+    char data[ PAGE_SIZE ];
+} __attribute__( ( aligned( PAGE_SIZE ) ) );
 
 using pgd_t = struct _S_pgd
 {
