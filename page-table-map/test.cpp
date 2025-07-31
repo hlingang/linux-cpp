@@ -53,7 +53,7 @@ pmd_t *pmd_offset(pgd_t* pgd, unsigned long addr, unsigned long* pos = nullptr)
     {
         pmd_t* __pmd =  (pmd_t*)malloc(sizeof(page_t));
         memset(__pmd, 0x00, sizeof(page_t));
-        *pgd = (pgd_t){(unsigned long)__pmd}; // C 语言构建初始化结构体
+        *pgd = (pgd_t){.pgd = (unsigned long)__pmd}; // C 语言构建初始化结构体
     }
     unsigned long index = (addr >> PMD_SHIFT) & PTE_MASK; 
     if( pos )
@@ -67,7 +67,7 @@ pte_t *pte_offset(pmd_t* pmd, unsigned long addr, unsigned long* pos = nullptr)
     {
         pte_t* __pte =  (pte_t*)malloc(sizeof(page_t));
         memset(__pte, 0x00, sizeof(page_t));
-        *pmd = (pmd_t){(unsigned long)__pte};
+        *pmd = (pmd_t){.pmd = (unsigned long)__pte}; // C 语言构建初始化结构体
     }
     unsigned long index = addr & PTE_MASK; 
     if( pos )
