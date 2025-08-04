@@ -140,6 +140,8 @@ struct vm_struct_area* get_unmaped_area( unsigned long size )
             if ( vma->start >= addr )  // 快速查找满足条件的起始 vma(仅仅负责查找起始搜索点)
                 break;
             rb_link = &( *rb_link )->rb_left;
+            // 如果当前地址位于 VMA 里面，则可以确定当前VMA 是最近的VMA
+            // 否则需要继续遍历整个二叉树
         }
         else
         {
