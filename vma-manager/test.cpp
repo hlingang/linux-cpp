@@ -8,6 +8,7 @@
 #include <sstream>
 #include <thread>
 #include <stdarg.h>
+#include <mutex>
 
 using namespace std;
 ///////////////////// C 语言实现 /////////////////////////////////
@@ -42,13 +43,14 @@ struct vm_struct_area
         NULL           \
     }
 #define ALIGN_SIZE 8
-#define ALIGN_ADDR( addr ) ( ( addr + ( ALIGN_SIZE - 1 ) ) & ~( ALIGN_SIZE - 1 ) )
+#define VMA_ALIGN( addr ) ( ( addr + ( ALIGN_SIZE - 1 ) ) & ~( ALIGN_SIZE - 1 ) )
 #define RB_EMPTY_ROOT( root ) ( ( root )->rb_node == NULL )
 #define RB_EMPTY_NODE( node ) ( ( node )->rb_left == NULL && ( node )->rb_right == NULL )
 #define RB_ENTRY( ptr, type, member ) ( ( type* )( ( char* )( ptr ) - offsetof( type, member ) ) )
 
 struct vm_struct_area* g_vm_head = nullptr;
 struct rb_root         g_vm_root = RB_ROOT;
+std::mutex             g_vm_mutex;  // 用于保护全局虚拟内存区域链表的互斥锁
 
 unsigned long vma_size( struct vm_struct_area* vma )
 {
@@ -96,10 +98,12 @@ void __rb_insert_list( struct vm_struct_area* vma, struct rb_node* rb_pre, struc
 // insert 前必须保证 vma 范围的有效性(由 get_unmaped_area 来保证)
 void rb_insert_vm( struct rb_root* root, struct vm_struct_area* vma )
 {
-    struct rb_node** rb_link   = &root->rb_node;
+    struct rb_node** rb_link;
     struct rb_node*  rb_parent = NULL;
     struct rb_node*  rb_pre    = NULL;
     unsigned long    addr      = vma->start;
+    g_vm_mutex.lock();
+    rb_link = &root->rb_node;
     while ( *rb_link )
     {
         rb_parent                      = *rb_link;
@@ -116,22 +120,24 @@ void rb_insert_vm( struct rb_root* root, struct vm_struct_area* vma )
     }
     __rb_insert_node( rb_link, &vma->rb_node );
     __rb_insert_list( vma, rb_pre, rb_parent );
+    g_vm_mutex.unlock();
 }
-// 分配虚拟地址空间 // 返回一个新的 vm_struct_area 结构体
+// 分配虚拟地址空间 并且 返回一个新的 vm_struct_area 结构体
 struct vm_struct_area* get_unmaped_area( unsigned long size )
 {
     unsigned long          addr = VM_START;
     unsigned long          end  = VM_END;
     struct vm_struct_area* vma  = nullptr;
-    size                        = ALIGN_ADDR( size );
-    rb_node** rb_link           = &g_vm_root.rb_node;
+    size                        = VMA_ALIGN( size );
+    g_vm_mutex.lock();  // 锁定全局虚拟内存区域链表
+    rb_node** rb_link = &g_vm_root.rb_node;
     while ( *rb_link )
     {
         struct vm_struct_area* vma_tmp = RB_ENTRY( *rb_link, vm_struct_area, rb_node );
         if ( vma_tmp->end > addr )
         {
             vma = vma_tmp;
-            if ( vma->start >= addr )  // 快速查找满足条件的起始 vma
+            if ( vma->start >= addr )  // 快速查找满足条件的起始 vma(仅仅负责查找起始搜索点)
                 break;
             rb_link = &( *rb_link )->rb_left;
         }
@@ -140,16 +146,17 @@ struct vm_struct_area* get_unmaped_area( unsigned long size )
             rb_link = &( *rb_link )->rb_right;
         }
     }
-    for ( ; vma; vma = vma->next )  // 进行单链表遍历
+    for ( ; vma; vma = vma->next )  // 进行单链表遍历(负责分配虚拟地址空间)
     {
         if ( addr + size <= vma->start )
             break;
-        addr = ALIGN_ADDR( vma->end );
+        addr = VMA_ALIGN( vma->end );
     }
+    g_vm_mutex.unlock();  // 解锁全局虚拟内存区域链表
     if ( addr + size > end )
-        return nullptr;        // 没有足够的空间
+        return NULL;           // 没有足够的空间
     if ( addr + size < addr )  // 地址/长度 溢出检查
-        return nullptr;
+        return NULL;
     vma = ( struct vm_struct_area* )malloc( sizeof( struct vm_struct_area ) );
     memset( vma, 0x00, sizeof( struct vm_struct_area ) );
     vma->start = addr;
