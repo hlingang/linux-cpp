@@ -171,7 +171,7 @@ int main()
     srand( time( nullptr ) );
     for ( int i = 0;; ++i )
     {
-        unsigned long          size = random() % 0x40;
+        unsigned long          size = random() % ( 0x40 - 2 ) + 2;
         struct vm_struct_area* vma  = get_unmaped_area( size );
         if ( !vma )
             break;
