@@ -62,19 +62,23 @@ struct vm_struct_area* alloc_vma( unsigned long size )
     for ( p = &g_vm_head; ( temp = *p ); p = &temp->next )
     {
         if ( addr + size < addr )
-            return NULL;
+            goto out;
         if ( addr + size > end )
-            return NULL;
+            goto out;
         //------ 指定地址[ADDR] 的起始搜索 VMA ------//
         if ( temp->addr + temp->size > addr )  // 两个VMA 存在交集的时候需要更新 查找地址[ADDR]
         {
             if ( addr < temp->addr && addr + size <= temp->addr )
-            {
-                break;  // 找到一个合适的地址
-            }
+                goto found;  // 找到一个合适的地址
+            // 使用 [goto] 替代 [break] 跳过地址重复检查
             addr = VMA_ALIGN( temp->addr + temp->size );  // 更新地址到下一个可用位置
         }
     }
+    if ( addr + size < addr )
+        goto out;
+    if ( addr + size > end )
+        goto out;
+found:
     vma = ( struct vm_struct_area* )malloc( sizeof( struct vm_struct_area ) );
     memset( vma, 0x00, sizeof( struct vm_struct_area ) );
     vma->addr = addr;
@@ -83,6 +87,9 @@ struct vm_struct_area* alloc_vma( unsigned long size )
     *p        = vma;      // 插入到链表中
     g_vm_mutex.unlock();  // 解锁全局虚拟内存区域链表
     return vma;
+out:                      // 异常处理
+    g_vm_mutex.unlock();  // 解锁全局虚拟内存区域链表
+    return NULL;          // 没有足够的空间
 }
 
 int main()

@@ -154,9 +154,14 @@ struct vm_struct_area* __get_unmaped_area( unsigned long size )
         if ( addr + size < addr )  // 地址/长度 溢出检查
             return NULL;
         if ( addr + size <= vma->start )
-            break;
+            goto found;
         addr = VMA_ALIGN( vma->end );
     }
+    if ( addr + size > end )
+        return NULL;           // 没有足够的空间
+    if ( addr + size < addr )  // 地址/长度 溢出检查
+        return NULL;
+found:
     vma = ( struct vm_struct_area* )malloc( sizeof( struct vm_struct_area ) );
     memset( vma, 0x00, sizeof( struct vm_struct_area ) );
     vma->start = addr;
