@@ -65,6 +65,7 @@ struct vm_struct_area* alloc_vma( unsigned long size )
             return NULL;
         if ( addr + size > end )
             return NULL;
+        //------ 起始搜索条件 ------//
         if ( temp->addr + temp->size > addr )  // 两个VMA 存在交集的时候需要更新 查找地址[ADDR]
         {
             if ( addr < temp->addr && addr + size <= temp->addr )

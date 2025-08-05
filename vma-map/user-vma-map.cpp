@@ -145,6 +145,8 @@ struct vm_struct_area* __get_unmaped_area( unsigned long size )
             rb_link = &( *rb_link )->rb_right;
         }
     }
+    // 起始搜索点已经确定
+    // 从起始搜索点开始遍历
     for ( ; vma; vma = vma->next )  // 进行单链表遍历(负责分配虚拟地址空间)
     {
         if ( addr + size > end )
