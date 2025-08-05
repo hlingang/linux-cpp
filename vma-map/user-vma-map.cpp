@@ -133,7 +133,7 @@ struct vm_struct_area* __get_unmaped_area( unsigned long size )
         struct vm_struct_area* vma_tmp = RB_ENTRY( *rb_link, vm_struct_area, rb_node );
         if ( vma_tmp->end > addr )
         {
-            vma = vma_tmp;
+            vma = vma_tmp;             // 记录指定地址[ADDR] 的起始搜索 VMA
             if ( vma->start >= addr )  // 快速查找满足条件的起始 vma(仅仅负责查找起始搜索点)
                 break;
             rb_link = &( *rb_link )->rb_left;
