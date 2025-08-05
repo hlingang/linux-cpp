@@ -96,14 +96,13 @@ void __rb_insert_list( struct vm_struct_area* vma, struct rb_node* rb_pre, struc
     }
 }
 // insert 前必须保证 vma 范围的有效性(由 get_unmaped_area 来保证)
-void rb_insert_vm( struct rb_root* root, struct vm_struct_area* vma )
+void __insert_vm( struct rb_root* root, struct vm_struct_area* vma )
 {
     struct rb_node** rb_link;
     struct rb_node*  rb_parent = NULL;
     struct rb_node*  rb_pre    = NULL;
     unsigned long    addr      = vma->start;
-    g_vm_mutex.lock();
-    rb_link = &root->rb_node;
+    rb_link                    = &root->rb_node;
     while ( *rb_link )
     {
         rb_parent                      = *rb_link;
@@ -120,17 +119,15 @@ void rb_insert_vm( struct rb_root* root, struct vm_struct_area* vma )
     }
     __rb_insert_node( rb_link, &vma->rb_node );
     __rb_insert_list( vma, rb_pre, rb_parent );
-    g_vm_mutex.unlock();
 }
 // 分配虚拟地址空间 并且 返回一个新的 vm_struct_area 结构体
-struct vm_struct_area* get_unmaped_area( unsigned long size )
+struct vm_struct_area* __get_unmaped_area( unsigned long size )
 {
     unsigned long          addr = VM_START;
     unsigned long          end  = VM_END;
     struct vm_struct_area* vma  = nullptr;
     size                        = VMA_ALIGN( size );
-    g_vm_mutex.lock();  // 锁定全局虚拟内存区域链表
-    rb_node** rb_link = &g_vm_root.rb_node;
+    rb_node** rb_link           = &g_vm_root.rb_node;
     while ( *rb_link )
     {
         struct vm_struct_area* vma_tmp = RB_ENTRY( *rb_link, vm_struct_area, rb_node );
@@ -150,19 +147,33 @@ struct vm_struct_area* get_unmaped_area( unsigned long size )
     }
     for ( ; vma; vma = vma->next )  // 进行单链表遍历(负责分配虚拟地址空间)
     {
+        if ( addr + size > end )
+            return NULL;           // 没有足够的空间
+        if ( addr + size < addr )  // 地址/长度 溢出检查
+            return NULL;
         if ( addr + size <= vma->start )
             break;
         addr = VMA_ALIGN( vma->end );
     }
-    g_vm_mutex.unlock();  // 解锁全局虚拟内存区域链表
-    if ( addr + size > end )
-        return NULL;           // 没有足够的空间
-    if ( addr + size < addr )  // 地址/长度 溢出检查
-        return NULL;
     vma = ( struct vm_struct_area* )malloc( sizeof( struct vm_struct_area ) );
     memset( vma, 0x00, sizeof( struct vm_struct_area ) );
     vma->start = addr;
     vma->end   = addr + size;
+    return vma;
+}
+
+vm_struct_area* alloc_vma( unsigned long size )
+{
+    if ( !size )
+    {
+        return NULL;
+    }
+    g_vm_mutex.lock();  // [分配VMA] 和 [插入VMA] 必须同步完成
+    struct vm_struct_area* vma = __get_unmaped_area( size );
+    if ( !vma )
+        return NULL;
+    __insert_vm( &g_vm_root, vma );
+    g_vm_mutex.unlock();
     return vma;
 }
 
@@ -172,10 +183,9 @@ int main()
     for ( int i = 0;; ++i )
     {
         unsigned long          size = random() % ( 0x40 - 2 ) + 2;
-        struct vm_struct_area* vma  = get_unmaped_area( size );
+        struct vm_struct_area* vma  = alloc_vma( size );
         if ( !vma )
             break;
-        rb_insert_vm( &g_vm_root, vma );
         printf( "[%d], size:%lu[%lu], VMA: %lu - %lu\n", i, size, vma->end - vma->start, vma->start, vma->end );
     }
     printf( "==========================================\n" );
