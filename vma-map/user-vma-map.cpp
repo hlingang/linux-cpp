@@ -157,6 +157,7 @@ struct vm_struct_area* __get_unmaped_area( unsigned long size )
             goto found;
         addr = VMA_ALIGN( vma->end );
     }
+    // 此处检查为了检查最末端的VMA地址溢出
     if ( addr + size > end )
         return NULL;           // 没有足够的空间
     if ( addr + size < addr )  // 地址/长度 溢出检查

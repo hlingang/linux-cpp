@@ -74,6 +74,7 @@ struct vm_struct_area* alloc_vma( unsigned long size )
             addr = VMA_ALIGN( temp->addr + temp->size );  // 更新地址到下一个可用位置
         }
     }
+    // 用于尾部 VMA 地址检查
     if ( addr + size < addr )
         goto out;
     if ( addr + size > end )
