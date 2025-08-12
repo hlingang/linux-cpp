@@ -19,7 +19,6 @@ struct list_head
     list_head* next;
     list_head* prev;
 };
-
 static inline int list_size( struct list_head* head )
 {
     int        n;
@@ -29,7 +28,6 @@ static inline int list_size( struct list_head* head )
     }
     return n;
 }
-
 inline void INIT_LIST_HEAD( list_head* list )
 {
     list->next = list;
@@ -52,17 +50,23 @@ inline void list_del( list_head* entry )
     entry->prev->next = entry->next;
     entry->next->prev = entry->prev;
 }
-inline void list_move( list_head* new_node, list_head* head )
-{
-    list_del( new_node );
-    list_add( new_node, head );
-}
 inline void list_del_init( list_head* entry )
 {
     list_del( entry );
     INIT_LIST_HEAD( entry );
 }
-
+inline void list_move( list_head* new_node, list_head* head )
+{
+    list_del( new_node );
+    list_add( new_node, head );
+}
+inline void list_switch( struct list_head* old_head, struct list_head* new_head )
+{
+    if ( list_empty( old_head ) )
+        return;
+    list_add( new_head, old_head );
+    list_del_init( old_head );
+}
 #define list_entry( ptr, type, member ) ( ( type* )( ( char* )( ptr ) - offsetof( type, member ) ) )
 #define list_for_each( pos, head ) for ( list_head* pos = ( head )->next; pos != ( head ); pos = pos->next )
 #define list_for_each_entry( pos, head, member )                                                    \
@@ -114,16 +118,22 @@ struct timer_base
     struct list_head tv[ N_TV ];
     struct list_head tv1[ N_TV1 ];
     struct list_head tv2[ N_TV2 ];
+    std::mutex       lock;
 };
 
 struct timer_list
 {
     list_head     node;
-    unsigned long expires;                // 过期时间
-    unsigned long data;                   // 附加数据
-    void ( *function )( unsigned long );  // 回调函数
+    unsigned long expires;            // 过期时间
+    unsigned long data;               // 附加数据
+    void ( *func )( unsigned long );  // 回调函数
     struct timer_base* base;
 };
+
+static inline void default_timer_func( unsigned long data )
+{
+    printf( "Deal-with timer data:(%lu)\n", data );
+}
 
 inline void init_tv_base( struct timer_base* tv_base )
 {
@@ -136,6 +146,7 @@ inline void add_timer( struct timer_list* timer, struct timer_base* tv_base, uns
 {
     timer->base         = tv_base;
     unsigned long index = timer->expires - jeffies;
+    tv_base->lock.lock();
     if ( index < TV_SIZE )
     {
         list_add( &timer->node, &tv_base->tv[ index & TV_MASK ] );
@@ -148,6 +159,13 @@ inline void add_timer( struct timer_list* timer, struct timer_base* tv_base, uns
     {
         list_add( &timer->node, &tv_base->tv2[ ( index >> ( TV_BIT + TV1_BIT ) ) & TV2_MASK ] );
     }
+    tv_base->lock.unlock();
+}
+inline void init_timer( struct timer_list* timer, unsigned long expires, unsigned long data )
+{
+    timer->expires = expires;
+    timer->data    = data;
+    timer->func    = default_timer_func;
 }
 
 inline int cascade( const char* name, struct list_head* tv, unsigned long index, unsigned jeffies,
@@ -163,7 +181,11 @@ inline int cascade( const char* name, struct list_head* tv, unsigned long index,
     STATS_TV_BASE( tv_base );
     struct timer_list* timer;
     struct list_head*  tmp;
-    list_for_each_entry_safe( timer, tmp, head, node )
+    struct list_head   cascade_list;
+    INIT_LIST_HEAD( &cascade_list );
+    tv_base->lock.lock();
+    list_switch( head, &cascade_list );
+    list_for_each_entry_safe( timer, tmp, &cascade_list, node )
     {
         list_del_init( &timer->node );
         unsigned long offset = timer->expires - jeffies;
@@ -180,6 +202,7 @@ inline int cascade( const char* name, struct list_head* tv, unsigned long index,
             list_add( &timer->node, &tv_base->tv2[ ( timer->expires >> ( TV_BIT + TV1_BIT ) ) & TV2_MASK ] );
         }
     }
+    tv_base->lock.unlock();
     printf( "=================== AFTER-CASCADE ====================\n" );
     STATS_TV_BASE( tv_base );
     return index;
@@ -198,8 +221,7 @@ int main()
         printf( "i = %04d, value=%d\n", i, value );
         struct timer_list* timer = ( struct timer_list* )malloc( sizeof( struct timer_list ) );
         memset( timer, 0x00, sizeof( struct timer_list ) );
-        timer->expires = value;
-        timer->data    = i;
+        init_timer( timer, value, i );
         add_timer( timer, tv_base, 0 );
     }
     STATS_TV_BASE( tv_base );
@@ -212,15 +234,23 @@ int main()
             cascade( "tv2", tv_base->tv2, ( index >> ( TV_BIT + TV1_BIT ) ) & TV2_MASK, index, tv_base );
         struct list_head* head = &tv_base->tv[ index & TV_MASK ];
         printf( "Process tv[%d], size=%d\n", index & TV_MASK, list_size( head ) );
+        tv_base->lock.lock();
         while ( !list_empty( head ) )
         {
             struct list_head*  pos   = head->next;
             struct timer_list* entry = list_entry( pos, struct timer_list, node );
             list_del_init( pos );
+            void ( *func )( unsigned long ) = entry->func;
+            entry->base                     = NULL;
+            unsigned data                   = entry->data;
+            tv_base->lock.unlock();
+            func( data );
+            tv_base->lock.lock();
             entry->base = NULL;
-            printf( "Process timer: %04lu\n", entry->data );
+            printf( "Process-timer: %04lu End.\n", entry->data );
             free( entry );
         }
+        tv_base->lock.unlock();
     }
     STATS_TV_BASE( tv_base );
     return 0;
