@@ -4,12 +4,11 @@ SRC = test.cpp
 OBJ = test.o
 TARGET = test
 INCFLAGS = -I.
-LDFLAGS = -lpthread
 
 all: $(TARGET)
 
 $(TARGET): $(OBJ)
-	$(CC) -o $@ $^ $(LDFLAGS)
+	$(CC) -o $@ $^
 
 $(OBJ): $(SRC)
 	$(CC) $(CFLAGS) $(INCFLAGS) -c -o $@ $< 
@@ -21,4 +20,3 @@ clean:
 	rm -rf *.bin
 	rm -rf $(TARGET)
 	
-

@@ -1,0 +1,5757 @@
+i = 0000, value=78
+i = 0001, value=465
+i = 0002, value=300
+i = 0003, value=439
+i = 0004, value=191
+i = 0005, value=165
+i = 0006, value=319
+i = 0007, value=394
+i = 0008, value=280
+i = 0009, value=452
+i = 0010, value=18
+i = 0011, value=443
+i = 0012, value=326
+i = 0013, value=305
+i = 0014, value=104
+i = 0015, value=74
+i = 0016, value=215
+i = 0017, value=186
+i = 0018, value=176
+i = 0019, value=423
+i = 0020, value=503
+i = 0021, value=222
+i = 0022, value=496
+i = 0023, value=173
+i = 0024, value=134
+i = 0025, value=424
+i = 0026, value=481
+i = 0027, value=134
+i = 0028, value=440
+i = 0029, value=400
+i = 0030, value=100
+i = 0031, value=6
+i = 0032, value=353
+i = 0033, value=400
+i = 0034, value=445
+i = 0035, value=32
+i = 0036, value=53
+i = 0037, value=253
+i = 0038, value=426
+i = 0039, value=334
+i = 0040, value=193
+i = 0041, value=444
+i = 0042, value=265
+i = 0043, value=7
+i = 0044, value=238
+i = 0045, value=369
+i = 0046, value=82
+i = 0047, value=453
+i = 0048, value=44
+i = 0049, value=258
+i = 0050, value=364
+i = 0051, value=35
+i = 0052, value=480
+i = 0053, value=348
+i = 0054, value=208
+i = 0055, value=103
+i = 0056, value=260
+i = 0057, value=177
+i = 0058, value=237
+i = 0059, value=188
+i = 0060, value=65
+i = 0061, value=337
+i = 0062, value=194
+i = 0063, value=418
+i = 0064, value=226
+i = 0065, value=128
+i = 0066, value=450
+i = 0067, value=279
+i = 0068, value=381
+i = 0069, value=364
+i = 0070, value=101
+i = 0071, value=62
+i = 0072, value=297
+i = 0073, value=367
+i = 0074, value=70
+i = 0075, value=23
+i = 0076, value=224
+i = 0077, value=152
+i = 0078, value=476
+i = 0079, value=268
+i = 0080, value=410
+i = 0081, value=329
+i = 0082, value=304
+i = 0083, value=378
+i = 0084, value=165
+i = 0085, value=0
+i = 0086, value=481
+i = 0087, value=426
+i = 0088, value=178
+i = 0089, value=206
+i = 0090, value=102
+i = 0091, value=243
+i = 0092, value=32
+i = 0093, value=297
+i = 0094, value=150
+i = 0095, value=258
+i = 0096, value=425
+i = 0097, value=88
+i = 0098, value=25
+i = 0099, value=294
+i = 0100, value=453
+i = 0101, value=127
+i = 0102, value=356
+i = 0103, value=238
+i = 0104, value=494
+i = 0105, value=426
+i = 0106, value=261
+i = 0107, value=206
+i = 0108, value=66
+i = 0109, value=225
+i = 0110, value=475
+i = 0111, value=476
+i = 0112, value=42
+i = 0113, value=267
+i = 0114, value=343
+i = 0115, value=208
+i = 0116, value=267
+i = 0117, value=312
+i = 0118, value=122
+i = 0119, value=445
+i = 0120, value=7
+i = 0121, value=224
+i = 0122, value=177
+i = 0123, value=39
+i = 0124, value=9
+i = 0125, value=327
+i = 0126, value=297
+i = 0127, value=434
+i = 0128, value=415
+i = 0129, value=322
+i = 0130, value=216
+i = 0131, value=356
+i = 0132, value=449
+i = 0133, value=61
+i = 0134, value=82
+i = 0135, value=431
+i = 0136, value=487
+i = 0137, value=343
+i = 0138, value=126
+i = 0139, value=42
+i = 0140, value=57
+i = 0141, value=89
+i = 0142, value=6
+i = 0143, value=99
+i = 0144, value=356
+i = 0145, value=349
+i = 0146, value=307
+i = 0147, value=111
+i = 0148, value=150
+i = 0149, value=429
+i = 0150, value=45
+i = 0151, value=157
+i = 0152, value=142
+i = 0153, value=222
+i = 0154, value=196
+i = 0155, value=151
+i = 0156, value=37
+i = 0157, value=493
+i = 0158, value=74
+i = 0159, value=452
+i = 0160, value=303
+i = 0161, value=290
+i = 0162, value=297
+i = 0163, value=241
+i = 0164, value=351
+i = 0165, value=379
+i = 0166, value=160
+i = 0167, value=327
+i = 0168, value=211
+i = 0169, value=286
+i = 0170, value=369
+i = 0171, value=268
+i = 0172, value=375
+i = 0173, value=375
+i = 0174, value=367
+i = 0175, value=219
+i = 0176, value=213
+i = 0177, value=163
+i = 0178, value=331
+i = 0179, value=363
+i = 0180, value=80
+i = 0181, value=376
+i = 0182, value=8
+i = 0183, value=222
+i = 0184, value=86
+i = 0185, value=204
+i = 0186, value=374
+i = 0187, value=123
+i = 0188, value=185
+i = 0189, value=448
+i = 0190, value=63
+i = 0191, value=488
+i = 0192, value=226
+i = 0193, value=360
+i = 0194, value=217
+i = 0195, value=66
+i = 0196, value=228
+i = 0197, value=378
+i = 0198, value=393
+i = 0199, value=439
+i = 0200, value=152
+i = 0201, value=250
+i = 0202, value=195
+i = 0203, value=16
+i = 0204, value=113
+i = 0205, value=50
+i = 0206, value=235
+i = 0207, value=326
+i = 0208, value=213
+i = 0209, value=54
+i = 0210, value=177
+i = 0211, value=294
+i = 0212, value=430
+i = 0213, value=185
+i = 0214, value=4
+i = 0215, value=4
+i = 0216, value=389
+i = 0217, value=378
+i = 0218, value=127
+i = 0219, value=62
+i = 0220, value=314
+i = 0221, value=191
+i = 0222, value=39
+i = 0223, value=29
+i = 0224, value=39
+i = 0225, value=256
+i = 0226, value=95
+i = 0227, value=267
+i = 0228, value=122
+i = 0229, value=488
+i = 0230, value=194
+i = 0231, value=275
+i = 0232, value=226
+i = 0233, value=389
+i = 0234, value=291
+i = 0235, value=339
+i = 0236, value=440
+i = 0237, value=14
+i = 0238, value=154
+i = 0239, value=141
+i = 0240, value=69
+i = 0241, value=331
+i = 0242, value=435
+i = 0243, value=499
+i = 0244, value=5
+i = 0245, value=440
+i = 0246, value=504
+i = 0247, value=394
+i = 0248, value=306
+i = 0249, value=119
+i = 0250, value=457
+i = 0251, value=109
+i = 0252, value=310
+i = 0253, value=496
+i = 0254, value=138
+i = 0255, value=350
+i = 0256, value=240
+i = 0257, value=233
+i = 0258, value=105
+i = 0259, value=363
+i = 0260, value=209
+i = 0261, value=300
+i = 0262, value=126
+i = 0263, value=435
+i = 0264, value=177
+i = 0265, value=417
+i = 0266, value=262
+i = 0267, value=105
+i = 0268, value=431
+i = 0269, value=416
+i = 0270, value=247
+i = 0271, value=500
+i = 0272, value=236
+i = 0273, value=170
+i = 0274, value=488
+i = 0275, value=241
+i = 0276, value=98
+i = 0277, value=480
+i = 0278, value=123
+i = 0279, value=405
+i = 0280, value=87
+i = 0281, value=68
+i = 0282, value=2
+i = 0283, value=398
+i = 0284, value=52
+i = 0285, value=140
+i = 0286, value=236
+i = 0287, value=293
+i = 0288, value=373
+i = 0289, value=341
+i = 0290, value=144
+i = 0291, value=70
+i = 0292, value=129
+i = 0293, value=270
+i = 0294, value=505
+i = 0295, value=307
+i = 0296, value=175
+i = 0297, value=255
+i = 0298, value=412
+i = 0299, value=94
+i = 0300, value=160
+i = 0301, value=147
+i = 0302, value=83
+i = 0303, value=396
+i = 0304, value=318
+i = 0305, value=59
+i = 0306, value=125
+i = 0307, value=416
+i = 0308, value=27
+i = 0309, value=248
+i = 0310, value=309
+i = 0311, value=114
+i = 0312, value=317
+i = 0313, value=311
+i = 0314, value=0
+i = 0315, value=369
+i = 0316, value=451
+i = 0317, value=236
+i = 0318, value=150
+i = 0319, value=312
+i = 0320, value=66
+i = 0321, value=294
+i = 0322, value=382
+i = 0323, value=195
+i = 0324, value=52
+i = 0325, value=375
+i = 0326, value=502
+i = 0327, value=227
+i = 0328, value=119
+i = 0329, value=403
+i = 0330, value=322
+i = 0331, value=279
+i = 0332, value=38
+i = 0333, value=405
+i = 0334, value=163
+i = 0335, value=356
+i = 0336, value=464
+i = 0337, value=288
+i = 0338, value=261
+i = 0339, value=491
+i = 0340, value=24
+i = 0341, value=58
+i = 0342, value=93
+i = 0343, value=341
+i = 0344, value=370
+i = 0345, value=94
+i = 0346, value=199
+i = 0347, value=309
+i = 0348, value=330
+i = 0349, value=349
+i = 0350, value=110
+i = 0351, value=396
+i = 0352, value=132
+i = 0353, value=492
+i = 0354, value=80
+i = 0355, value=184
+i = 0356, value=356
+i = 0357, value=70
+i = 0358, value=412
+i = 0359, value=475
+i = 0360, value=473
+i = 0361, value=222
+i = 0362, value=242
+i = 0363, value=0
+i = 0364, value=115
+i = 0365, value=405
+i = 0366, value=356
+i = 0367, value=67
+i = 0368, value=181
+i = 0369, value=105
+i = 0370, value=46
+i = 0371, value=205
+i = 0372, value=164
+i = 0373, value=139
+i = 0374, value=35
+i = 0375, value=22
+i = 0376, value=233
+i = 0377, value=234
+i = 0378, value=331
+i = 0379, value=52
+i = 0380, value=71
+i = 0381, value=441
+i = 0382, value=448
+i = 0383, value=203
+i = 0384, value=422
+i = 0385, value=16
+i = 0386, value=388
+i = 0387, value=266
+i = 0388, value=87
+i = 0389, value=288
+i = 0390, value=229
+i = 0391, value=48
+i = 0392, value=510
+i = 0393, value=471
+i = 0394, value=48
+i = 0395, value=113
+i = 0396, value=364
+i = 0397, value=405
+i = 0398, value=180
+i = 0399, value=33
+i = 0400, value=510
+i = 0401, value=226
+i = 0402, value=238
+i = 0403, value=162
+i = 0404, value=365
+i = 0405, value=273
+i = 0406, value=184
+i = 0407, value=87
+i = 0408, value=507
+i = 0409, value=4
+i = 0410, value=139
+i = 0411, value=67
+i = 0412, value=445
+i = 0413, value=75
+i = 0414, value=270
+i = 0415, value=355
+i = 0416, value=92
+i = 0417, value=146
+i = 0418, value=109
+i = 0419, value=179
+i = 0420, value=434
+i = 0421, value=338
+i = 0422, value=227
+i = 0423, value=432
+i = 0424, value=297
+i = 0425, value=276
+i = 0426, value=33
+i = 0427, value=149
+i = 0428, value=169
+i = 0429, value=213
+i = 0430, value=182
+i = 0431, value=167
+i = 0432, value=439
+i = 0433, value=421
+i = 0434, value=330
+i = 0435, value=293
+i = 0436, value=182
+i = 0437, value=2
+i = 0438, value=380
+i = 0439, value=178
+i = 0440, value=6
+i = 0441, value=7
+i = 0442, value=245
+i = 0443, value=452
+i = 0444, value=82
+i = 0445, value=3
+i = 0446, value=295
+i = 0447, value=174
+i = 0448, value=150
+i = 0449, value=405
+i = 0450, value=353
+i = 0451, value=72
+i = 0452, value=231
+i = 0453, value=69
+i = 0454, value=505
+i = 0455, value=17
+i = 0456, value=345
+i = 0457, value=26
+i = 0458, value=166
+i = 0459, value=2
+i = 0460, value=240
+i = 0461, value=349
+i = 0462, value=169
+i = 0463, value=167
+i = 0464, value=258
+i = 0465, value=499
+i = 0466, value=460
+i = 0467, value=440
+i = 0468, value=502
+i = 0469, value=328
+i = 0470, value=106
+i = 0471, value=508
+i = 0472, value=335
+i = 0473, value=351
+i = 0474, value=448
+i = 0475, value=418
+i = 0476, value=355
+i = 0477, value=232
+i = 0478, value=80
+i = 0479, value=505
+i = 0480, value=125
+i = 0481, value=434
+i = 0482, value=65
+i = 0483, value=356
+i = 0484, value=503
+i = 0485, value=58
+i = 0486, value=373
+i = 0487, value=336
+i = 0488, value=85
+i = 0489, value=28
+i = 0490, value=338
+i = 0491, value=325
+i = 0492, value=377
+i = 0493, value=507
+i = 0494, value=492
+i = 0495, value=123
+i = 0496, value=495
+i = 0497, value=441
+i = 0498, value=51
+i = 0499, value=485
+i = 0500, value=257
+i = 0501, value=158
+i = 0502, value=481
+i = 0503, value=81
+i = 0504, value=509
+i = 0505, value=418
+i = 0506, value=499
+i = 0507, value=352
+i = 0508, value=138
+i = 0509, value=67
+i = 0510, value=345
+i = 0511, value=263
+i = 0512, value=501
+i = 0513, value=411
+i = 0514, value=107
+i = 0515, value=492
+i = 0516, value=469
+i = 0517, value=481
+i = 0518, value=316
+i = 0519, value=42
+i = 0520, value=509
+i = 0521, value=142
+i = 0522, value=367
+i = 0523, value=374
+i = 0524, value=138
+i = 0525, value=348
+i = 0526, value=497
+i = 0527, value=121
+i = 0528, value=277
+i = 0529, value=36
+i = 0530, value=94
+i = 0531, value=22
+i = 0532, value=194
+i = 0533, value=63
+i = 0534, value=103
+i = 0535, value=192
+i = 0536, value=481
+i = 0537, value=90
+i = 0538, value=32
+i = 0539, value=107
+i = 0540, value=158
+i = 0541, value=378
+i = 0542, value=370
+i = 0543, value=147
+i = 0544, value=277
+i = 0545, value=478
+i = 0546, value=128
+i = 0547, value=234
+i = 0548, value=447
+i = 0549, value=444
+i = 0550, value=277
+i = 0551, value=444
+i = 0552, value=75
+i = 0553, value=132
+i = 0554, value=306
+i = 0555, value=213
+i = 0556, value=480
+i = 0557, value=291
+i = 0558, value=334
+i = 0559, value=245
+i = 0560, value=327
+i = 0561, value=428
+i = 0562, value=268
+i = 0563, value=10
+i = 0564, value=491
+i = 0565, value=371
+i = 0566, value=202
+i = 0567, value=461
+i = 0568, value=462
+i = 0569, value=234
+i = 0570, value=56
+i = 0571, value=108
+i = 0572, value=100
+i = 0573, value=427
+i = 0574, value=255
+i = 0575, value=377
+i = 0576, value=393
+i = 0577, value=383
+i = 0578, value=100
+i = 0579, value=328
+i = 0580, value=316
+i = 0581, value=377
+i = 0582, value=260
+i = 0583, value=391
+i = 0584, value=509
+i = 0585, value=54
+i = 0586, value=92
+i = 0587, value=478
+i = 0588, value=345
+i = 0589, value=426
+i = 0590, value=211
+i = 0591, value=160
+i = 0592, value=342
+i = 0593, value=479
+i = 0594, value=170
+i = 0595, value=321
+i = 0596, value=339
+i = 0597, value=372
+i = 0598, value=270
+i = 0599, value=289
+i = 0600, value=95
+i = 0601, value=327
+i = 0602, value=397
+i = 0603, value=195
+i = 0604, value=242
+i = 0605, value=140
+i = 0606, value=61
+i = 0607, value=123
+i = 0608, value=12
+i = 0609, value=161
+i = 0610, value=451
+i = 0611, value=328
+i = 0612, value=26
+i = 0613, value=199
+i = 0614, value=207
+i = 0615, value=23
+i = 0616, value=253
+i = 0617, value=299
+i = 0618, value=501
+i = 0619, value=86
+i = 0620, value=213
+i = 0621, value=201
+i = 0622, value=246
+i = 0623, value=43
+i = 0624, value=168
+i = 0625, value=417
+i = 0626, value=364
+i = 0627, value=507
+i = 0628, value=277
+i = 0629, value=123
+i = 0630, value=284
+i = 0631, value=372
+i = 0632, value=450
+i = 0633, value=169
+i = 0634, value=56
+i = 0635, value=180
+i = 0636, value=310
+i = 0637, value=117
+i = 0638, value=303
+i = 0639, value=322
+i = 0640, value=278
+i = 0641, value=242
+i = 0642, value=138
+i = 0643, value=304
+i = 0644, value=441
+i = 0645, value=345
+i = 0646, value=327
+i = 0647, value=182
+i = 0648, value=132
+i = 0649, value=317
+i = 0650, value=268
+i = 0651, value=345
+i = 0652, value=6
+i = 0653, value=2
+i = 0654, value=388
+i = 0655, value=174
+i = 0656, value=419
+i = 0657, value=240
+i = 0658, value=170
+i = 0659, value=185
+i = 0660, value=363
+i = 0661, value=454
+i = 0662, value=45
+i = 0663, value=301
+i = 0664, value=112
+i = 0665, value=101
+i = 0666, value=481
+i = 0667, value=422
+i = 0668, value=218
+i = 0669, value=272
+i = 0670, value=232
+i = 0671, value=496
+i = 0672, value=2
+i = 0673, value=370
+i = 0674, value=288
+i = 0675, value=443
+i = 0676, value=203
+i = 0677, value=104
+i = 0678, value=113
+i = 0679, value=335
+i = 0680, value=421
+i = 0681, value=381
+i = 0682, value=168
+i = 0683, value=427
+i = 0684, value=384
+i = 0685, value=44
+i = 0686, value=89
+i = 0687, value=291
+i = 0688, value=284
+i = 0689, value=259
+i = 0690, value=476
+i = 0691, value=136
+i = 0692, value=202
+i = 0693, value=10
+i = 0694, value=437
+i = 0695, value=314
+i = 0696, value=111
+i = 0697, value=407
+i = 0698, value=224
+i = 0699, value=330
+i = 0700, value=167
+i = 0701, value=456
+i = 0702, value=314
+i = 0703, value=170
+i = 0704, value=314
+i = 0705, value=91
+i = 0706, value=101
+i = 0707, value=5
+i = 0708, value=195
+i = 0709, value=215
+i = 0710, value=340
+i = 0711, value=104
+i = 0712, value=84
+i = 0713, value=508
+i = 0714, value=19
+i = 0715, value=468
+i = 0716, value=40
+i = 0717, value=108
+i = 0718, value=248
+i = 0719, value=324
+i = 0720, value=368
+i = 0721, value=212
+i = 0722, value=460
+i = 0723, value=58
+i = 0724, value=222
+i = 0725, value=386
+i = 0726, value=372
+i = 0727, value=334
+i = 0728, value=281
+i = 0729, value=84
+i = 0730, value=152
+i = 0731, value=448
+i = 0732, value=28
+i = 0733, value=466
+i = 0734, value=106
+i = 0735, value=342
+i = 0736, value=45
+i = 0737, value=208
+i = 0738, value=347
+i = 0739, value=240
+i = 0740, value=423
+i = 0741, value=175
+i = 0742, value=344
+i = 0743, value=507
+i = 0744, value=171
+i = 0745, value=363
+i = 0746, value=464
+i = 0747, value=211
+i = 0748, value=472
+i = 0749, value=200
+i = 0750, value=23
+i = 0751, value=328
+i = 0752, value=412
+i = 0753, value=484
+i = 0754, value=386
+i = 0755, value=123
+i = 0756, value=358
+i = 0757, value=246
+i = 0758, value=457
+i = 0759, value=127
+i = 0760, value=330
+i = 0761, value=97
+i = 0762, value=63
+i = 0763, value=358
+i = 0764, value=51
+i = 0765, value=170
+i = 0766, value=188
+i = 0767, value=97
+i = 0768, value=378
+i = 0769, value=23
+i = 0770, value=337
+i = 0771, value=289
+i = 0772, value=198
+i = 0773, value=170
+i = 0774, value=284
+i = 0775, value=369
+i = 0776, value=21
+i = 0777, value=236
+i = 0778, value=68
+i = 0779, value=493
+i = 0780, value=436
+i = 0781, value=91
+i = 0782, value=309
+i = 0783, value=337
+i = 0784, value=63
+i = 0785, value=183
+i = 0786, value=460
+i = 0787, value=421
+i = 0788, value=429
+i = 0789, value=405
+i = 0790, value=36
+i = 0791, value=247
+i = 0792, value=502
+i = 0793, value=100
+i = 0794, value=93
+i = 0795, value=41
+i = 0796, value=270
+i = 0797, value=281
+i = 0798, value=138
+i = 0799, value=136
+i = 0800, value=304
+i = 0801, value=476
+i = 0802, value=425
+i = 0803, value=502
+i = 0804, value=134
+i = 0805, value=197
+i = 0806, value=359
+i = 0807, value=155
+i = 0808, value=434
+i = 0809, value=427
+i = 0810, value=137
+i = 0811, value=358
+i = 0812, value=7
+i = 0813, value=446
+i = 0814, value=183
+i = 0815, value=70
+i = 0816, value=118
+i = 0817, value=131
+i = 0818, value=492
+i = 0819, value=35
+i = 0820, value=24
+i = 0821, value=16
+i = 0822, value=283
+i = 0823, value=14
+i = 0824, value=116
+i = 0825, value=376
+i = 0826, value=56
+i = 0827, value=386
+i = 0828, value=146
+i = 0829, value=194
+i = 0830, value=10
+i = 0831, value=450
+i = 0832, value=158
+i = 0833, value=435
+i = 0834, value=441
+i = 0835, value=292
+i = 0836, value=121
+i = 0837, value=288
+i = 0838, value=448
+i = 0839, value=43
+i = 0840, value=204
+i = 0841, value=73
+i = 0842, value=401
+i = 0843, value=211
+i = 0844, value=7
+i = 0845, value=73
+i = 0846, value=281
+i = 0847, value=125
+i = 0848, value=204
+i = 0849, value=261
+i = 0850, value=161
+i = 0851, value=229
+i = 0852, value=278
+i = 0853, value=444
+i = 0854, value=243
+i = 0855, value=394
+i = 0856, value=308
+i = 0857, value=299
+i = 0858, value=269
+i = 0859, value=454
+i = 0860, value=494
+i = 0861, value=279
+i = 0862, value=393
+i = 0863, value=140
+i = 0864, value=203
+i = 0865, value=322
+i = 0866, value=433
+i = 0867, value=324
+i = 0868, value=98
+i = 0869, value=369
+i = 0870, value=367
+i = 0871, value=302
+i = 0872, value=442
+i = 0873, value=256
+i = 0874, value=1
+i = 0875, value=449
+i = 0876, value=329
+i = 0877, value=283
+i = 0878, value=63
+i = 0879, value=22
+i = 0880, value=32
+i = 0881, value=224
+i = 0882, value=251
+i = 0883, value=310
+i = 0884, value=156
+i = 0885, value=494
+i = 0886, value=193
+i = 0887, value=464
+i = 0888, value=282
+i = 0889, value=462
+i = 0890, value=407
+i = 0891, value=264
+i = 0892, value=229
+i = 0893, value=288
+i = 0894, value=404
+i = 0895, value=432
+i = 0896, value=98
+i = 0897, value=325
+i = 0898, value=244
+i = 0899, value=196
+i = 0900, value=182
+i = 0901, value=99
+i = 0902, value=499
+i = 0903, value=112
+i = 0904, value=356
+i = 0905, value=500
+i = 0906, value=50
+i = 0907, value=173
+i = 0908, value=271
+i = 0909, value=113
+i = 0910, value=195
+i = 0911, value=304
+i = 0912, value=337
+i = 0913, value=446
+i = 0914, value=102
+i = 0915, value=493
+i = 0916, value=429
+i = 0917, value=295
+i = 0918, value=445
+i = 0919, value=199
+i = 0920, value=245
+i = 0921, value=340
+i = 0922, value=463
+i = 0923, value=475
+i = 0924, value=116
+i = 0925, value=355
+i = 0926, value=395
+i = 0927, value=214
+i = 0928, value=169
+i = 0929, value=128
+i = 0930, value=411
+i = 0931, value=351
+i = 0932, value=227
+i = 0933, value=398
+i = 0934, value=464
+i = 0935, value=71
+i = 0936, value=386
+i = 0937, value=2
+i = 0938, value=245
+i = 0939, value=146
+i = 0940, value=115
+i = 0941, value=440
+i = 0942, value=450
+i = 0943, value=452
+i = 0944, value=375
+i = 0945, value=40
+i = 0946, value=433
+i = 0947, value=292
+i = 0948, value=336
+i = 0949, value=366
+i = 0950, value=491
+i = 0951, value=69
+i = 0952, value=195
+i = 0953, value=442
+i = 0954, value=32
+i = 0955, value=311
+i = 0956, value=285
+i = 0957, value=428
+i = 0958, value=14
+i = 0959, value=454
+i = 0960, value=44
+i = 0961, value=425
+i = 0962, value=294
+i = 0963, value=271
+i = 0964, value=311
+i = 0965, value=246
+i = 0966, value=343
+i = 0967, value=185
+i = 0968, value=248
+i = 0969, value=76
+i = 0970, value=331
+i = 0971, value=363
+i = 0972, value=4
+i = 0973, value=269
+i = 0974, value=303
+i = 0975, value=379
+i = 0976, value=310
+i = 0977, value=224
+i = 0978, value=159
+i = 0979, value=134
+i = 0980, value=78
+i = 0981, value=138
+i = 0982, value=203
+i = 0983, value=273
+i = 0984, value=68
+i = 0985, value=236
+i = 0986, value=73
+i = 0987, value=354
+i = 0988, value=152
+i = 0989, value=87
+i = 0990, value=296
+i = 0991, value=196
+i = 0992, value=0
+i = 0993, value=78
+i = 0994, value=467
+i = 0995, value=311
+i = 0996, value=324
+i = 0997, value=298
+i = 0998, value=496
+i = 0999, value=60
+i = 1000, value=374
+i = 1001, value=316
+i = 1002, value=423
+i = 1003, value=379
+i = 1004, value=73
+i = 1005, value=214
+i = 1006, value=246
+i = 1007, value=383
+i = 1008, value=438
+i = 1009, value=406
+i = 1010, value=5
+i = 1011, value=5
+i = 1012, value=32
+i = 1013, value=209
+i = 1014, value=278
+i = 1015, value=101
+i = 1016, value=445
+i = 1017, value=351
+i = 1018, value=455
+i = 1019, value=85
+i = 1020, value=438
+i = 1021, value=239
+i = 1022, value=281
+i = 1023, value=438
+tv STATS
+tv[0] size=4
+tv[1] size=1
+tv[2] size=6
+tv[3] size=1
+tv[4] size=4
+tv[5] size=4
+tv[6] size=4
+tv[7] size=5
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=9
+tv1[2] size=14
+tv1[3] size=9
+tv1[4] size=18
+tv1[5] size=15
+tv1[6] size=12
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=283
+tv2[2] size=237
+tv2[3] size=249
+Start Process: 6
+Process tv[6], size=4
+Process timer: 0652
+Process timer: 0440
+Process timer: 0142
+Process timer: 0031
+Process tv[7], size=5
+Process timer: 0844
+Process timer: 0812
+Process timer: 0441
+Process timer: 0120
+Process timer: 0043
+Cascade tv1, index=1, array size=9
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=4
+tv[1] size=1
+tv[2] size=6
+tv[3] size=1
+tv[4] size=4
+tv[5] size=4
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=9
+tv1[2] size=14
+tv1[3] size=9
+tv1[4] size=18
+tv1[5] size=15
+tv1[6] size=12
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=283
+tv2[2] size=237
+tv2[3] size=249
+=================== AFTER-CASCADE ====================
+id = 9
+tv STATS
+tv[0] size=5
+tv[1] size=2
+tv[2] size=9
+tv[3] size=1
+tv[4] size=5
+tv[5] size=4
+tv[6] size=3
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=14
+tv1[3] size=9
+tv1[4] size=18
+tv1[5] size=15
+tv1[6] size=12
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=283
+tv2[2] size=237
+tv2[3] size=249
+Process tv[0], size=5
+Process timer: 0182
+Process timer: 0992
+Process timer: 0363
+Process timer: 0314
+Process timer: 0085
+Process tv[1], size=2
+Process timer: 0124
+Process timer: 0874
+Process tv[2], size=9
+Process timer: 0563
+Process timer: 0693
+Process timer: 0830
+Process timer: 0937
+Process timer: 0672
+Process timer: 0653
+Process timer: 0459
+Process timer: 0437
+Process timer: 0282
+Process tv[3], size=1
+Process timer: 0445
+Process tv[4], size=5
+Process timer: 0608
+Process timer: 0972
+Process timer: 0409
+Process timer: 0215
+Process timer: 0214
+Process tv[5], size=4
+Process timer: 1011
+Process timer: 1010
+Process timer: 0707
+Process timer: 0244
+Process tv[6], size=3
+Process timer: 0237
+Process timer: 0823
+Process timer: 0958
+Process tv[7], size=0
+Cascade tv1, index=2, array size=14
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=14
+tv1[3] size=9
+tv1[4] size=18
+tv1[5] size=15
+tv1[6] size=12
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=283
+tv2[2] size=237
+tv2[3] size=249
+=================== AFTER-CASCADE ====================
+id = 14
+tv STATS
+tv[0] size=3
+tv[1] size=1
+tv[2] size=1
+tv[3] size=1
+tv[4] size=0
+tv[5] size=1
+tv[6] size=3
+tv[7] size=4
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=9
+tv1[4] size=18
+tv1[5] size=15
+tv1[6] size=12
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=283
+tv2[2] size=237
+tv2[3] size=249
+Process tv[0], size=3
+Process timer: 0203
+Process timer: 0385
+Process timer: 0821
+Process tv[1], size=1
+Process timer: 0455
+Process tv[2], size=1
+Process timer: 0010
+Process tv[3], size=1
+Process timer: 0714
+Process tv[4], size=0
+Process tv[5], size=1
+Process timer: 0776
+Process tv[6], size=3
+Process timer: 0375
+Process timer: 0531
+Process timer: 0879
+Process tv[7], size=4
+Process timer: 0075
+Process timer: 0615
+Process timer: 0750
+Process timer: 0769
+Cascade tv1, index=3, array size=9
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=9
+tv1[4] size=18
+tv1[5] size=15
+tv1[6] size=12
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=283
+tv2[2] size=237
+tv2[3] size=249
+=================== AFTER-CASCADE ====================
+id = 9
+tv STATS
+tv[0] size=2
+tv[1] size=1
+tv[2] size=2
+tv[3] size=1
+tv[4] size=2
+tv[5] size=1
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=18
+tv1[5] size=15
+tv1[6] size=12
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=283
+tv2[2] size=237
+tv2[3] size=249
+Process tv[0], size=2
+Process timer: 0340
+Process timer: 0820
+Process tv[1], size=1
+Process timer: 0098
+Process tv[2], size=2
+Process timer: 0457
+Process timer: 0612
+Process tv[3], size=1
+Process timer: 0308
+Process tv[4], size=2
+Process timer: 0489
+Process timer: 0732
+Process tv[5], size=1
+Process timer: 0223
+Process tv[6], size=0
+Process tv[7], size=0
+Cascade tv1, index=4, array size=18
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=18
+tv1[5] size=15
+tv1[6] size=12
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=283
+tv2[2] size=237
+tv2[3] size=249
+=================== AFTER-CASCADE ====================
+id = 18
+tv STATS
+tv[0] size=6
+tv[1] size=2
+tv[2] size=0
+tv[3] size=3
+tv[4] size=2
+tv[5] size=1
+tv[6] size=1
+tv[7] size=3
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=15
+tv1[6] size=12
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=283
+tv2[2] size=237
+tv2[3] size=249
+Process tv[0], size=6
+Process timer: 0035
+Process timer: 0092
+Process timer: 0538
+Process timer: 0880
+Process timer: 0954
+Process timer: 1012
+Process tv[1], size=2
+Process timer: 0399
+Process timer: 0426
+Process tv[2], size=0
+Process tv[3], size=3
+Process timer: 0051
+Process timer: 0374
+Process timer: 0819
+Process tv[4], size=2
+Process timer: 0529
+Process timer: 0790
+Process tv[5], size=1
+Process timer: 0156
+Process tv[6], size=1
+Process timer: 0332
+Process tv[7], size=3
+Process timer: 0123
+Process timer: 0222
+Process timer: 0224
+Cascade tv1, index=5, array size=15
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=15
+tv1[6] size=12
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=283
+tv2[2] size=237
+tv2[3] size=249
+=================== AFTER-CASCADE ====================
+id = 15
+tv STATS
+tv[0] size=2
+tv[1] size=1
+tv[2] size=3
+tv[3] size=2
+tv[4] size=3
+tv[5] size=3
+tv[6] size=1
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=12
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=283
+tv2[2] size=237
+tv2[3] size=249
+Process tv[0], size=2
+Process timer: 0716
+Process timer: 0945
+Process tv[1], size=1
+Process timer: 0795
+Process tv[2], size=3
+Process timer: 0112
+Process timer: 0139
+Process timer: 0519
+Process tv[3], size=2
+Process timer: 0623
+Process timer: 0839
+Process tv[4], size=3
+Process timer: 0048
+Process timer: 0685
+Process timer: 0960
+Process tv[5], size=3
+Process timer: 0150
+Process timer: 0662
+Process timer: 0736
+Process tv[6], size=1
+Process timer: 0370
+Process tv[7], size=0
+Cascade tv1, index=6, array size=12
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=12
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=283
+tv2[2] size=237
+tv2[3] size=249
+=================== AFTER-CASCADE ====================
+id = 12
+tv STATS
+tv[0] size=2
+tv[1] size=0
+tv[2] size=2
+tv[3] size=2
+tv[4] size=3
+tv[5] size=1
+tv[6] size=2
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=283
+tv2[2] size=237
+tv2[3] size=249
+Process tv[0], size=2
+Process timer: 0391
+Process timer: 0394
+Process tv[1], size=0
+Process tv[2], size=2
+Process timer: 0205
+Process timer: 0906
+Process tv[3], size=2
+Process timer: 0498
+Process timer: 0764
+Process tv[4], size=3
+Process timer: 0284
+Process timer: 0324
+Process timer: 0379
+Process tv[5], size=1
+Process timer: 0036
+Process tv[6], size=2
+Process timer: 0209
+Process timer: 0585
+Process tv[7], size=0
+Cascade tv1, index=7, array size=18
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=283
+tv2[2] size=237
+tv2[3] size=249
+=================== AFTER-CASCADE ====================
+id = 18
+tv STATS
+tv[0] size=3
+tv[1] size=1
+tv[2] size=3
+tv[3] size=1
+tv[4] size=1
+tv[5] size=2
+tv[6] size=2
+tv[7] size=5
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=0
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=283
+tv2[2] size=237
+tv2[3] size=249
+Process tv[0], size=3
+Process timer: 0570
+Process timer: 0634
+Process timer: 0826
+Process tv[1], size=1
+Process timer: 0140
+Process tv[2], size=3
+Process timer: 0341
+Process timer: 0485
+Process timer: 0723
+Process tv[3], size=1
+Process timer: 0305
+Process tv[4], size=1
+Process timer: 0999
+Process tv[5], size=2
+Process timer: 0133
+Process timer: 0606
+Process tv[6], size=2
+Process timer: 0071
+Process timer: 0219
+Process tv[7], size=5
+Process timer: 0190
+Process timer: 0533
+Process timer: 0762
+Process timer: 0784
+Process timer: 0878
+Cascade tv2, index=1, array size=283
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=0
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=283
+tv2[2] size=237
+tv2[3] size=249
+=================== AFTER-CASCADE ====================
+id = 283
+tv STATS
+tv[0] size=0
+tv[1] size=2
+tv[2] size=3
+tv[3] size=3
+tv[4] size=3
+tv[5] size=3
+tv[6] size=4
+tv[7] size=2
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=13
+tv1[2] size=18
+tv1[3] size=15
+tv1[4] size=19
+tv1[5] size=17
+tv1[6] size=15
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=237
+tv2[3] size=249
+Process tv[0], size=0
+Process tv[1], size=2
+Process timer: 0060
+Process timer: 0482
+Process tv[2], size=3
+Process timer: 0108
+Process timer: 0195
+Process timer: 0320
+Process tv[3], size=3
+Process timer: 0367
+Process timer: 0411
+Process timer: 0509
+Process tv[4], size=3
+Process timer: 0281
+Process timer: 0778
+Process timer: 0984
+Process tv[5], size=3
+Process timer: 0240
+Process timer: 0453
+Process timer: 0951
+Process tv[6], size=4
+Process timer: 0074
+Process timer: 0291
+Process timer: 0357
+Process timer: 0815
+Process tv[7], size=2
+Process timer: 0380
+Process timer: 0935
+Cascade tv1, index=1, array size=13
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=13
+tv1[2] size=18
+tv1[3] size=15
+tv1[4] size=19
+tv1[5] size=17
+tv1[6] size=15
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=237
+tv2[3] size=249
+=================== AFTER-CASCADE ====================
+id = 13
+tv STATS
+tv[0] size=1
+tv[1] size=4
+tv[2] size=2
+tv[3] size=2
+tv[4] size=1
+tv[5] size=0
+tv[6] size=3
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=18
+tv1[3] size=15
+tv1[4] size=19
+tv1[5] size=17
+tv1[6] size=15
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=237
+tv2[3] size=249
+Process tv[0], size=1
+Process timer: 0451
+Process tv[1], size=4
+Process timer: 1004
+Process timer: 0986
+Process timer: 0845
+Process timer: 0841
+Process tv[2], size=2
+Process timer: 0158
+Process timer: 0015
+Process tv[3], size=2
+Process timer: 0552
+Process timer: 0413
+Process tv[4], size=1
+Process timer: 0969
+Process tv[5], size=0
+Process tv[6], size=3
+Process timer: 0993
+Process timer: 0980
+Process timer: 0000
+Process tv[7], size=0
+Cascade tv1, index=2, array size=18
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=18
+tv1[3] size=15
+tv1[4] size=19
+tv1[5] size=17
+tv1[6] size=15
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=237
+tv2[3] size=249
+=================== AFTER-CASCADE ====================
+id = 18
+tv STATS
+tv[0] size=3
+tv[1] size=1
+tv[2] size=3
+tv[3] size=1
+tv[4] size=2
+tv[5] size=2
+tv[6] size=2
+tv[7] size=4
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=15
+tv1[4] size=19
+tv1[5] size=17
+tv1[6] size=15
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=237
+tv2[3] size=249
+Process tv[0], size=3
+Process timer: 0478
+Process timer: 0354
+Process timer: 0180
+Process tv[1], size=1
+Process timer: 0503
+Process tv[2], size=3
+Process timer: 0444
+Process timer: 0134
+Process timer: 0046
+Process tv[3], size=1
+Process timer: 0302
+Process tv[4], size=2
+Process timer: 0729
+Process timer: 0712
+Process tv[5], size=2
+Process timer: 1019
+Process timer: 0488
+Process tv[6], size=2
+Process timer: 0619
+Process timer: 0184
+Process tv[7], size=4
+Process timer: 0989
+Process timer: 0407
+Process timer: 0388
+Process timer: 0280
+Cascade tv1, index=3, array size=15
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=15
+tv1[4] size=19
+tv1[5] size=17
+tv1[6] size=15
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=237
+tv2[3] size=249
+=================== AFTER-CASCADE ====================
+id = 15
+tv STATS
+tv[0] size=1
+tv[1] size=2
+tv[2] size=1
+tv[3] size=2
+tv[4] size=2
+tv[5] size=2
+tv[6] size=3
+tv[7] size=2
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=19
+tv1[5] size=17
+tv1[6] size=15
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=237
+tv2[3] size=249
+Process tv[0], size=1
+Process timer: 0097
+Process tv[1], size=2
+Process timer: 0686
+Process timer: 0141
+Process tv[2], size=1
+Process timer: 0537
+Process tv[3], size=2
+Process timer: 0781
+Process timer: 0705
+Process tv[4], size=2
+Process timer: 0586
+Process timer: 0416
+Process tv[5], size=2
+Process timer: 0794
+Process timer: 0342
+Process tv[6], size=3
+Process timer: 0530
+Process timer: 0345
+Process timer: 0299
+Process tv[7], size=2
+Process timer: 0600
+Process timer: 0226
+Cascade tv1, index=4, array size=19
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=19
+tv1[5] size=17
+tv1[6] size=15
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=237
+tv2[3] size=249
+=================== AFTER-CASCADE ====================
+id = 19
+tv STATS
+tv[0] size=0
+tv[1] size=2
+tv[2] size=3
+tv[3] size=2
+tv[4] size=4
+tv[5] size=4
+tv[6] size=2
+tv[7] size=2
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=17
+tv1[6] size=15
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=237
+tv2[3] size=249
+Process tv[0], size=0
+Process tv[1], size=2
+Process timer: 0767
+Process timer: 0761
+Process tv[2], size=3
+Process timer: 0896
+Process timer: 0868
+Process timer: 0276
+Process tv[3], size=2
+Process timer: 0901
+Process timer: 0143
+Process tv[4], size=4
+Process timer: 0793
+Process timer: 0578
+Process timer: 0572
+Process timer: 0030
+Process tv[5], size=4
+Process timer: 1015
+Process timer: 0706
+Process timer: 0665
+Process timer: 0070
+Process tv[6], size=2
+Process timer: 0914
+Process timer: 0090
+Process tv[7], size=2
+Process timer: 0534
+Process timer: 0055
+Cascade tv1, index=5, array size=17
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=17
+tv1[6] size=15
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=237
+tv2[3] size=249
+=================== AFTER-CASCADE ====================
+id = 17
+tv STATS
+tv[0] size=3
+tv[1] size=3
+tv[2] size=2
+tv[3] size=2
+tv[4] size=2
+tv[5] size=2
+tv[6] size=1
+tv[7] size=2
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=15
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=237
+tv2[3] size=249
+Process tv[0], size=3
+Process timer: 0711
+Process timer: 0677
+Process timer: 0014
+Process tv[1], size=3
+Process timer: 0369
+Process timer: 0267
+Process timer: 0258
+Process tv[2], size=2
+Process timer: 0734
+Process timer: 0470
+Process tv[3], size=2
+Process timer: 0539
+Process timer: 0514
+Process tv[4], size=2
+Process timer: 0717
+Process timer: 0571
+Process tv[5], size=2
+Process timer: 0418
+Process timer: 0251
+Process tv[6], size=1
+Process timer: 0350
+Process tv[7], size=2
+Process timer: 0696
+Process timer: 0147
+Cascade tv1, index=6, array size=15
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=15
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=237
+tv2[3] size=249
+=================== AFTER-CASCADE ====================
+id = 15
+tv STATS
+tv[0] size=2
+tv[1] size=4
+tv[2] size=1
+tv[3] size=2
+tv[4] size=2
+tv[5] size=1
+tv[6] size=1
+tv[7] size=2
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=237
+tv2[3] size=249
+Process tv[0], size=2
+Process timer: 0903
+Process timer: 0664
+Process tv[1], size=4
+Process timer: 0909
+Process timer: 0678
+Process timer: 0395
+Process timer: 0204
+Process tv[2], size=1
+Process timer: 0311
+Process tv[3], size=2
+Process timer: 0940
+Process timer: 0364
+Process tv[4], size=2
+Process timer: 0924
+Process timer: 0824
+Process tv[5], size=1
+Process timer: 0637
+Process tv[6], size=1
+Process timer: 0816
+Process tv[7], size=2
+Process timer: 0328
+Process timer: 0249
+Cascade tv1, index=7, array size=18
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=18
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=237
+tv2[3] size=249
+=================== AFTER-CASCADE ====================
+id = 18
+tv STATS
+tv[0] size=0
+tv[1] size=2
+tv[2] size=2
+tv[3] size=6
+tv[4] size=0
+tv[5] size=3
+tv[6] size=2
+tv[7] size=3
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=0
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=237
+tv2[3] size=249
+Process tv[0], size=0
+Process tv[1], size=2
+Process timer: 0836
+Process timer: 0527
+Process tv[2], size=2
+Process timer: 0228
+Process timer: 0118
+Process tv[3], size=6
+Process timer: 0755
+Process timer: 0629
+Process timer: 0607
+Process timer: 0495
+Process timer: 0278
+Process timer: 0187
+Process tv[4], size=0
+Process tv[5], size=3
+Process timer: 0847
+Process timer: 0480
+Process timer: 0306
+Process tv[6], size=2
+Process timer: 0262
+Process timer: 0138
+Process tv[7], size=3
+Process timer: 0759
+Process timer: 0218
+Process timer: 0101
+Cascade tv2, index=2, array size=237
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=0
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=237
+tv2[3] size=249
+=================== AFTER-CASCADE ====================
+id = 237
+tv STATS
+tv[0] size=3
+tv[1] size=1
+tv[2] size=0
+tv[3] size=1
+tv[4] size=3
+tv[5] size=0
+tv[6] size=4
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=17
+tv1[2] size=12
+tv1[3] size=12
+tv1[4] size=15
+tv1[5] size=19
+tv1[6] size=17
+tv1[7] size=11
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=249
+Process tv[0], size=3
+Process timer: 0065
+Process timer: 0546
+Process timer: 0929
+Process tv[1], size=1
+Process timer: 0292
+Process tv[2], size=0
+Process tv[3], size=1
+Process timer: 0817
+Process tv[4], size=3
+Process timer: 0352
+Process timer: 0553
+Process timer: 0648
+Process tv[5], size=0
+Process tv[6], size=4
+Process timer: 0024
+Process timer: 0027
+Process timer: 0804
+Process timer: 0979
+Process tv[7], size=0
+Cascade tv1, index=1, array size=17
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=17
+tv1[2] size=12
+tv1[3] size=12
+tv1[4] size=15
+tv1[5] size=19
+tv1[6] size=17
+tv1[7] size=11
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=249
+=================== AFTER-CASCADE ====================
+id = 17
+tv STATS
+tv[0] size=2
+tv[1] size=1
+tv[2] size=6
+tv[3] size=2
+tv[4] size=3
+tv[5] size=1
+tv[6] size=2
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=12
+tv1[3] size=12
+tv1[4] size=15
+tv1[5] size=19
+tv1[6] size=17
+tv1[7] size=11
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=249
+Process tv[0], size=2
+Process timer: 0799
+Process timer: 0691
+Process tv[1], size=1
+Process timer: 0810
+Process tv[2], size=6
+Process timer: 0981
+Process timer: 0798
+Process timer: 0642
+Process timer: 0524
+Process timer: 0508
+Process timer: 0254
+Process tv[3], size=2
+Process timer: 0410
+Process timer: 0373
+Process tv[4], size=3
+Process timer: 0863
+Process timer: 0605
+Process timer: 0285
+Process tv[5], size=1
+Process timer: 0239
+Process tv[6], size=2
+Process timer: 0521
+Process timer: 0152
+Process tv[7], size=0
+Cascade tv1, index=2, array size=12
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=12
+tv1[3] size=12
+tv1[4] size=15
+tv1[5] size=19
+tv1[6] size=17
+tv1[7] size=11
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=249
+=================== AFTER-CASCADE ====================
+id = 12
+tv STATS
+tv[0] size=1
+tv[1] size=0
+tv[2] size=3
+tv[3] size=2
+tv[4] size=0
+tv[5] size=1
+tv[6] size=4
+tv[7] size=1
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=12
+tv1[4] size=15
+tv1[5] size=19
+tv1[6] size=17
+tv1[7] size=11
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=249
+Process tv[0], size=1
+Process timer: 0290
+Process tv[1], size=0
+Process tv[2], size=3
+Process timer: 0939
+Process timer: 0828
+Process timer: 0417
+Process tv[3], size=2
+Process timer: 0543
+Process timer: 0301
+Process tv[4], size=0
+Process tv[5], size=1
+Process timer: 0427
+Process tv[6], size=4
+Process timer: 0448
+Process timer: 0318
+Process timer: 0148
+Process timer: 0094
+Process tv[7], size=1
+Process timer: 0155
+Cascade tv1, index=3, array size=12
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=12
+tv1[4] size=15
+tv1[5] size=19
+tv1[6] size=17
+tv1[7] size=11
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=249
+=================== AFTER-CASCADE ====================
+id = 12
+tv STATS
+tv[0] size=4
+tv[1] size=0
+tv[2] size=1
+tv[3] size=1
+tv[4] size=1
+tv[5] size=1
+tv[6] size=3
+tv[7] size=1
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=15
+tv1[5] size=19
+tv1[6] size=17
+tv1[7] size=11
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=249
+Process tv[0], size=4
+Process timer: 0988
+Process timer: 0730
+Process timer: 0200
+Process timer: 0077
+Process tv[1], size=0
+Process tv[2], size=1
+Process timer: 0238
+Process tv[3], size=1
+Process timer: 0807
+Process tv[4], size=1
+Process timer: 0884
+Process tv[5], size=1
+Process timer: 0151
+Process tv[6], size=3
+Process timer: 0832
+Process timer: 0540
+Process timer: 0501
+Process tv[7], size=1
+Process timer: 0978
+Cascade tv1, index=4, array size=15
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=15
+tv1[5] size=19
+tv1[6] size=17
+tv1[7] size=11
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=249
+=================== AFTER-CASCADE ====================
+id = 15
+tv STATS
+tv[0] size=3
+tv[1] size=2
+tv[2] size=1
+tv[3] size=2
+tv[4] size=1
+tv[5] size=2
+tv[6] size=1
+tv[7] size=3
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=19
+tv1[6] size=17
+tv1[7] size=11
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=249
+Process tv[0], size=3
+Process timer: 0591
+Process timer: 0300
+Process timer: 0166
+Process tv[1], size=2
+Process timer: 0850
+Process timer: 0609
+Process tv[2], size=1
+Process timer: 0403
+Process tv[3], size=2
+Process timer: 0334
+Process timer: 0177
+Process tv[4], size=1
+Process timer: 0372
+Process tv[5], size=2
+Process timer: 0084
+Process timer: 0005
+Process tv[6], size=1
+Process timer: 0458
+Process tv[7], size=3
+Process timer: 0700
+Process timer: 0463
+Process timer: 0431
+Cascade tv1, index=5, array size=19
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=19
+tv1[6] size=17
+tv1[7] size=11
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=249
+=================== AFTER-CASCADE ====================
+id = 19
+tv STATS
+tv[0] size=2
+tv[1] size=4
+tv[2] size=6
+tv[3] size=1
+tv[4] size=0
+tv[5] size=2
+tv[6] size=2
+tv[7] size=2
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=17
+tv1[7] size=11
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=249
+Process tv[0], size=2
+Process timer: 0682
+Process timer: 0624
+Process tv[1], size=4
+Process timer: 0928
+Process timer: 0633
+Process timer: 0462
+Process timer: 0428
+Process tv[2], size=6
+Process timer: 0773
+Process timer: 0765
+Process timer: 0703
+Process timer: 0658
+Process timer: 0594
+Process timer: 0273
+Process tv[3], size=1
+Process timer: 0744
+Process tv[4], size=0
+Process tv[5], size=2
+Process timer: 0907
+Process timer: 0023
+Process tv[6], size=2
+Process timer: 0655
+Process timer: 0447
+Process tv[7], size=2
+Process timer: 0741
+Process timer: 0296
+Cascade tv1, index=6, array size=17
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=17
+tv1[7] size=11
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=249
+=================== AFTER-CASCADE ====================
+id = 17
+tv STATS
+tv[0] size=1
+tv[1] size=4
+tv[2] size=2
+tv[3] size=1
+tv[4] size=2
+tv[5] size=1
+tv[6] size=4
+tv[7] size=2
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=11
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=249
+Process tv[0], size=1
+Process timer: 0018
+Process tv[1], size=4
+Process timer: 0264
+Process timer: 0210
+Process timer: 0122
+Process timer: 0057
+Process tv[2], size=2
+Process timer: 0439
+Process timer: 0088
+Process tv[3], size=1
+Process timer: 0419
+Process tv[4], size=2
+Process timer: 0635
+Process timer: 0398
+Process tv[5], size=1
+Process timer: 0368
+Process tv[6], size=4
+Process timer: 0900
+Process timer: 0647
+Process timer: 0436
+Process timer: 0430
+Process tv[7], size=2
+Process timer: 0814
+Process timer: 0785
+Cascade tv1, index=7, array size=11
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=11
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=249
+=================== AFTER-CASCADE ====================
+id = 11
+tv STATS
+tv[0] size=2
+tv[1] size=4
+tv[2] size=1
+tv[3] size=0
+tv[4] size=2
+tv[5] size=0
+tv[6] size=0
+tv[7] size=2
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=0
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=249
+Process tv[0], size=2
+Process timer: 0406
+Process timer: 0355
+Process tv[1], size=4
+Process timer: 0967
+Process timer: 0659
+Process timer: 0213
+Process timer: 0188
+Process tv[2], size=1
+Process timer: 0017
+Process tv[3], size=0
+Process tv[4], size=2
+Process timer: 0766
+Process timer: 0059
+Process tv[5], size=0
+Process tv[6], size=0
+Process tv[7], size=2
+Process timer: 0221
+Process timer: 0004
+Cascade tv2, index=3, array size=249
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=0
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=249
+=================== AFTER-CASCADE ====================
+id = 249
+tv STATS
+tv[0] size=1
+tv[1] size=2
+tv[2] size=4
+tv[3] size=6
+tv[4] size=3
+tv[5] size=1
+tv[6] size=1
+tv[7] size=3
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=15
+tv1[2] size=19
+tv1[3] size=9
+tv1[4] size=18
+tv1[5] size=18
+tv1[6] size=22
+tv1[7] size=9
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+Process tv[0], size=1
+Process timer: 0535
+Process tv[1], size=2
+Process timer: 0040
+Process timer: 0886
+Process tv[2], size=4
+Process timer: 0062
+Process timer: 0230
+Process timer: 0532
+Process timer: 0829
+Process tv[3], size=6
+Process timer: 0202
+Process timer: 0323
+Process timer: 0603
+Process timer: 0708
+Process timer: 0910
+Process timer: 0952
+Process tv[4], size=3
+Process timer: 0154
+Process timer: 0899
+Process timer: 0991
+Process tv[5], size=1
+Process timer: 0805
+Process tv[6], size=1
+Process timer: 0772
+Process tv[7], size=3
+Process timer: 0346
+Process timer: 0613
+Process timer: 0919
+Cascade tv1, index=1, array size=15
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=15
+tv1[2] size=19
+tv1[3] size=9
+tv1[4] size=18
+tv1[5] size=18
+tv1[6] size=22
+tv1[7] size=9
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 15
+tv STATS
+tv[0] size=1
+tv[1] size=1
+tv[2] size=2
+tv[3] size=4
+tv[4] size=3
+tv[5] size=1
+tv[6] size=2
+tv[7] size=1
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=19
+tv1[3] size=9
+tv1[4] size=18
+tv1[5] size=18
+tv1[6] size=22
+tv1[7] size=9
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+Process tv[0], size=1
+Process timer: 0749
+Process tv[1], size=1
+Process timer: 0621
+Process tv[2], size=2
+Process timer: 0692
+Process timer: 0566
+Process tv[3], size=4
+Process timer: 0982
+Process timer: 0864
+Process timer: 0676
+Process timer: 0383
+Process tv[4], size=3
+Process timer: 0848
+Process timer: 0840
+Process timer: 0185
+Process tv[5], size=1
+Process timer: 0371
+Process tv[6], size=2
+Process timer: 0107
+Process timer: 0089
+Process tv[7], size=1
+Process timer: 0614
+Cascade tv1, index=2, array size=19
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=19
+tv1[3] size=9
+tv1[4] size=18
+tv1[5] size=18
+tv1[6] size=22
+tv1[7] size=9
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 19
+tv STATS
+tv[0] size=3
+tv[1] size=2
+tv[2] size=0
+tv[3] size=4
+tv[4] size=1
+tv[5] size=5
+tv[6] size=2
+tv[7] size=2
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=9
+tv1[4] size=18
+tv1[5] size=18
+tv1[6] size=22
+tv1[7] size=9
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+Process tv[0], size=3
+Process timer: 0737
+Process timer: 0115
+Process timer: 0054
+Process tv[1], size=2
+Process timer: 1013
+Process timer: 0260
+Process tv[2], size=0
+Process tv[3], size=4
+Process timer: 0843
+Process timer: 0747
+Process timer: 0590
+Process timer: 0168
+Process tv[4], size=1
+Process timer: 0721
+Process tv[5], size=5
+Process timer: 0620
+Process timer: 0555
+Process timer: 0429
+Process timer: 0208
+Process timer: 0176
+Process tv[6], size=2
+Process timer: 1005
+Process timer: 0927
+Process tv[7], size=2
+Process timer: 0709
+Process timer: 0016
+Cascade tv1, index=3, array size=9
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=9
+tv1[4] size=18
+tv1[5] size=18
+tv1[6] size=22
+tv1[7] size=9
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 9
+tv STATS
+tv[0] size=1
+tv[1] size=1
+tv[2] size=1
+tv[3] size=1
+tv[4] size=0
+tv[5] size=0
+tv[6] size=5
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=18
+tv1[5] size=18
+tv1[6] size=22
+tv1[7] size=9
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+Process tv[0], size=1
+Process timer: 0130
+Process tv[1], size=1
+Process timer: 0194
+Process tv[2], size=1
+Process timer: 0668
+Process tv[3], size=1
+Process timer: 0175
+Process tv[4], size=0
+Process tv[5], size=0
+Process tv[6], size=5
+Process timer: 0724
+Process timer: 0361
+Process timer: 0183
+Process timer: 0153
+Process timer: 0021
+Process tv[7], size=0
+Cascade tv1, index=4, array size=18
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=18
+tv1[5] size=18
+tv1[6] size=22
+tv1[7] size=9
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 18
+tv STATS
+tv[0] size=5
+tv[1] size=1
+tv[2] size=4
+tv[3] size=3
+tv[4] size=1
+tv[5] size=3
+tv[6] size=0
+tv[7] size=1
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=18
+tv1[6] size=22
+tv1[7] size=9
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+Process tv[0], size=5
+Process timer: 0977
+Process timer: 0881
+Process timer: 0698
+Process timer: 0121
+Process timer: 0076
+Process tv[1], size=1
+Process timer: 0109
+Process tv[2], size=4
+Process timer: 0401
+Process timer: 0232
+Process timer: 0192
+Process timer: 0064
+Process tv[3], size=3
+Process timer: 0932
+Process timer: 0422
+Process timer: 0327
+Process tv[4], size=1
+Process timer: 0196
+Process tv[5], size=3
+Process timer: 0892
+Process timer: 0851
+Process timer: 0390
+Process tv[6], size=0
+Process tv[7], size=1
+Process timer: 0452
+Cascade tv1, index=5, array size=18
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=18
+tv1[6] size=22
+tv1[7] size=9
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 18
+tv STATS
+tv[0] size=2
+tv[1] size=2
+tv[2] size=3
+tv[3] size=1
+tv[4] size=5
+tv[5] size=1
+tv[6] size=3
+tv[7] size=1
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=22
+tv1[7] size=9
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+Process tv[0], size=2
+Process timer: 0670
+Process timer: 0477
+Process tv[1], size=2
+Process timer: 0376
+Process timer: 0257
+Process tv[2], size=3
+Process timer: 0569
+Process timer: 0547
+Process timer: 0377
+Process tv[3], size=1
+Process timer: 0206
+Process tv[4], size=5
+Process timer: 0985
+Process timer: 0777
+Process timer: 0317
+Process timer: 0286
+Process timer: 0272
+Process tv[5], size=1
+Process timer: 0058
+Process tv[6], size=3
+Process timer: 0402
+Process timer: 0103
+Process timer: 0044
+Process tv[7], size=1
+Process timer: 1021
+Cascade tv1, index=6, array size=22
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=22
+tv1[7] size=9
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 22
+tv STATS
+tv[0] size=4
+tv[1] size=2
+tv[2] size=3
+tv[3] size=2
+tv[4] size=1
+tv[5] size=4
+tv[6] size=4
+tv[7] size=2
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=9
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+Process tv[0], size=4
+Process timer: 0739
+Process timer: 0657
+Process timer: 0460
+Process timer: 0256
+Process tv[1], size=2
+Process timer: 0275
+Process timer: 0163
+Process tv[2], size=3
+Process timer: 0641
+Process timer: 0604
+Process timer: 0362
+Process tv[3], size=2
+Process timer: 0854
+Process timer: 0091
+Process tv[4], size=1
+Process timer: 0898
+Process tv[5], size=4
+Process timer: 0938
+Process timer: 0920
+Process timer: 0559
+Process timer: 0442
+Process tv[6], size=4
+Process timer: 1006
+Process timer: 0965
+Process timer: 0757
+Process timer: 0622
+Process tv[7], size=2
+Process timer: 0791
+Process timer: 0270
+Cascade tv1, index=7, array size=9
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=9
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 9
+tv STATS
+tv[0] size=3
+tv[1] size=0
+tv[2] size=1
+tv[3] size=1
+tv[4] size=0
+tv[5] size=2
+tv[6] size=0
+tv[7] size=2
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=0
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+Process tv[0], size=3
+Process timer: 0968
+Process timer: 0718
+Process timer: 0309
+Process tv[1], size=0
+Process tv[2], size=1
+Process timer: 0201
+Process tv[3], size=1
+Process timer: 0882
+Process tv[4], size=0
+Process tv[5], size=2
+Process timer: 0616
+Process timer: 0037
+Process tv[6], size=0
+Process tv[7], size=2
+Process timer: 0574
+Process timer: 0297
+Cascade tv2, index=0, array size=131
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=0
+tv2 STATS
+tv2[0] size=131
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 131
+tv STATS
+tv[0] size=2
+tv[1] size=1
+tv[2] size=3
+tv[3] size=1
+tv[4] size=2
+tv[5] size=3
+tv[6] size=1
+tv[7] size=1
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=18
+tv1[2] size=15
+tv1[3] size=13
+tv1[4] size=21
+tv1[5] size=16
+tv1[6] size=21
+tv1[7] size=13
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+Process tv[0], size=2
+Process timer: 0225
+Process timer: 0873
+Process tv[1], size=1
+Process timer: 0500
+Process tv[2], size=3
+Process timer: 0049
+Process timer: 0095
+Process timer: 0464
+Process tv[3], size=1
+Process timer: 0689
+Process tv[4], size=2
+Process timer: 0056
+Process timer: 0582
+Process tv[5], size=3
+Process timer: 0106
+Process timer: 0338
+Process timer: 0849
+Process tv[6], size=1
+Process timer: 0266
+Process tv[7], size=1
+Process timer: 0511
+Cascade tv1, index=1, array size=18
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=18
+tv1[2] size=15
+tv1[3] size=13
+tv1[4] size=21
+tv1[5] size=16
+tv1[6] size=21
+tv1[7] size=13
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 18
+tv STATS
+tv[0] size=1
+tv[1] size=1
+tv[2] size=1
+tv[3] size=3
+tv[4] size=4
+tv[5] size=2
+tv[6] size=4
+tv[7] size=2
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=15
+tv1[3] size=13
+tv1[4] size=21
+tv1[5] size=16
+tv1[6] size=21
+tv1[7] size=13
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+Process tv[0], size=1
+Process timer: 0891
+Process tv[1], size=1
+Process timer: 0042
+Process tv[2], size=1
+Process timer: 0387
+Process tv[3], size=3
+Process timer: 0227
+Process timer: 0116
+Process timer: 0113
+Process tv[4], size=4
+Process timer: 0650
+Process timer: 0562
+Process timer: 0171
+Process timer: 0079
+Process tv[5], size=2
+Process timer: 0973
+Process timer: 0858
+Process tv[6], size=4
+Process timer: 0796
+Process timer: 0598
+Process timer: 0414
+Process timer: 0293
+Process tv[7], size=2
+Process timer: 0963
+Process timer: 0908
+Cascade tv1, index=2, array size=15
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=15
+tv1[3] size=13
+tv1[4] size=21
+tv1[5] size=16
+tv1[6] size=21
+tv1[7] size=13
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 15
+tv STATS
+tv[0] size=1
+tv[1] size=2
+tv[2] size=0
+tv[3] size=1
+tv[4] size=1
+tv[5] size=4
+tv[6] size=3
+tv[7] size=3
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=13
+tv1[4] size=21
+tv1[5] size=16
+tv1[6] size=21
+tv1[7] size=13
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+Process tv[0], size=1
+Process timer: 0669
+Process tv[1], size=2
+Process timer: 0983
+Process timer: 0405
+Process tv[2], size=0
+Process tv[3], size=1
+Process timer: 0231
+Process tv[4], size=1
+Process timer: 0425
+Process tv[5], size=4
+Process timer: 0628
+Process timer: 0550
+Process timer: 0544
+Process timer: 0528
+Process tv[6], size=3
+Process timer: 1014
+Process timer: 0852
+Process timer: 0640
+Process tv[7], size=3
+Process timer: 0861
+Process timer: 0331
+Process timer: 0067
+Cascade tv1, index=3, array size=13
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=13
+tv1[4] size=21
+tv1[5] size=16
+tv1[6] size=21
+tv1[7] size=13
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 13
+tv STATS
+tv[0] size=1
+tv[1] size=4
+tv[2] size=1
+tv[3] size=2
+tv[4] size=3
+tv[5] size=1
+tv[6] size=1
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=21
+tv1[5] size=16
+tv1[6] size=21
+tv1[7] size=13
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+Process tv[0], size=1
+Process timer: 0008
+Process tv[1], size=4
+Process timer: 1022
+Process timer: 0846
+Process timer: 0797
+Process timer: 0728
+Process tv[2], size=1
+Process timer: 0888
+Process tv[3], size=2
+Process timer: 0877
+Process timer: 0822
+Process tv[4], size=3
+Process timer: 0774
+Process timer: 0688
+Process timer: 0630
+Process tv[5], size=1
+Process timer: 0956
+Process tv[6], size=1
+Process timer: 0169
+Process tv[7], size=0
+Cascade tv1, index=4, array size=21
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=21
+tv1[5] size=16
+tv1[6] size=21
+tv1[7] size=13
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 21
+tv STATS
+tv[0] size=5
+tv[1] size=2
+tv[2] size=1
+tv[3] size=3
+tv[4] size=2
+tv[5] size=2
+tv[6] size=4
+tv[7] size=2
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=16
+tv1[6] size=21
+tv1[7] size=13
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+Process tv[0], size=5
+Process timer: 0893
+Process timer: 0837
+Process timer: 0674
+Process timer: 0389
+Process timer: 0337
+Process tv[1], size=2
+Process timer: 0771
+Process timer: 0599
+Process tv[2], size=1
+Process timer: 0161
+Process tv[3], size=3
+Process timer: 0687
+Process timer: 0557
+Process timer: 0234
+Process tv[4], size=2
+Process timer: 0947
+Process timer: 0835
+Process tv[5], size=2
+Process timer: 0435
+Process timer: 0287
+Process tv[6], size=4
+Process timer: 0962
+Process timer: 0321
+Process timer: 0211
+Process timer: 0099
+Process tv[7], size=2
+Process timer: 0917
+Process timer: 0446
+Cascade tv1, index=5, array size=16
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=16
+tv1[6] size=21
+tv1[7] size=13
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 16
+tv STATS
+tv[0] size=1
+tv[1] size=5
+tv[2] size=1
+tv[3] size=2
+tv[4] size=2
+tv[5] size=1
+tv[6] size=1
+tv[7] size=3
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=21
+tv1[7] size=13
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+Process tv[0], size=1
+Process timer: 0990
+Process tv[1], size=5
+Process timer: 0424
+Process timer: 0162
+Process timer: 0126
+Process timer: 0093
+Process timer: 0072
+Process tv[2], size=1
+Process timer: 0997
+Process tv[3], size=2
+Process timer: 0857
+Process timer: 0617
+Process tv[4], size=2
+Process timer: 0261
+Process timer: 0002
+Process tv[5], size=1
+Process timer: 0663
+Process tv[6], size=1
+Process timer: 0871
+Process tv[7], size=3
+Process timer: 0974
+Process timer: 0638
+Process timer: 0160
+Cascade tv1, index=6, array size=21
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=21
+tv1[7] size=13
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 21
+tv STATS
+tv[0] size=4
+tv[1] size=1
+tv[2] size=2
+tv[3] size=2
+tv[4] size=1
+tv[5] size=3
+tv[6] size=4
+tv[7] size=4
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=13
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+Process tv[0], size=4
+Process timer: 0911
+Process timer: 0800
+Process timer: 0643
+Process timer: 0082
+Process tv[1], size=1
+Process timer: 0013
+Process tv[2], size=2
+Process timer: 0554
+Process timer: 0248
+Process tv[3], size=2
+Process timer: 0295
+Process timer: 0146
+Process tv[4], size=1
+Process timer: 0856
+Process tv[5], size=3
+Process timer: 0782
+Process timer: 0347
+Process timer: 0310
+Process tv[6], size=4
+Process timer: 0976
+Process timer: 0883
+Process timer: 0636
+Process timer: 0252
+Process tv[7], size=4
+Process timer: 0995
+Process timer: 0964
+Process timer: 0955
+Process timer: 0313
+Cascade tv1, index=7, array size=13
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=13
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 13
+tv STATS
+tv[0] size=2
+tv[1] size=0
+tv[2] size=4
+tv[3] size=0
+tv[4] size=3
+tv[5] size=2
+tv[6] size=1
+tv[7] size=1
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=0
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+Process tv[0], size=2
+Process timer: 0319
+Process timer: 0117
+Process tv[1], size=0
+Process tv[2], size=4
+Process timer: 0704
+Process timer: 0702
+Process timer: 0695
+Process timer: 0220
+Process tv[3], size=0
+Process tv[4], size=3
+Process timer: 1001
+Process timer: 0580
+Process timer: 0518
+Process tv[5], size=2
+Process timer: 0649
+Process timer: 0312
+Process tv[6], size=1
+Process timer: 0304
+Process tv[7], size=1
+Process timer: 0006
+Cascade tv2, index=1, array size=148
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=0
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=148
+tv2[2] size=122
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 148
+tv STATS
+tv[0] size=0
+tv[1] size=1
+tv[2] size=4
+tv[3] size=0
+tv[4] size=3
+tv[5] size=2
+tv[6] size=2
+tv[7] size=5
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=19
+tv1[2] size=19
+tv1[3] size=17
+tv1[4] size=19
+tv1[5] size=16
+tv1[6] size=22
+tv1[7] size=19
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=122
+tv2[3] size=118
+Process tv[0], size=0
+Process tv[1], size=1
+Process timer: 0595
+Process tv[2], size=4
+Process timer: 0865
+Process timer: 0639
+Process timer: 0330
+Process timer: 0129
+Process tv[3], size=0
+Process tv[4], size=3
+Process timer: 0996
+Process timer: 0867
+Process timer: 0719
+Process tv[5], size=2
+Process timer: 0897
+Process timer: 0491
+Process tv[6], size=2
+Process timer: 0207
+Process timer: 0012
+Process tv[7], size=5
+Process timer: 0646
+Process timer: 0601
+Process timer: 0560
+Process timer: 0167
+Process timer: 0125
+Cascade tv1, index=1, array size=19
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=19
+tv1[2] size=19
+tv1[3] size=17
+tv1[4] size=19
+tv1[5] size=16
+tv1[6] size=22
+tv1[7] size=19
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=122
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 19
+tv STATS
+tv[0] size=4
+tv[1] size=2
+tv[2] size=4
+tv[3] size=4
+tv[4] size=0
+tv[5] size=0
+tv[6] size=3
+tv[7] size=2
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=19
+tv1[3] size=17
+tv1[4] size=19
+tv1[5] size=16
+tv1[6] size=22
+tv1[7] size=19
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=122
+tv2[3] size=118
+Process tv[0], size=4
+Process timer: 0469
+Process timer: 0579
+Process timer: 0611
+Process timer: 0751
+Process tv[1], size=2
+Process timer: 0081
+Process timer: 0876
+Process tv[2], size=4
+Process timer: 0348
+Process timer: 0434
+Process timer: 0699
+Process timer: 0760
+Process tv[3], size=4
+Process timer: 0178
+Process timer: 0241
+Process timer: 0378
+Process timer: 0970
+Process tv[4], size=0
+Process tv[5], size=0
+Process tv[6], size=3
+Process timer: 0039
+Process timer: 0558
+Process timer: 0727
+Process tv[7], size=2
+Process timer: 0472
+Process timer: 0679
+Cascade tv1, index=2, array size=19
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=19
+tv1[3] size=17
+tv1[4] size=19
+tv1[5] size=16
+tv1[6] size=22
+tv1[7] size=19
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=122
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 19
+tv STATS
+tv[0] size=2
+tv[1] size=4
+tv[2] size=2
+tv[3] size=2
+tv[4] size=2
+tv[5] size=2
+tv[6] size=2
+tv[7] size=3
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=17
+tv1[4] size=19
+tv1[5] size=16
+tv1[6] size=22
+tv1[7] size=19
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=122
+tv2[3] size=118
+Process tv[0], size=2
+Process timer: 0487
+Process timer: 0948
+Process tv[1], size=4
+Process timer: 0061
+Process timer: 0770
+Process timer: 0783
+Process timer: 0912
+Process tv[2], size=2
+Process timer: 0421
+Process timer: 0490
+Process tv[3], size=2
+Process timer: 0235
+Process timer: 0596
+Process tv[4], size=2
+Process timer: 0710
+Process timer: 0921
+Process tv[5], size=2
+Process timer: 0289
+Process timer: 0343
+Process tv[6], size=2
+Process timer: 0592
+Process timer: 0735
+Process tv[7], size=3
+Process timer: 0114
+Process timer: 0137
+Process timer: 0966
+Cascade tv1, index=3, array size=17
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=17
+tv1[4] size=19
+tv1[5] size=16
+tv1[6] size=22
+tv1[7] size=19
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=122
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 17
+tv STATS
+tv[0] size=1
+tv[1] size=5
+tv[2] size=0
+tv[3] size=1
+tv[4] size=2
+tv[5] size=3
+tv[6] size=1
+tv[7] size=4
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=19
+tv1[5] size=16
+tv1[6] size=22
+tv1[7] size=19
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=122
+tv2[3] size=118
+Process tv[0], size=1
+Process timer: 0742
+Process tv[1], size=5
+Process timer: 0456
+Process timer: 0510
+Process timer: 0588
+Process timer: 0645
+Process timer: 0651
+Process tv[2], size=0
+Process tv[3], size=1
+Process timer: 0738
+Process tv[4], size=2
+Process timer: 0053
+Process timer: 0525
+Process tv[5], size=3
+Process timer: 0145
+Process timer: 0349
+Process timer: 0461
+Process tv[6], size=1
+Process timer: 0255
+Process tv[7], size=4
+Process timer: 0164
+Process timer: 0473
+Process timer: 0931
+Process timer: 1017
+Cascade tv1, index=4, array size=19
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=19
+tv1[5] size=16
+tv1[6] size=22
+tv1[7] size=19
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=122
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 19
+tv STATS
+tv[0] size=1
+tv[1] size=2
+tv[2] size=1
+tv[3] size=3
+tv[4] size=8
+tv[5] size=0
+tv[6] size=3
+tv[7] size=1
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=16
+tv1[6] size=22
+tv1[7] size=19
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=122
+tv2[3] size=118
+Process tv[0], size=1
+Process timer: 0507
+Process tv[1], size=2
+Process timer: 0032
+Process timer: 0450
+Process tv[2], size=1
+Process timer: 0987
+Process tv[3], size=3
+Process timer: 0415
+Process timer: 0476
+Process timer: 0925
+Process tv[4], size=8
+Process timer: 0102
+Process timer: 0131
+Process timer: 0144
+Process timer: 0335
+Process timer: 0356
+Process timer: 0366
+Process timer: 0483
+Process timer: 0904
+Process tv[5], size=0
+Process tv[6], size=3
+Process timer: 0756
+Process timer: 0763
+Process timer: 0811
+Process tv[7], size=1
+Process timer: 0806
+Cascade tv1, index=5, array size=16
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=16
+tv1[6] size=22
+tv1[7] size=19
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=122
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 16
+tv STATS
+tv[0] size=1
+tv[1] size=0
+tv[2] size=0
+tv[3] size=5
+tv[4] size=4
+tv[5] size=1
+tv[6] size=1
+tv[7] size=4
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=22
+tv1[7] size=19
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=122
+tv2[3] size=118
+Process tv[0], size=1
+Process timer: 0193
+Process tv[1], size=0
+Process tv[2], size=0
+Process tv[3], size=5
+Process timer: 0179
+Process timer: 0259
+Process timer: 0660
+Process timer: 0745
+Process timer: 0971
+Process tv[4], size=4
+Process timer: 0050
+Process timer: 0069
+Process timer: 0396
+Process timer: 0626
+Process tv[5], size=1
+Process timer: 0404
+Process tv[6], size=1
+Process timer: 0949
+Process tv[7], size=4
+Process timer: 0073
+Process timer: 0174
+Process timer: 0522
+Process timer: 0870
+Cascade tv1, index=6, array size=22
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=22
+tv1[7] size=19
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=122
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 22
+tv STATS
+tv[0] size=1
+tv[1] size=5
+tv[2] size=3
+tv[3] size=1
+tv[4] size=3
+tv[5] size=2
+tv[6] size=3
+tv[7] size=4
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=19
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=122
+tv2[3] size=118
+Process tv[0], size=1
+Process timer: 0720
+Process tv[1], size=5
+Process timer: 0045
+Process timer: 0170
+Process timer: 0315
+Process timer: 0775
+Process timer: 0869
+Process tv[2], size=3
+Process timer: 0344
+Process timer: 0542
+Process timer: 0673
+Process tv[3], size=1
+Process timer: 0565
+Process tv[4], size=3
+Process timer: 0597
+Process timer: 0631
+Process timer: 0726
+Process tv[5], size=2
+Process timer: 0288
+Process timer: 0486
+Process tv[6], size=3
+Process timer: 0186
+Process timer: 0523
+Process timer: 1000
+Process tv[7], size=4
+Process timer: 0172
+Process timer: 0173
+Process timer: 0325
+Process timer: 0944
+Cascade tv1, index=7, array size=19
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=19
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=122
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 19
+tv STATS
+tv[0] size=2
+tv[1] size=3
+tv[2] size=5
+tv[3] size=3
+tv[4] size=1
+tv[5] size=2
+tv[6] size=1
+tv[7] size=2
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=0
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=122
+tv2[3] size=118
+Process tv[0], size=2
+Process timer: 0181
+Process timer: 0825
+Process tv[1], size=3
+Process timer: 0492
+Process timer: 0575
+Process timer: 0581
+Process tv[2], size=5
+Process timer: 0083
+Process timer: 0197
+Process timer: 0217
+Process timer: 0541
+Process timer: 0768
+Process tv[3], size=3
+Process timer: 0165
+Process timer: 0975
+Process timer: 1003
+Process tv[4], size=1
+Process timer: 0438
+Process tv[5], size=2
+Process timer: 0068
+Process timer: 0681
+Process tv[6], size=1
+Process timer: 0322
+Process tv[7], size=2
+Process timer: 0577
+Process timer: 1007
+Cascade tv2, index=2, array size=122
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=0
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=122
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 122
+tv STATS
+tv[0] size=1
+tv[1] size=0
+tv[2] size=4
+tv[3] size=0
+tv[4] size=2
+tv[5] size=2
+tv[6] size=0
+tv[7] size=1
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=12
+tv1[2] size=14
+tv1[3] size=7
+tv1[4] size=16
+tv1[5] size=19
+tv1[6] size=19
+tv1[7] size=25
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=118
+Process tv[0], size=1
+Process timer: 0684
+Process tv[1], size=0
+Process tv[2], size=4
+Process timer: 0936
+Process timer: 0827
+Process timer: 0754
+Process timer: 0725
+Process tv[3], size=0
+Process tv[4], size=2
+Process timer: 0654
+Process timer: 0386
+Process tv[5], size=2
+Process timer: 0233
+Process timer: 0216
+Process tv[6], size=0
+Process tv[7], size=1
+Process timer: 0583
+Cascade tv1, index=1, array size=12
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=12
+tv1[2] size=14
+tv1[3] size=7
+tv1[4] size=16
+tv1[5] size=19
+tv1[6] size=19
+tv1[7] size=25
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 12
+tv STATS
+tv[0] size=0
+tv[1] size=3
+tv[2] size=3
+tv[3] size=1
+tv[4] size=2
+tv[5] size=1
+tv[6] size=2
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=14
+tv1[3] size=7
+tv1[4] size=16
+tv1[5] size=19
+tv1[6] size=19
+tv1[7] size=25
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=118
+Process tv[0], size=0
+Process tv[1], size=3
+Process timer: 0198
+Process timer: 0576
+Process timer: 0862
+Process tv[2], size=3
+Process timer: 0007
+Process timer: 0247
+Process timer: 0855
+Process tv[3], size=1
+Process timer: 0926
+Process tv[4], size=2
+Process timer: 0303
+Process timer: 0351
+Process tv[5], size=1
+Process timer: 0602
+Process tv[6], size=2
+Process timer: 0283
+Process timer: 0933
+Process tv[7], size=0
+Cascade tv1, index=2, array size=14
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=14
+tv1[3] size=7
+tv1[4] size=16
+tv1[5] size=19
+tv1[6] size=19
+tv1[7] size=25
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 14
+tv STATS
+tv[0] size=2
+tv[1] size=1
+tv[2] size=0
+tv[3] size=1
+tv[4] size=1
+tv[5] size=6
+tv[6] size=1
+tv[7] size=2
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=7
+tv1[4] size=16
+tv1[5] size=19
+tv1[6] size=19
+tv1[7] size=25
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=118
+Process tv[0], size=2
+Process timer: 0029
+Process timer: 0033
+Process tv[1], size=1
+Process timer: 0842
+Process tv[2], size=0
+Process tv[3], size=1
+Process timer: 0329
+Process tv[4], size=1
+Process timer: 0894
+Process tv[5], size=6
+Process timer: 0279
+Process timer: 0333
+Process timer: 0365
+Process timer: 0397
+Process timer: 0449
+Process timer: 0789
+Process tv[6], size=1
+Process timer: 1009
+Process tv[7], size=2
+Process timer: 0697
+Process timer: 0890
+Cascade tv1, index=3, array size=7
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=7
+tv1[4] size=16
+tv1[5] size=19
+tv1[6] size=19
+tv1[7] size=25
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 7
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=1
+tv[3] size=2
+tv[4] size=3
+tv[5] size=0
+tv[6] size=0
+tv[7] size=1
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=16
+tv1[5] size=19
+tv1[6] size=19
+tv1[7] size=25
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=118
+Process tv[0], size=0
+Process tv[1], size=0
+Process tv[2], size=1
+Process timer: 0080
+Process tv[3], size=2
+Process timer: 0513
+Process timer: 0930
+Process tv[4], size=3
+Process timer: 0298
+Process timer: 0358
+Process timer: 0752
+Process tv[5], size=0
+Process tv[6], size=0
+Process tv[7], size=1
+Process timer: 0128
+Cascade tv1, index=4, array size=16
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=16
+tv1[5] size=19
+tv1[6] size=19
+tv1[7] size=25
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 16
+tv STATS
+tv[0] size=2
+tv[1] size=2
+tv[2] size=3
+tv[3] size=1
+tv[4] size=0
+tv[5] size=3
+tv[6] size=2
+tv[7] size=3
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=19
+tv1[6] size=19
+tv1[7] size=25
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=118
+Process tv[0], size=2
+Process timer: 0269
+Process timer: 0307
+Process tv[1], size=2
+Process timer: 0265
+Process timer: 0625
+Process tv[2], size=3
+Process timer: 0063
+Process timer: 0475
+Process timer: 0505
+Process tv[3], size=1
+Process timer: 0656
+Process tv[4], size=0
+Process tv[5], size=3
+Process timer: 0433
+Process timer: 0680
+Process timer: 0787
+Process tv[6], size=2
+Process timer: 0384
+Process timer: 0667
+Process tv[7], size=3
+Process timer: 0019
+Process timer: 0740
+Process timer: 1002
+Cascade tv1, index=5, array size=19
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=19
+tv1[6] size=19
+tv1[7] size=25
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 19
+tv STATS
+tv[0] size=1
+tv[1] size=3
+tv[2] size=4
+tv[3] size=3
+tv[4] size=2
+tv[5] size=3
+tv[6] size=1
+tv[7] size=2
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=19
+tv1[7] size=25
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=118
+Process tv[0], size=1
+Process timer: 0025
+Process tv[1], size=3
+Process timer: 0096
+Process timer: 0802
+Process timer: 0961
+Process tv[2], size=4
+Process timer: 0038
+Process timer: 0087
+Process timer: 0105
+Process timer: 0589
+Process tv[3], size=3
+Process timer: 0573
+Process timer: 0683
+Process timer: 0809
+Process tv[4], size=2
+Process timer: 0561
+Process timer: 0957
+Process tv[5], size=3
+Process timer: 0149
+Process timer: 0788
+Process timer: 0916
+Process tv[6], size=1
+Process timer: 0212
+Process tv[7], size=2
+Process timer: 0135
+Process timer: 0268
+Cascade tv1, index=6, array size=19
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=19
+tv1[7] size=25
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 19
+tv STATS
+tv[0] size=2
+tv[1] size=2
+tv[2] size=4
+tv[3] size=3
+tv[4] size=1
+tv[5] size=1
+tv[6] size=3
+tv[7] size=3
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=25
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=118
+Process tv[0], size=2
+Process timer: 0423
+Process timer: 0895
+Process tv[1], size=2
+Process timer: 0866
+Process timer: 0946
+Process tv[2], size=4
+Process timer: 0127
+Process timer: 0420
+Process timer: 0481
+Process timer: 0808
+Process tv[3], size=3
+Process timer: 0242
+Process timer: 0263
+Process timer: 0833
+Process tv[4], size=1
+Process timer: 0780
+Process tv[5], size=1
+Process timer: 0694
+Process tv[6], size=3
+Process timer: 1008
+Process timer: 1020
+Process timer: 1023
+Process tv[7], size=3
+Process timer: 0003
+Process timer: 0199
+Process timer: 0432
+Cascade tv1, index=7, array size=25
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=25
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 25
+tv STATS
+tv[0] size=5
+tv[1] size=4
+tv[2] size=2
+tv[3] size=2
+tv[4] size=4
+tv[5] size=5
+tv[6] size=2
+tv[7] size=1
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=0
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=118
+Process tv[0], size=5
+Process timer: 0028
+Process timer: 0236
+Process timer: 0245
+Process timer: 0467
+Process timer: 0941
+Process tv[1], size=4
+Process timer: 0381
+Process timer: 0497
+Process timer: 0644
+Process timer: 0834
+Process tv[2], size=2
+Process timer: 0872
+Process timer: 0953
+Process tv[3], size=2
+Process timer: 0011
+Process timer: 0675
+Process tv[4], size=4
+Process timer: 0041
+Process timer: 0549
+Process timer: 0551
+Process timer: 0853
+Process tv[5], size=5
+Process timer: 0034
+Process timer: 0119
+Process timer: 0412
+Process timer: 0918
+Process timer: 1016
+Process tv[6], size=2
+Process timer: 0813
+Process timer: 0913
+Process tv[7], size=1
+Process timer: 0548
+Cascade tv2, index=3, array size=118
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=0
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=118
+=================== AFTER-CASCADE ====================
+id = 118
+tv STATS
+tv[0] size=5
+tv[1] size=2
+tv[2] size=4
+tv[3] size=2
+tv[4] size=4
+tv[5] size=2
+tv[6] size=3
+tv[7] size=1
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=10
+tv1[2] size=10
+tv1[3] size=12
+tv1[4] size=12
+tv1[5] size=17
+tv1[6] size=19
+tv1[7] size=15
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=0
+Process tv[0], size=5
+Process timer: 0838
+Process timer: 0731
+Process timer: 0474
+Process timer: 0382
+Process timer: 0189
+Process tv[1], size=2
+Process timer: 0875
+Process timer: 0132
+Process tv[2], size=4
+Process timer: 0942
+Process timer: 0831
+Process timer: 0632
+Process timer: 0066
+Process tv[3], size=2
+Process timer: 0610
+Process timer: 0316
+Process tv[4], size=4
+Process timer: 0943
+Process timer: 0443
+Process timer: 0159
+Process timer: 0009
+Process tv[5], size=2
+Process timer: 0100
+Process timer: 0047
+Process tv[6], size=3
+Process timer: 0959
+Process timer: 0859
+Process timer: 0661
+Process tv[7], size=1
+Process timer: 1018
+Cascade tv1, index=1, array size=10
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=10
+tv1[2] size=10
+tv1[3] size=12
+tv1[4] size=12
+tv1[5] size=17
+tv1[6] size=19
+tv1[7] size=15
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=0
+=================== AFTER-CASCADE ====================
+id = 10
+tv STATS
+tv[0] size=1
+tv[1] size=2
+tv[2] size=0
+tv[3] size=0
+tv[4] size=3
+tv[5] size=1
+tv[6] size=2
+tv[7] size=1
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=10
+tv1[3] size=12
+tv1[4] size=12
+tv1[5] size=17
+tv1[6] size=19
+tv1[7] size=15
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=0
+Process tv[0], size=1
+Process timer: 0701
+Process tv[1], size=2
+Process timer: 0250
+Process timer: 0758
+Process tv[2], size=0
+Process tv[3], size=0
+Process tv[4], size=3
+Process timer: 0466
+Process timer: 0722
+Process timer: 0786
+Process tv[5], size=1
+Process timer: 0567
+Process tv[6], size=2
+Process timer: 0568
+Process timer: 0889
+Process tv[7], size=1
+Process timer: 0922
+Cascade tv1, index=2, array size=10
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=10
+tv1[3] size=12
+tv1[4] size=12
+tv1[5] size=17
+tv1[6] size=19
+tv1[7] size=15
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=0
+=================== AFTER-CASCADE ====================
+id = 10
+tv STATS
+tv[0] size=4
+tv[1] size=1
+tv[2] size=1
+tv[3] size=1
+tv[4] size=1
+tv[5] size=1
+tv[6] size=0
+tv[7] size=1
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=12
+tv1[4] size=12
+tv1[5] size=17
+tv1[6] size=19
+tv1[7] size=15
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=0
+Process tv[0], size=4
+Process timer: 0336
+Process timer: 0746
+Process timer: 0887
+Process timer: 0934
+Process tv[1], size=1
+Process timer: 0001
+Process tv[2], size=1
+Process timer: 0733
+Process tv[3], size=1
+Process timer: 0994
+Process tv[4], size=1
+Process timer: 0715
+Process tv[5], size=1
+Process timer: 0516
+Process tv[6], size=0
+Process tv[7], size=1
+Process timer: 0393
+Cascade tv1, index=3, array size=12
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=12
+tv1[4] size=12
+tv1[5] size=17
+tv1[6] size=19
+tv1[7] size=15
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=0
+=================== AFTER-CASCADE ====================
+id = 12
+tv STATS
+tv[0] size=1
+tv[1] size=1
+tv[2] size=0
+tv[3] size=3
+tv[4] size=4
+tv[5] size=0
+tv[6] size=2
+tv[7] size=1
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=12
+tv1[5] size=17
+tv1[6] size=19
+tv1[7] size=15
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=0
+Process tv[0], size=1
+Process timer: 0748
+Process tv[1], size=1
+Process timer: 0360
+Process tv[2], size=0
+Process tv[3], size=3
+Process timer: 0110
+Process timer: 0359
+Process timer: 0923
+Process tv[4], size=4
+Process timer: 0078
+Process timer: 0111
+Process timer: 0690
+Process timer: 0801
+Process tv[5], size=0
+Process tv[6], size=2
+Process timer: 0545
+Process timer: 0587
+Process tv[7], size=1
+Process timer: 0593
+Cascade tv1, index=4, array size=12
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=12
+tv1[5] size=17
+tv1[6] size=19
+tv1[7] size=15
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=0
+=================== AFTER-CASCADE ====================
+id = 12
+tv STATS
+tv[0] size=3
+tv[1] size=6
+tv[2] size=0
+tv[3] size=0
+tv[4] size=1
+tv[5] size=1
+tv[6] size=0
+tv[7] size=1
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=17
+tv1[6] size=19
+tv1[7] size=15
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=0
+Process tv[0], size=3
+Process timer: 0052
+Process timer: 0277
+Process timer: 0556
+Process tv[1], size=6
+Process timer: 0026
+Process timer: 0086
+Process timer: 0502
+Process timer: 0517
+Process timer: 0536
+Process timer: 0666
+Process tv[2], size=0
+Process tv[3], size=0
+Process tv[4], size=1
+Process timer: 0753
+Process tv[5], size=1
+Process timer: 0499
+Process tv[6], size=0
+Process tv[7], size=1
+Process timer: 0136
+Cascade tv1, index=5, array size=17
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=17
+tv1[6] size=19
+tv1[7] size=15
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=0
+=================== AFTER-CASCADE ====================
+id = 17
+tv STATS
+tv[0] size=3
+tv[1] size=0
+tv[2] size=0
+tv[3] size=3
+tv[4] size=4
+tv[5] size=3
+tv[6] size=3
+tv[7] size=1
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=19
+tv1[7] size=15
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=0
+Process tv[0], size=3
+Process timer: 0191
+Process timer: 0229
+Process timer: 0274
+Process tv[1], size=0
+Process tv[2], size=0
+Process tv[3], size=3
+Process timer: 0339
+Process timer: 0564
+Process timer: 0950
+Process tv[4], size=4
+Process timer: 0353
+Process timer: 0494
+Process timer: 0515
+Process timer: 0818
+Process tv[5], size=3
+Process timer: 0157
+Process timer: 0779
+Process timer: 0915
+Process tv[6], size=3
+Process timer: 0104
+Process timer: 0860
+Process timer: 0885
+Process tv[7], size=1
+Process timer: 0496
+Cascade tv1, index=6, array size=19
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=19
+tv1[7] size=15
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=0
+=================== AFTER-CASCADE ====================
+id = 19
+tv STATS
+tv[0] size=4
+tv[1] size=1
+tv[2] size=0
+tv[3] size=4
+tv[4] size=2
+tv[5] size=2
+tv[6] size=4
+tv[7] size=2
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=15
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=0
+Process tv[0], size=4
+Process timer: 0022
+Process timer: 0253
+Process timer: 0671
+Process timer: 0998
+Process tv[1], size=1
+Process timer: 0526
+Process tv[2], size=0
+Process tv[3], size=4
+Process timer: 0243
+Process timer: 0465
+Process timer: 0506
+Process timer: 0902
+Process tv[4], size=2
+Process timer: 0271
+Process timer: 0905
+Process tv[5], size=2
+Process timer: 0512
+Process timer: 0618
+Process tv[6], size=4
+Process timer: 0326
+Process timer: 0468
+Process timer: 0792
+Process timer: 0803
+Process tv[7], size=2
+Process timer: 0020
+Process timer: 0484
+Cascade tv1, index=7, array size=15
+=================== BEFORE-CASCADE ====================
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=15
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=0
+=================== AFTER-CASCADE ====================
+id = 15
+tv STATS
+tv[0] size=1
+tv[1] size=3
+tv[2] size=0
+tv[3] size=4
+tv[4] size=2
+tv[5] size=3
+tv[6] size=2
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=0
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=0
+Process tv[0], size=1
+Process timer: 0246
+Process tv[1], size=3
+Process timer: 0294
+Process timer: 0454
+Process timer: 0479
+Process tv[2], size=0
+Process tv[3], size=4
+Process timer: 0408
+Process timer: 0493
+Process timer: 0627
+Process timer: 0743
+Process tv[4], size=2
+Process timer: 0471
+Process timer: 0713
+Process tv[5], size=3
+Process timer: 0504
+Process timer: 0520
+Process timer: 0584
+Process tv[6], size=2
+Process timer: 0392
+Process timer: 0400
+Process tv[7], size=0
+Process tv[0], size=0
+Process tv[1], size=0
+Process tv[2], size=0
+Process tv[3], size=0
+Process tv[4], size=0
+Process tv[5], size=0
+tv STATS
+tv[0] size=0
+tv[1] size=0
+tv[2] size=0
+tv[3] size=0
+tv[4] size=0
+tv[5] size=0
+tv[6] size=0
+tv[7] size=0
+tv1 STATS
+tv1[0] size=0
+tv1[1] size=0
+tv1[2] size=0
+tv1[3] size=0
+tv1[4] size=0
+tv1[5] size=0
+tv1[6] size=0
+tv1[7] size=0
+tv2 STATS
+tv2[0] size=0
+tv2[1] size=0
+tv2[2] size=0
+tv2[3] size=0
