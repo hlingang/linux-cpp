@@ -60,7 +60,7 @@ inline void list_move( list_head* new_node, list_head* head )
     list_del( new_node );
     list_add( new_node, head );
 }
-inline void list_switch( struct list_head* old_head, struct list_head* new_head )
+inline void list_switch_head( struct list_head* old_head, struct list_head* new_head )
 {
     if ( list_empty( old_head ) )
         return;
@@ -171,9 +171,11 @@ inline void init_timer( struct timer_list* timer, unsigned long expires, unsigne
 inline int cascade( const char* name, struct list_head* tv, unsigned long index, unsigned jeffies,
                     struct timer_base* tv_base )
 {
+    tv_base->lock.lock();
     struct list_head* head = &tv[ index ];
     if ( list_empty( head ) )
     {
+        tv_base->lock.unlock();
         return index;
     }
     printf( "Cascade %s, index=%lu, array size=%d\n", name, index, list_size( head ) );
@@ -183,8 +185,7 @@ inline int cascade( const char* name, struct list_head* tv, unsigned long index,
     struct list_head*  tmp;
     struct list_head   cascade_list;
     INIT_LIST_HEAD( &cascade_list );
-    tv_base->lock.lock();
-    list_switch( head, &cascade_list );
+    list_switch_head( head, &cascade_list );
     list_for_each_entry_safe( timer, tmp, &cascade_list, node )
     {
         list_del_init( &timer->node );
@@ -229,12 +230,16 @@ int main()
     printf( "Start Process: %lu\n", start );
     for ( int i = 0; i < 2 * MAX_TV_SIZE; i++ )
     {
-        int index = ( start + i );
-        if ( !( index & TV_MASK ) && !cascade( "tv1", tv_base->tv1, ( index >> TV_BIT ) & TV1_MASK, index, tv_base ) )
-            cascade( "tv2", tv_base->tv2, ( index >> ( TV_BIT + TV1_BIT ) ) & TV2_MASK, index, tv_base );
-        struct list_head* head = &tv_base->tv[ index & TV_MASK ];
-        printf( "Process tv[%d], size=%d\n", index & TV_MASK, list_size( head ) );
+        unsigned long jeffies = start + i;
+        int           index   = jeffies & TV_MASK;
+        if ( !index && !cascade( "tv1", tv_base->tv1, ( jeffies >> TV_BIT ) & TV1_MASK, jeffies, tv_base ) )
+            cascade( "tv2", tv_base->tv2, ( jeffies >> ( TV_BIT + TV1_BIT ) ) & TV2_MASK, jeffies, tv_base );
+        struct list_head work_list;
+        INIT_LIST_HEAD( &work_list );
+        struct list_head* head = &work_list;
         tv_base->lock.lock();
+        printf( "Process tv[%d], size=%d\n", index, list_size( head ) );
+        list_switch_head( tv_base->tv + index, &work_list );
         while ( !list_empty( head ) )
         {
             struct list_head*  pos   = head->next;
