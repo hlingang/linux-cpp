@@ -234,10 +234,10 @@ int main()
         int           index   = jeffies & TV_MASK;
         if ( !index && !cascade( "tv1", tv_base->tv1, ( jeffies >> TV_BIT ) & TV1_MASK, jeffies, tv_base ) )
             cascade( "tv2", tv_base->tv2, ( jeffies >> ( TV_BIT + TV1_BIT ) ) & TV2_MASK, jeffies, tv_base );
+        tv_base->lock.lock();
         struct list_head work_list;
         INIT_LIST_HEAD( &work_list );
         struct list_head* head = &work_list;
-        tv_base->lock.lock();
         printf( "Process tv[%d], size=%d\n", index, list_size( head ) );
         list_switch_head( tv_base->tv + index, &work_list );
         while ( !list_empty( head ) )
