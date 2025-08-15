@@ -36,9 +36,9 @@ using namespace std;
 struct space_mapping
 {
     struct inode_t*     host;
-    struct page_t*      i_mapping[ 1024 ];
-    struct buffer_head* i_buffer_head[ 1024 ][ 4 ];
-}
+    struct page_t*      page_mapping[ 1024 ];
+    struct buffer_head* buffer_head_mapping[ 1024 ][ 4 ];
+};
 
 struct inode_t
 {
@@ -162,15 +162,15 @@ struct buffer_head* create_buffer_head( space_mapping* mapping, struct page_t* p
     buffer_head* head = NULL;
     while ( offset > 0 )
     {
-        struct buffer_head* bh                                 = new struct buffer_head;
-        bh->next                                               = NULL;
-        bh->page                                               = page;
-        bh->offset                                             = offset;
-        bh->next                                               = head;
-        bh->nr_block                                           = iblock;
-        bh->data                                               = ( char* )page->vir + offset;
-        head                                                   = bh;
-        mapping->i_buffer_head[ index ][ offset / BLOCK_SIZE ] = bh;
+        struct buffer_head* bh                                       = new struct buffer_head;
+        bh->next                                                     = NULL;
+        bh->page                                                     = page;
+        bh->offset                                                   = offset;
+        bh->next                                                     = head;
+        bh->nr_block                                                 = iblock;
+        bh->data                                                     = ( char* )page->vir + offset;
+        head                                                         = bh;
+        mapping->buffer_head_mapping[ index ][ offset / BLOCK_SIZE ] = bh;
         offset -= BLOCK_SIZE;
         ++iblock;
     }
@@ -200,16 +200,16 @@ struct buffer_head* write_block( struct buffer_head* bh )
 struct buffer_head* sb_bread( struct super_block_t* sb, unsigned long iblock )
 {
     unsigned long index = iblock >> ( PAGE_SHIFT - BLOCK_SHIFT );
-    if ( !bdev->i_mapping[ index ] )
+    if ( !bdev->i_mapping.page_mapping[ index ] )
     {
-        bdev->i_mapping[ index ] = get_one_page();
+        bdev->i_mapping.page_mapping[ index ] = get_one_page();
     }
-    struct page_t* page = bdev->i_mapping[ index ];
+    struct page_t* page = bdev->i_mapping.page_mapping[ index ];
     page->index         = index;
     unsigned block      = index << ( PAGE_SHIFT - BLOCK_SHIFT );
     if ( !page->bh )
     {
-        create_buffer_head( ( struct buffer_head** )bdev->i_buffer_head[ index ], page, index, block );
+        create_buffer_head( ( struct space_mapping* )&bdev->i_mapping, page, index, block );
     }
     struct buffer_head* bh = page->bh;
     while ( bh != NULL )
@@ -270,7 +270,8 @@ struct inode_t* alloc_inode()
 {
     struct inode_t* node = new struct inode_t;
     memset( node, 0x00, sizeof( struct inode_t ) );
-    node->mapping->host = node;
+    node->i_mapping.host = node;
+    return node;
 }
 
 //===============================================================
