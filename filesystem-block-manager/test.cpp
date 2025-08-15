@@ -33,11 +33,18 @@ using namespace std;
 #define BITMAP_BLOCK ( 2 )
 #define RESV_BLOCK ( 3 )
 
-struct inode_t
+struct space_mapping
 {
+    struct inode_t*     host;
     struct page_t*      i_mapping[ 1024 ];
     struct buffer_head* i_buffer_head[ 1024 ][ 4 ];
-    unsigned            i_data[ 5 ];
+}
+
+struct inode_t
+{
+    unsigned             size;
+    struct space_mapping i_mapping;
+    unsigned             i_data[ 5 ];
 };
 struct group_desc_t
 {
@@ -147,7 +154,7 @@ void free_one_page( struct page_t* page )
     page_bitmap[ index ] = 0;
 }
 
-struct buffer_head* create_buffer_head( struct buffer_head** pbh, struct page_t* page, unsigned long index,
+struct buffer_head* create_buffer_head( space_mapping* mapping, struct page_t* page, unsigned long index,
                                         unsigned iblock )
 {
     unsigned long offset = PAGE_SIZE;
@@ -155,15 +162,15 @@ struct buffer_head* create_buffer_head( struct buffer_head** pbh, struct page_t*
     buffer_head* head = NULL;
     while ( offset > 0 )
     {
-        struct buffer_head* bh     = new struct buffer_head;
-        bh->next                   = NULL;
-        bh->page                   = page;
-        bh->offset                 = offset;
-        bh->next                   = head;
-        bh->nr_block               = iblock;
-        bh->data                   = ( char* )page->vir + offset;
-        head                       = bh;
-        pbh[ offset / BLOCK_SIZE ] = bh;
+        struct buffer_head* bh                                 = new struct buffer_head;
+        bh->next                                               = NULL;
+        bh->page                                               = page;
+        bh->offset                                             = offset;
+        bh->next                                               = head;
+        bh->nr_block                                           = iblock;
+        bh->data                                               = ( char* )page->vir + offset;
+        head                                                   = bh;
+        mapping->i_buffer_head[ index ][ offset / BLOCK_SIZE ] = bh;
         offset -= BLOCK_SIZE;
         ++iblock;
     }
@@ -229,6 +236,7 @@ int init_group_desc( super_block_t* sb, buffer_head* bh )
         desc->bitmap_block     = group_first_block( sb, ngp ) + BITMAP_BLOCK;
         desc->group_desc_block = group_first_block( sb, ngp ) + GROUP_DESC_BLOCK;
         desc->super_block      = group_first_block( sb, ngp ) + SUPER_BLOCK;
+        desc++;
     }
     write_block( bh );
     return 1;
@@ -236,7 +244,7 @@ int init_group_desc( super_block_t* sb, buffer_head* bh )
 
 void stats_desc_block_data( unsigned long block, unsigned long ngp )
 {
-    group_desc_t* desc = ( group_desc_t* )( g_blocks + block );
+    group_desc_t* desc = ( group_desc_t* )( g_blocks + block ) + ngp;
     printf( "group %lu: start block: %lu\n", ngp, desc->start_block );
     printf( "group %lu: super block: %lu\n", ngp, desc->super_block );
     printf( "group %lu: group desc block: %lu\n", ngp, desc->group_desc_block );
@@ -256,6 +264,13 @@ void init_block_bitmap( super_block_t* sb, struct buffer_head* bh )
     set_bit( GROUP_DESC_BLOCK, addr );
     set_bit( BITMAP_BLOCK, addr );
     set_bit( RESV_BLOCK, addr );
+}
+
+struct inode_t* alloc_inode()
+{
+    struct inode_t* node = new struct inode_t;
+    memset( node, 0x00, sizeof( struct inode_t ) );
+    node->mapping->host = node;
 }
 
 //===============================================================
@@ -305,5 +320,7 @@ int main()
         struct buffer_head* bh_bitmap    = sb_bread( sb, bitmap_block );
         init_block_bitmap( sb, bh_bitmap );
     }
+    struct inode_t* node = new inode_t;
+    memset( node, 0x00, sizeof( struct inode_t ) );
     return 0;
 }
