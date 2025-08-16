@@ -32,6 +32,8 @@ using namespace std;
 #define GROUP_DESC_BLOCK ( 1 )
 #define BITMAP_BLOCK ( 2 )
 #define RESV_BLOCK ( 3 )
+#define MAX_BLOCK_BIT ( NR_BLOCKS_PER_GROUP )
+#define DIRECT_BLOCK ( 5 )
 
 struct space_mapping
 {
@@ -40,12 +42,6 @@ struct space_mapping
     struct buffer_head* buffer_head_mapping[ 1024 ][ 4 ];
 };
 
-struct inode_t
-{
-    unsigned             size;
-    struct space_mapping i_mapping;
-    unsigned             i_data[ 5 ];
-};
 struct group_desc_t
 {
     unsigned long bitmap_block;
@@ -53,7 +49,6 @@ struct group_desc_t
     unsigned long super_block;
     unsigned long group_desc_block;
 };
-
 struct super_block_t
 {
     unsigned long        nr_groups;
@@ -63,6 +58,14 @@ struct super_block_t
     struct buffer_head** group_desc;
     struct buffer_head*  sbh;
     void*                sbi;
+};
+
+struct inode_t
+{
+    unsigned             size;
+    struct space_mapping i_mapping;
+    unsigned             i_data[ 5 ];
+    super_block_t*       sb;
 };
 struct block_data_t
 {
@@ -88,6 +91,7 @@ struct buffer_head
     buffer_head*   next;
     void*          data;
     unsigned long  offset;
+    int            uptodate;
 };
 
 #define buf_ctl( type, x ) ( ( type )( x ) )
@@ -117,6 +121,7 @@ struct inode_t*     bdev;
 
 void set_bit( unsigned long nr, unsigned long* addr )
 {
+    cout << "Set Bitmap " << nr << " , addr" << addr << endl;
     unsigned long* ptr    = addr + NR_BIT_WORD( nr );
     unsigned long  offset = NR_BIT_OFFSET( nr );
     *ptr |= ( 1U << offset );
@@ -158,9 +163,8 @@ struct buffer_head* create_buffer_head( space_mapping* mapping, struct page_t* p
                                         unsigned iblock )
 {
     unsigned long offset = PAGE_SIZE;
-    offset -= BLOCK_SIZE;
-    buffer_head* head = NULL;
-    while ( offset > 0 )
+    buffer_head*  head   = NULL;
+    do
     {
         struct buffer_head* bh                                       = new struct buffer_head;
         bh->next                                                     = NULL;
@@ -171,42 +175,68 @@ struct buffer_head* create_buffer_head( space_mapping* mapping, struct page_t* p
         bh->data                                                     = ( char* )page->vir + offset;
         head                                                         = bh;
         mapping->buffer_head_mapping[ index ][ offset / BLOCK_SIZE ] = bh;
-        offset -= BLOCK_SIZE;
         ++iblock;
-    }
+    } while ( ( offset -= BLOCK_SIZE ) > 0 );
     page->bh = head;
     return page->bh;
 }
-
+unsigned long inode_size( struct inode_t* inode )
+{
+    return inode->size;
+}
 struct buffer_head* read_block( struct buffer_head* bh )
 {
+    if ( bh->uptodate )
+        return NULL;
     unsigned      nr_block = bh->nr_block;
     block_data_t* ptr      = g_blocks + nr_block;
     memcpy( bh->data, ptr, BLOCK_SIZE );
-    unsigned long* ptr_v = ( unsigned long* )bh->data;
-    cout << "*Read block = " << *ptr_v << " , offset = " << bh->offset << endl;
+    bh->uptodate = 1;
     return bh;
 }
-
 struct buffer_head* write_block( struct buffer_head* bh )
 {
-    unsigned nr_block = bh->nr_block;
-    cout << "Write Block: " << bh->nr_block << endl;
-    block_data_t* ptr = g_blocks + nr_block;
+    unsigned      nr_block = bh->nr_block;
+    block_data_t* ptr      = g_blocks + nr_block;
     memcpy( ptr, bh->data, BLOCK_SIZE );
     return bh;
 }
-
+struct page_t* find_get_page( struct inode_t* inode, unsigned long index )
+{
+    if ( !inode->i_mapping.page_mapping[ index ] )
+    {
+        inode->i_mapping.page_mapping[ index ] = get_one_page();
+    }
+    return inode->i_mapping.page_mapping[ index ];
+}
+struct buffer_head* get_blk_bh( struct inode_t* inode, unsigned long iblock )
+{
+    unsigned long  index = iblock >> ( PAGE_SHIFT - BLOCK_SHIFT );
+    unsigned long  block = index << ( PAGE_SHIFT - BLOCK_SHIFT );
+    struct page_t* page  = find_get_page( inode, index );
+    if ( !page->bh )
+    {
+        create_buffer_head( ( struct space_mapping* )&inode->i_mapping, page, index, block );
+    }
+    struct buffer_head* bh = page->bh;
+    while ( bh != NULL )
+    {
+        cout << "bh->nr_block = " << bh->nr_block << endl;
+        if ( bh->nr_block == iblock )
+        {
+            break;
+        }
+        bh = bh->next;
+    }
+    read_block( bh );
+    return bh;
+}
 struct buffer_head* sb_bread( struct super_block_t* sb, unsigned long iblock )
 {
-    unsigned long index = iblock >> ( PAGE_SHIFT - BLOCK_SHIFT );
-    if ( !bdev->i_mapping.page_mapping[ index ] )
-    {
-        bdev->i_mapping.page_mapping[ index ] = get_one_page();
-    }
-    struct page_t* page = bdev->i_mapping.page_mapping[ index ];
-    page->index         = index;
-    unsigned block      = index << ( PAGE_SHIFT - BLOCK_SHIFT );
+    unsigned long  index = iblock >> ( PAGE_SHIFT - BLOCK_SHIFT );
+    struct page_t* page  = find_get_page( bdev, index );
+    page->index          = index;
+    unsigned block       = index << ( PAGE_SHIFT - BLOCK_SHIFT );
     if ( !page->bh )
     {
         create_buffer_head( ( struct space_mapping* )&bdev->i_mapping, page, index, block );
@@ -241,7 +271,6 @@ int init_group_desc( super_block_t* sb, buffer_head* bh )
     write_block( bh );
     return 1;
 }
-
 void stats_desc_block_data( unsigned long block, unsigned long ngp )
 {
     group_desc_t* desc = ( group_desc_t* )( g_blocks + block ) + ngp;
@@ -250,30 +279,132 @@ void stats_desc_block_data( unsigned long block, unsigned long ngp )
     printf( "group %lu: group desc block: %lu\n", ngp, desc->group_desc_block );
     printf( "group %lu: bitmap block: %lu\n", ngp, desc->bitmap_block );
 }
-
+void clear_block( struct buffer_head* bh )
+{
+    memset( bh->data, 0x00, BLOCK_SIZE );
+}
 group_desc_t* group_desc( super_block_t* sb, unsigned long ngp )
 {
     return ( group_desc_t* )sb->group_desc[ 0 ]->data + ngp;
 }
-
 void init_block_bitmap( super_block_t* sb, struct buffer_head* bh )
 {
+    clear_block( bh );
     unsigned long* addr = ( unsigned long* )bh->data;
     set_bit( START_BLOCK, addr );
     set_bit( SUPER_BLOCK, addr );
     set_bit( GROUP_DESC_BLOCK, addr );
     set_bit( BITMAP_BLOCK, addr );
     set_bit( RESV_BLOCK, addr );
+    write_block( bh );
 }
-
-struct inode_t* alloc_inode()
+struct inode_t* alloc_inode( super_block_t* sb )
 {
     struct inode_t* node = new struct inode_t;
     memset( node, 0x00, sizeof( struct inode_t ) );
     node->i_mapping.host = node;
+    node->sb             = sb;
     return node;
 }
-
+static inline unsigned long find_next_bit( void* addr, unsigned long nr )
+{
+    unsigned long* pos = ( unsigned long* )addr;
+    unsigned long  value;
+    unsigned long  index     = 0;
+    unsigned long  offset    = nr % NR_BITS_PER_LONG;
+    unsigned long  max_index = nr / NR_BITS_PER_LONG;
+    unsigned long  search_len;
+    while ( !( value = ~*pos ) )
+    {
+        ++pos;
+        ++index;
+        if ( index > max_index )
+            goto out;
+    }
+    search_len = NR_BITS_PER_LONG;
+    if ( index == max_index && offset != 0 )
+    {
+        value &= ( ( 1U << offset ) - 1 );
+        search_len = offset;
+    }
+    for ( unsigned long i = 0; i < search_len; i++ )
+    {
+        if ( !test_bit( i, pos ) )
+        {
+            set_bit( i, pos );
+            return i + index * NR_BITS_PER_LONG;
+        }
+    }
+out:
+    return nr;
+}
+int __get_block( super_block_t* sb, unsigned long ngp )
+{
+    if ( ngp >= sb->nr_groups )
+    {
+        ngp = 0;
+    }
+    unsigned long ino;
+    for ( unsigned long i = 0; i < sb->nr_groups; i++ )
+    {
+        group_desc_t* desc = group_desc( sb, ngp );
+        buffer_head*  bh   = sb_bread( sb, desc->bitmap_block );
+        ino                = find_next_bit( bh->data, MAX_BLOCK_BIT );
+        if ( ino < MAX_BLOCK_BIT )
+            goto found;
+        if ( ngp == sb->nr_block )
+        {
+            ngp = 0;
+        }
+    }
+    return -1;
+found:
+    return NR_BLOCKS_PER_GROUP * ngp + ino;
+}
+int get_blocks( super_block_t* sb )
+{
+    return __get_block( sb, 0 );
+}
+unsigned long modify_inode_size( struct inode_t* inode, ssize_t sz )
+{
+    inode->size += sz;
+    return inode->size;
+}
+int write_inode( struct inode_t* inode, const char* buf, unsigned long len )
+{
+    unsigned            pos    = inode->size;
+    unsigned            iblock = pos >> ( PAGE_SHIFT - BLOCK_SHIFT );
+    struct buffer_head* bh;
+    unsigned long       target_block;
+    if ( iblock < DIRECT_BLOCK - 1 )
+    {
+        if ( !inode->i_data[ iblock ] )
+            inode->i_data[ iblock ] = get_blocks( inode->sb );
+        target_block = inode->i_data[ iblock ];
+        bh           = get_blk_bh( inode, target_block );
+        cout << "target-blk-0 = " << target_block << endl;
+    }
+    else
+    {
+        unsigned long __index = iblock - DIRECT_BLOCK;
+        if ( !inode->i_data[ DIRECT_BLOCK - 1 ] )
+            inode->i_data[ DIRECT_BLOCK - 1 ] = get_blocks( inode->sb );
+        cout << "index-block = " << inode->i_data[ DIRECT_BLOCK - 1 ] << endl;
+        struct buffer_head* sbh = sb_bread( inode->sb, inode->i_data[ DIRECT_BLOCK - 1 ] );  // super-block 管理
+        unsigned long*      pos = ( unsigned long* )sbh->data;
+        target_block            = get_blocks( inode->sb );  // inode 节点管理
+        *( pos + __index )      = target_block;
+        bh                      = get_blk_bh( inode, target_block );
+        cout << "target-blk-1 = " << target_block << endl;
+    }
+    char* addr = ( char* )bh->data;
+    memcpy( addr, buf, len );
+    write_block( bh );
+    modify_inode_size( inode, BLOCK_SIZE );
+    block_data_t* block_data = g_blocks + target_block;
+    printf( "blk:%lu data: %s\n", target_block, ( const char* )block_data );
+    return len;
+}
 //===============================================================
 
 int main()
@@ -299,7 +430,7 @@ int main()
     struct page_t*      map_addr  = g_page_map;
     init_global_page( page_addr, map_addr, 1024 );
     memset( page_bitmap, 0x00, sizeof( page_bitmap ) );
-
+    super_block_t* g_sb = NULL;
     // ============== 创建 super-block ============
     for ( int ngp = 0; ngp < NR_GROUPS; ngp++ )
     {
@@ -320,8 +451,18 @@ int main()
         unsigned long       bitmap_block = desc->bitmap_block;
         struct buffer_head* bh_bitmap    = sb_bread( sb, bitmap_block );
         init_block_bitmap( sb, bh_bitmap );
+        if ( !g_sb )
+            g_sb = sb;
     }
-    struct inode_t* node = new inode_t;
-    memset( node, 0x00, sizeof( struct inode_t ) );
+
+    struct inode_t* inode = alloc_inode( g_sb );
+    char            buf[ BLOCK_SIZE ];
+    char            tmp[ BLOCK_SIZE ];
+    for ( int i = 0; i < 10; i++ )
+    {
+        snprintf( tmp, sizeof( tmp ), "I am a hero-%d\n", i );
+        memcpy( buf, tmp, BLOCK_SIZE );
+        write_inode( inode, buf, BLOCK_SIZE );
+    }
     return 0;
 }
