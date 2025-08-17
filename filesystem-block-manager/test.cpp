@@ -15,8 +15,8 @@ using namespace std;
 ///////////////////// C 语言实现 /////////////////////////////////
 #define NR_BITS_PER_LONG ( sizeof( unsigned long ) * 8 )
 #define NR_BIT_WORD( nr ) ( nr / NR_BITS_PER_LONG )
-#define NR_BIT_MASK( nr ) ( 1 << NR_BIT_OFFSET( nr ) )
-#define NR_BIT_OFFSET( nr ) ( nr % NR_BLOCKS_PER_GROUP )
+#define NR_BIT_MASK( nr ) ( 1U << NR_BIT_OFFSET( nr ) )
+#define NR_BIT_OFFSET( nr ) ( nr % NR_BITS_PER_LONG )
 
 #define PAGE_SIZE ( 4096 )
 #define BLOCK_SIZE ( 1024 )
@@ -33,7 +33,11 @@ using namespace std;
 #define BITMAP_BLOCK ( 2 )
 #define RESV_BLOCK ( 3 )
 #define MAX_BLOCK_BIT ( NR_BLOCKS_PER_GROUP )
-#define DIRECT_BLOCK ( 5 )
+#define DIRECT_BLOCK ( 4 )
+#define BLOCK_INDEX_SHIFT ( 7 )
+#define BLOCK_INDEX_MASK ( ( 1 << BLOCK_INDEX_SHIFT ) - 1 )
+#define BGD_MASK ( ( 1 << BLOCK_INDEX_SHIFT ) - 1 )
+#define BMD_MASK ( ( 1 << BLOCK_INDEX_SHIFT ) - 1 )
 
 struct space_mapping
 {
@@ -62,9 +66,9 @@ struct super_block_t
 
 struct inode_t
 {
-    unsigned             size;
+    unsigned long        size;
     struct space_mapping i_mapping;
-    unsigned             i_data[ 5 ];
+    unsigned long        i_data[ DIRECT_BLOCK + 1 ];
     super_block_t*       sb;
 };
 struct block_data_t
@@ -98,7 +102,7 @@ struct buffer_head
 #define init_global_block( x, s )          \
     for ( int i = 0; i < s; i++, ++x )     \
     {                                      \
-        *buf_ctl( unsigned long*, x ) = i; \
+        *buf_ctl( unsigned long*, x ) = 0; \
     }
 #define stats_global_block( x, s )                               \
     for ( int i = 0; i < s; i++, ++x )                           \
@@ -121,24 +125,31 @@ struct inode_t*     bdev;
 
 void set_bit( unsigned long nr, unsigned long* addr )
 {
-    cout << "Set Bitmap " << nr << " , addr" << addr << endl;
     unsigned long* ptr    = addr + NR_BIT_WORD( nr );
     unsigned long  offset = NR_BIT_OFFSET( nr );
-    *ptr |= ( 1U << offset );
+    *ptr |= ( 1UL << offset );
 }
 
 void clear_bit( unsigned long nr, unsigned long* addr )
 {
     unsigned long* ptr    = addr + NR_BIT_WORD( nr );
     unsigned long  offset = NR_BIT_OFFSET( nr );
-    *ptr &= ~( 1U << offset );
+    *ptr &= ~( 1UL << offset );
 }
 
 int test_bit( unsigned long nr, unsigned long* addr )
 {
     unsigned long* ptr    = addr + NR_BIT_WORD( nr );
     unsigned long  offset = NR_BIT_OFFSET( nr );
-    return ( *ptr & ( 1U << offset ) ) != 0;
+    return ( ( *ptr ) & ( 1UL << offset ) ) != 0;
+}
+int test_and_set_bit( unsigned long nr, unsigned long* addr )
+{
+    unsigned long* ptr       = addr + NR_BIT_WORD( nr );
+    unsigned long  offset    = NR_BIT_OFFSET( nr );
+    int            old_value = ( ( *ptr ) & ( 1UL << offset ) ) != 0;
+    set_bit( nr, addr );
+    return old_value;
 }
 
 struct page_t* get_one_page()
@@ -199,6 +210,7 @@ struct buffer_head* write_block( struct buffer_head* bh )
     unsigned      nr_block = bh->nr_block;
     block_data_t* ptr      = g_blocks + nr_block;
     memcpy( ptr, bh->data, BLOCK_SIZE );
+    bh->uptodate = 1;
     return bh;
 }
 struct page_t* find_get_page( struct inode_t* inode, unsigned long index )
@@ -221,7 +233,6 @@ struct buffer_head* get_blk_bh( struct inode_t* inode, unsigned long iblock )
     struct buffer_head* bh = page->bh;
     while ( bh != NULL )
     {
-        cout << "bh->nr_block = " << bh->nr_block << endl;
         if ( bh->nr_block == iblock )
         {
             break;
@@ -324,16 +335,13 @@ static inline unsigned long find_next_bit( void* addr, unsigned long nr )
     search_len = NR_BITS_PER_LONG;
     if ( index == max_index && offset != 0 )
     {
-        value &= ( ( 1U << offset ) - 1 );
+        value &= ( ( 1UL << offset ) - 1 );
         search_len = offset;
     }
     for ( unsigned long i = 0; i < search_len; i++ )
     {
         if ( !test_bit( i, pos ) )
-        {
-            set_bit( i, pos );
             return i + index * NR_BITS_PER_LONG;
-        }
     }
 out:
     return nr;
@@ -341,27 +349,30 @@ out:
 int __get_block( super_block_t* sb, unsigned long ngp )
 {
     if ( ngp >= sb->nr_groups )
-    {
         ngp = 0;
-    }
     unsigned long ino;
     for ( unsigned long i = 0; i < sb->nr_groups; i++ )
     {
         group_desc_t* desc = group_desc( sb, ngp );
         buffer_head*  bh   = sb_bread( sb, desc->bitmap_block );
-        ino                = find_next_bit( bh->data, MAX_BLOCK_BIT );
+    repeat:
+        ino = find_next_bit( bh->data, MAX_BLOCK_BIT );
         if ( ino < MAX_BLOCK_BIT )
-            goto found;
-        if ( ngp == sb->nr_block )
         {
-            ngp = 0;
+            if ( !test_and_set_bit( ino, ( unsigned long* )bh->data ) )
+                goto found;
+            else
+                goto repeat;
         }
+        if ( ngp == sb->nr_block )
+            ngp = 0;
+        ++ngp;
     }
     return -1;
 found:
     return NR_BLOCKS_PER_GROUP * ngp + ino;
 }
-int get_blocks( super_block_t* sb )
+int get_block( super_block_t* sb )
 {
     return __get_block( sb, 0 );
 }
@@ -370,39 +381,43 @@ unsigned long modify_inode_size( struct inode_t* inode, ssize_t sz )
     inode->size += sz;
     return inode->size;
 }
-int write_inode( struct inode_t* inode, const char* buf, unsigned long len )
+struct buffer_head* get_blocks( struct inode_t* inode, unsigned long iblock )
 {
-    unsigned            pos    = inode->size;
-    unsigned            iblock = pos >> ( PAGE_SHIFT - BLOCK_SHIFT );
-    struct buffer_head* bh;
-    unsigned long       target_block;
-    if ( iblock < DIRECT_BLOCK - 1 )
+    unsigned long* bmd;
+    unsigned long* bte;
+    if ( iblock < DIRECT_BLOCK )
     {
-        if ( !inode->i_data[ iblock ] )
-            inode->i_data[ iblock ] = get_blocks( inode->sb );
-        target_block = inode->i_data[ iblock ];
-        bh           = get_blk_bh( inode, target_block );
-        cout << "target-blk-0 = " << target_block << endl;
+        bte = &inode->i_data[ iblock ];
     }
     else
     {
-        unsigned long __index = iblock - DIRECT_BLOCK;
-        if ( !inode->i_data[ DIRECT_BLOCK - 1 ] )
-            inode->i_data[ DIRECT_BLOCK - 1 ] = get_blocks( inode->sb );
-        cout << "index-block = " << inode->i_data[ DIRECT_BLOCK - 1 ] << endl;
-        struct buffer_head* sbh = sb_bread( inode->sb, inode->i_data[ DIRECT_BLOCK - 1 ] );  // super-block 管理
-        unsigned long*      pos = ( unsigned long* )sbh->data;
-        target_block            = get_blocks( inode->sb );  // inode 节点管理
-        *( pos + __index )      = target_block;
-        bh                      = get_blk_bh( inode, target_block );
-        cout << "target-blk-1 = " << target_block << endl;
+        iblock -= DIRECT_BLOCK;
+        unsigned long bmd_offset = iblock >> BLOCK_INDEX_SHIFT;
+        unsigned long bte_offset = iblock & BLOCK_INDEX_MASK;
+        if ( !inode->i_data[ DIRECT_BLOCK ] )
+            inode->i_data[ DIRECT_BLOCK ] = get_block( inode->sb );
+        bmd = ( unsigned long* )sb_bread( inode->sb, inode->i_data[ DIRECT_BLOCK ] )->data + bmd_offset;
+        if ( !*bmd )
+            *bmd = get_block( inode->sb );
+        bte = ( unsigned long* )sb_bread( inode->sb, *bmd )->data + bte_offset;
     }
-    char* addr = ( char* )bh->data;
+    if ( *bte )
+        *bte = get_block( inode->sb );
+    struct buffer_head* bh = get_blk_bh( inode, iblock );
+    return bh;
+}
+int write_inode( struct inode_t* inode, const char* buf, unsigned long len )
+{
+    struct buffer_head* bh;
+    unsigned            pos    = inode->size;
+    unsigned            iblock = pos >> BLOCK_SHIFT;
+    bh                         = get_blocks( inode, iblock );
+    char* addr                 = ( char* )bh->data;
     memcpy( addr, buf, len );
     write_block( bh );
     modify_inode_size( inode, BLOCK_SIZE );
-    block_data_t* block_data = g_blocks + target_block;
-    printf( "blk:%lu data: %s\n", target_block, ( const char* )block_data );
+    block_data_t* block_data = g_blocks + bh->nr_block;
+    printf( "blk:%lu data: %s\n", bh->nr_block, ( const char* )block_data );
     return len;
 }
 //===============================================================
@@ -458,7 +473,7 @@ int main()
     struct inode_t* inode = alloc_inode( g_sb );
     char            buf[ BLOCK_SIZE ];
     char            tmp[ BLOCK_SIZE ];
-    for ( int i = 0; i < 10; i++ )
+    for ( int i = 0; i < 512; i++ )
     {
         snprintf( tmp, sizeof( tmp ), "I am a hero-%d\n", i );
         memcpy( buf, tmp, BLOCK_SIZE );
