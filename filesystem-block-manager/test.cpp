@@ -278,6 +278,10 @@ struct buffer_head* sb_bread( struct super_block_t* sb, unsigned long iblock )
         read_block( bh );
     return bh;
 }
+static inline unsigned long group_start_block( unsigned long ngp )
+{
+    return ngp * NR_BLOCKS_PER_GROUP + START_BLOCK;
+}
 static inline unsigned long group_first_block( super_block_t* sb, unsigned long ngp )
 {
     return ngp * NR_BLOCKS_PER_GROUP + sb->nr_start_block;
@@ -550,16 +554,17 @@ int main()
     {
         super_block_t* sb = new super_block_t;
         memset( sb, 0x00, sizeof( struct super_block_t ) );
-        sb->nr_groups                  = NR_GROUPS;
-        sb->nr_blocks_per_group        = NR_BLOCKS_PER_GROUP;
-        sb->nr_start_block             = START_BLOCK;
-        sb->nr_block                   = ngp * NR_BLOCKS_PER_GROUP + START_BLOCK;
-        sb->sbh                        = sb_bread( sb, sb->nr_block );
-        sb->sbi                        = ( char* )sb->sbh->data + sb->sbh->offset;
-        sb->group_desc                 = new struct buffer_head*;
-        unsigned long group_desc_block = ngp * NR_BLOCKS_PER_GROUP + GROUP_DESC_BLOCK;
-        sb->group_desc[ 0 ]            = sb_bread( sb, group_desc_block );
-        init_group_desc( sb, sb->group_desc[ 0 ] );
+        sb->nr_groups           = NR_GROUPS;
+        sb->nr_blocks_per_group = NR_BLOCKS_PER_GROUP;
+        sb->nr_start_block      = START_BLOCK;
+        sb->nr_block            = group_start_block( ngp ) + START_BLOCK;  // 静态预留block(启动过程已经静态写入数据)
+        sb->sbh                 = sb_bread( sb, sb->nr_block );
+        sb->sbi                 = ( char* )sb->sbh->data + sb->sbh->offset;
+        sb->group_desc          = new struct buffer_head*;
+        unsigned long group_desc_block =
+            group_start_block( ngp ) + GROUP_DESC_BLOCK;  // 静态预留block(启动过程中已经静态写入数据)
+        sb->group_desc[ 0 ] = sb_bread( sb, group_desc_block );
+        init_group_desc( sb, sb->group_desc[ 0 ] );  // 模拟 [group-desc-block] 的初始化
         stats_desc_block_data( group_desc_block, ngp );
         group_desc_t*       desc         = group_desc( sb, ngp );
         unsigned long       bitmap_block = desc->bitmap_block;
