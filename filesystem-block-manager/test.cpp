@@ -180,8 +180,8 @@ static inline void map_bh( struct buffer_head* bh, unsigned long block )
     bh->mapped   = 1;
 }
 
-struct buffer_head* create_buffer_head( space_mapping* mapping, struct page_t* page, unsigned long index,
-                                        unsigned iblock )
+struct buffer_head* create_page_buffers( space_mapping* mapping, struct page_t* page, unsigned long index,
+                                         unsigned iblock )
 {
     unsigned long       offset = PAGE_SIZE;
     struct buffer_head* head   = NULL;
@@ -221,7 +221,6 @@ struct buffer_head* write_block( struct buffer_head* bh )
     unsigned long nr_block = bh->nr_block;
     block_data_t* ptr      = g_blocks + nr_block;
     memcpy( ptr, bh->data, BLOCK_SIZE );
-    printf( "copy data from (%p) to block(%p, %lu): %s\n", bh->data, ptr, nr_block, ( char* )ptr );
     bh->uptodate = 1;
     return bh;
 }
@@ -240,9 +239,19 @@ struct buffer_head* get_blk_bh( struct inode_t* inode, unsigned long iblock )
     struct page_t* page  = find_get_page( inode, index );
     if ( !page->bh )
     {
-        create_buffer_head( ( struct space_mapping* )&inode->i_mapping, page, index, block );
+        create_page_buffers( ( struct space_mapping* )&inode->i_mapping, page, index, block );
     }
     return page->bh;
+}
+static void init_page_buffers( struct buffer_head* bh, unsigned long iblock )
+{
+    while ( bh )
+    {
+        if ( !bh->mapped )
+            map_bh( bh, iblock );
+        iblock++;
+        bh = bh->next;
+    }
 }
 struct buffer_head* sb_bread( struct super_block_t* sb, unsigned long iblock )
 {
@@ -250,24 +259,23 @@ struct buffer_head* sb_bread( struct super_block_t* sb, unsigned long iblock )
     struct page_t* page  = find_get_page( bdev, index );
     page->index          = index;
     unsigned block       = index << ( PAGE_SHIFT - BLOCK_SHIFT );
+    if ( !page )
+        return NULL;
     if ( !page->bh )
-    {
-        create_buffer_head( ( struct space_mapping* )&bdev->i_mapping, page, index, block );
-    }
+        create_page_buffers( ( struct space_mapping* )&bdev->i_mapping, page, index, block );
+    init_page_buffers( page->bh, block );
     struct buffer_head* bh = page->bh;
     while ( bh != NULL )
     {
         if ( block == iblock )
-        {
-            map_bh( bh, iblock );
             break;
-        }
         block++;
         bh = bh->next;
     }
     if ( !bh )
         return NULL;
-    read_block( bh );
+    if ( !bh->uptodate )
+        read_block( bh );
     return bh;
 }
 static inline unsigned long group_first_block( super_block_t* sb, unsigned long ngp )
@@ -354,7 +362,6 @@ out:
 }
 int __get_block( super_block_t* sb, unsigned long ngp )
 {
-    cout << "get_block" << endl;
     if ( ngp >= sb->nr_groups )
         ngp = 0;
     unsigned long ino;
@@ -392,7 +399,6 @@ unsigned long get_blocks( struct buffer_head* bh, struct inode_t* inode, unsigne
 {
     unsigned long* bmd;
     unsigned long* bte;
-    cout << "get_blocks iblock = " << iblock << endl;
     if ( iblock < DIRECT_BLOCK )
     {
         bte = &inode->i_data[ iblock ];
@@ -403,83 +409,117 @@ unsigned long get_blocks( struct buffer_head* bh, struct inode_t* inode, unsigne
         unsigned long bmd_offset = iblock >> BLOCK_INDEX_SHIFT;
         unsigned long bte_offset = iblock & BLOCK_INDEX_MASK;
         if ( !inode->i_data[ DIRECT_BLOCK ] )
+        {
             inode->i_data[ DIRECT_BLOCK ] = get_block( inode->sb );
+            printf( "[Alloc Index Block:%lu]\n", inode->i_data[ DIRECT_BLOCK ] );
+        }
         bmd = ( unsigned long* )sb_bread( inode->sb, inode->i_data[ DIRECT_BLOCK ] )->data + bmd_offset;
         if ( !*bmd )
         {
             *bmd = get_block( inode->sb );
+            printf( "[Alloc Indirect-Index Block:%lu]\n", *bmd );
         }
-        printf( "bmd_block:%lu, bte_offset = %lu, addr = %p\n", *bmd, bte_offset, sb_bread( inode->sb, *bmd )->data );
         bte = ( unsigned long* )( sb_bread( inode->sb, *bmd )->data ) + bte_offset;
     }
     if ( !*bte )
     {
         *bte = get_block( inode->sb );
+        printf( "[Alloc User Block:%lu]\n", *bte );
     }
-    cout << "*bte = " << *bte << endl;
     unsigned long target = *bte;
     map_bh( bh, target );
     return target;
 }
 int write_inode( struct inode_t* inode, const char* buf, unsigned long len )
 {
-    struct buffer_head *head, *bh;
-    unsigned long       pos = inode->size;
-
-    unsigned long iblock = pos >> BLOCK_SHIFT;
-    printf( "inode size = %lu,  write inode iblock=%lu\n", pos, iblock );
-    head = get_blk_bh( inode, iblock );
-    bh   = head;
-    while ( bh )
+    unsigned long offset = 0;
+    do
     {
-        if ( !bh->mapped )
-            get_blocks( bh, inode, iblock );
-        iblock++;
-        printf( "bh->pblock(%lu)\n", bh->nr_block );
-        bh = bh->next;
-    }
-    unsigned long start = pos & PAGE_MASK;
-    unsigned long end   = start + len;
-    if ( end >= PAGE_SIZE )
-        end = PAGE_SIZE;
-    len           = ( end - start ) & PAGE_MASK;
-    void*    addr = ( char* )head->page->vir + start;
-    unsigned block_start, block_end;
-    for ( block_start = 0, block_end = 0, bh = head; block_start < PAGE_SIZE; )
-    {
-        block_end = block_start + BLOCK_SIZE;
-        printf( "pblock(%lu), block_start:%lu-block_end:%lu\n", bh->nr_block, block_start, block_end );
-        if ( block_start < end && block_end > start )
+        struct buffer_head* bh;
+        unsigned long       pos    = inode->size;
+        unsigned long       index  = pos >> PAGE_SHIFT;
+        unsigned long       iblock = index << ( PAGE_SHIFT - BLOCK_SHIFT );
+        struct page_t*      page   = find_get_page( inode, index );
+        if ( !page )
+            return -1;
+        if ( !page->bh )
         {
-            if ( block_end > end || block_start < start )
+            create_page_buffers( &inode->i_mapping, page, index, iblock );  // 传入的 iblock 是起始逻辑block
+        }
+        bh = page->bh;
+        while ( bh )
+        {
+            if ( !bh->mapped )
+                get_blocks( bh, inode, iblock );
+            iblock++;
+            bh = bh->next;
+        }
+        unsigned long from = pos & PAGE_MASK;
+        unsigned long left = PAGE_SIZE - from;
+        unsigned long to, nbytes;
+        if ( len > left )
+        {
+            to     = PAGE_SIZE;
+            nbytes = left;
+            len -= left;
+        }
+        else
+        {
+            to     = from + len;
+            nbytes = len;
+            len    = 0;
+        }
+        void*         addr = ( char* )page->vir + from;
+        unsigned long block_start, block_end;
+        // prepare to write
+        for ( block_start = 0, bh = page->bh; block_start < PAGE_SIZE; )
+        {
+            block_end = block_start + BLOCK_SIZE;
+            if ( block_start < to && block_end > from )
             {
-                read_block( bh );
+                // 交集区域(不包含[=]区域)
+                if ( block_end > to || block_start < from )
+                {
+                    read_block( bh );
+                }
             }
+            block_start = block_end;
+            bh          = bh->next;
         }
-        block_start = block_end;
-        bh          = bh->next;
-    }
-    memcpy( addr, buf, len );
-    printf( "dump page(addr=%p): %s\n", addr, ( char* )addr );
-    modify_inode_size( inode, len );
-    unsigned long blk = 0;
-    for ( block_start = 0, block_end = 0, bh = head; block_start < PAGE_SIZE; )
-    {
-        block_end = block_start + BLOCK_SIZE;
-        printf( "block_start:%lu, block_end:%lu, start:%lu, end:%lu\n", block_start, block_end, start, end );
-        if ( block_start < end && block_end > start )
+        //========= 以 -[page]- 为单位进行拷贝操作 ===========//
+        memcpy( addr, buf + offset, nbytes );
+        offset += nbytes;
+        modify_inode_size( inode, nbytes );
+        // 磁盘 I/O 操作
+        unsigned long blk[ PAGE_SIZE / BLOCK_SIZE ];
+        char          blk_cache[ BLOCK_SIZE + 1 ];
+        memset( blk, 0x00, sizeof( blk ) );
+        for ( block_start = 0, bh = page->bh; block_start < PAGE_SIZE; )
         {
-            write_block( bh );
-            printf( "write block: bh->nr_block(%lu)\n", bh->nr_block );
-            blk = bh->nr_block;
+            block_end = block_start + BLOCK_SIZE;
+            if ( block_start < to && block_end > from )
+            {
+                // 位于读写区域的 [target] block
+                write_block( bh );
+                printf( "[Block I/O]: bh->nr_block(%lu)\n", bh->nr_block );
+                blk[ block_start / BLOCK_SIZE ] = bh->nr_block;
+            }
+            block_start = block_end;
+            bh          = bh->next;
         }
-        block_start = block_end;
-        bh          = bh->next;
-    }
-    block_data_t* block_data = g_blocks + blk;
-    printf( "blk:%lu data: %s\n", blk, ( const char* )block_data );
+        for ( unsigned idx = 0; idx < PAGE_SIZE / BLOCK_SIZE; idx++ )
+        {
+            if ( !blk[ idx ] )
+                continue;
+            block_data_t* block_data = g_blocks + blk[ idx ];
+            memcpy( blk_cache, block_data, BLOCK_SIZE );
+            blk_cache[ BLOCK_SIZE ] = 0;
+            printf( "[Block]:%lu data: \n%s\n", blk[ idx ], ( const char* )blk_cache );
+        }
+        printf( "----------------- Write-Page-%lu ----------------------\n", index );
+    } while ( len > 0 );
     printf( "============================================================\n" );
-    return len;
+    return offset;  // 实际写入的数据量
 }
 //===============================================================
 
@@ -494,9 +534,6 @@ int main()
     memset( g_blocks, 0x00, sizeof( struct block_data_t ) * 1024 );
     ptr = g_blocks;
     init_global_block( ptr, 1024 );
-    // ptr = g_blocks;
-    // stats_global_block( ptr, 1024 );
-
     // ============== 创建 page ==============
     g_page_map = new struct page_t[ 1024 ];
     memset( g_page_map, 0x00, sizeof( struct page_t ) * 1024 );
@@ -530,15 +567,24 @@ int main()
         if ( !g_sb )
             g_sb = sb;
     }
-
     struct inode_t* inode = alloc_inode( g_sb );
-    char            buf[ BLOCK_SIZE ];
+    char            buf[ PAGE_SIZE * 3 / 2 ];
     char            tmp[ BLOCK_SIZE ];
+    memset( buf, 0x00, sizeof( buf ) );
+    unsigned long sz    = 0;
+    char*         x_ptr = buf;
     for ( int i = 0; i < 512; i++ )
     {
         snprintf( tmp, sizeof( tmp ), "I am a hero-%d\n", i );
-        memcpy( buf, tmp, BLOCK_SIZE );
-        write_inode( inode, buf, BLOCK_SIZE );
+        memcpy( x_ptr, tmp, strlen( tmp ) );
+        x_ptr += strlen( tmp );
+        sz += strlen( tmp );
+        if ( sz >= sizeof( buf ) )
+        {
+            buf[ sizeof( buf ) - 1 ] = 0;
+            break;
+        }
     }
+    write_inode( inode, buf, strlen( buf ) );
     return 0;
 }
