@@ -568,7 +568,7 @@ int main()
             g_sb = sb;
     }
     struct inode_t* inode = alloc_inode( g_sb );
-    char            buf[ PAGE_SIZE * 3 / 2 ];
+    char            buf[ PAGE_SIZE * 5 / 3 ];
     char            tmp[ BLOCK_SIZE ];
     memset( buf, 0x00, sizeof( buf ) );
     unsigned long sz    = 0;
