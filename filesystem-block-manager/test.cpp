@@ -118,6 +118,7 @@ struct buffer_head
         struct page_t* __page = map + i;             \
         __page->vir           = buf_ctl( void*, x ); \
     }
+#define init_global_data( ptr, val, sz ) memset( ptr, val, sizeof( *ptr ) * sz )
 block_data_t*       g_blocks;
 struct page_data_t* g_page;
 struct page_t*      g_page_map;
@@ -534,16 +535,14 @@ int main()
     bdev = new struct inode_t;
     memset( bdev, 0x00, sizeof( struct inode_t ) );
     // ============== 创建 block ==============
-    block_data_t* ptr;
     g_blocks = new block_data_t[ 1024 ];
-    memset( g_blocks, 0x00, sizeof( struct block_data_t ) * 1024 );
-    ptr = g_blocks;
-    init_global_block( ptr, 1024 );
-    // ============== 创建 page ==============
+    init_global_data( g_blocks, 0x00, 1024 );
+    // ============== 创建 page map ==============
     g_page_map = new struct page_t[ 1024 ];
-    memset( g_page_map, 0x00, sizeof( struct page_t ) * 1024 );
+    init_global_data( g_page_map, 0x00, 1024 );
+    // ============== 创建 page data ==============
     g_page = new page_data_t[ 1024 ];
-    memset( g_page, 0x00, sizeof( page_data_t ) * 1024 );
+    init_global_data( g_page, 0x00, 1024 );
     struct page_data_t* page_addr = g_page;
     struct page_t*      map_addr  = g_page_map;
     init_global_page( page_addr, map_addr, 1024 );
