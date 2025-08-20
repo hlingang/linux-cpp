@@ -433,6 +433,7 @@ unsigned long get_blocks( struct buffer_head* bh, struct inode_t* inode, unsigne
 int write_inode( struct inode_t* inode, const char* buf, unsigned long len )
 {
     unsigned long offset = 0;
+    unsigned long loop   = 0;
     do
     {
         struct buffer_head* bh;
@@ -514,11 +515,11 @@ int write_inode( struct inode_t* inode, const char* buf, unsigned long len )
             block_data_t* block_data = g_blocks + blk[ idx ];
             memcpy( blk_cache, block_data, BLOCK_SIZE );
             blk_cache[ BLOCK_SIZE ] = 0;
-            printf( "[Block]:%lu data: \n%s\n", blk[ idx ], ( const char* )blk_cache );
+            printf( "[Block:%lu][Page:%lu] data: \n%s\n", blk[ idx ], index, ( const char* )blk_cache );
         }
-        printf( "----------------- Write-Page-%lu ----------------------\n", index );
+        printf( "----------------- Write-Loop-%lu End ----------------------\n", loop++ );
     } while ( len > 0 );
-    printf( "============================================================\n" );
+    printf( "============================ Write-End ==============================\n" );
     return offset;  // 实际写入的数据量
 }
 //===============================================================
@@ -585,6 +586,17 @@ int main()
             break;
         }
     }
+    printf( "/////////////////// Write Large Buffer ///////////////////////\n" );
     write_inode( inode, buf, strlen( buf ) );
+    printf( "/////////////////// Write Small Buffer //////////////////////\n" );
+    unsigned nstep  = 618;
+    unsigned offset = 0;
+    while ( offset + nstep < sizeof( buf ) )
+    {
+        write_inode( inode, buf + offset, nstep );
+        offset += nstep;
+    }
+    if ( offset < sizeof( buf ) )
+        write_inode( inode, buf + offset, sizeof( buf ) - offset );
     return 0;
 }
