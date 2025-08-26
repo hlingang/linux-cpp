@@ -39,6 +39,10 @@ using namespace std;
 #define BLOCK_INDEX_MASK ( ( 1 << BLOCK_INDEX_SHIFT ) - 1 )
 #define BGD_MASK ( ( 1 << BLOCK_INDEX_SHIFT ) - 1 )
 #define BMD_MASK ( ( 1 << BLOCK_INDEX_SHIFT ) - 1 )
+#define MUTEX_SIZE ( 8 )
+#define MUTEX_BIT ( 3 )
+
+std::mutex g_mutex[ MUTEX_SIZE ];
 
 struct space_mapping
 {
@@ -126,32 +130,49 @@ unsigned long       page_bitmap[ 1024 ];
 struct inode_t*     bdev;
 //===============================================================
 
+static unsigned long hash_ptr( const void* ptr, unsigned long bits )
+{
+    unsigned long val  = ( unsigned long )ptr;
+    unsigned long mask = ( 1UL << bits ) - 1;
+    val ^= ( val >> bits );
+    return val & mask;
+}
 void set_bit( unsigned long nr, unsigned long* addr )
 {
+    std::mutex& mtx = g_mutex[ hash_ptr( addr, MUTEX_BIT ) ];
+    mtx.lock();
     unsigned long* ptr    = addr + NR_BIT_WORD( nr );
     unsigned long  offset = NR_BIT_OFFSET( nr );
     *ptr |= ( 1UL << offset );
+    mtx.unlock();
 }
 
 void clear_bit( unsigned long nr, unsigned long* addr )
 {
+    std::mutex& mtx = g_mutex[ hash_ptr( addr, MUTEX_BIT ) ];
+    mtx.lock();
     unsigned long* ptr    = addr + NR_BIT_WORD( nr );
     unsigned long  offset = NR_BIT_OFFSET( nr );
     *ptr &= ~( 1UL << offset );
+    mtx.unlock();
 }
 
 int test_bit( unsigned long nr, unsigned long* addr )
 {
     unsigned long* ptr    = addr + NR_BIT_WORD( nr );
     unsigned long  offset = NR_BIT_OFFSET( nr );
-    return ( ( *ptr ) & ( 1UL << offset ) ) != 0;
+    unsigned long  val    = ( *ptr ) & ( 1UL << offset );
+    return val != 0;
 }
 int test_and_set_bit( unsigned long nr, unsigned long* addr )
 {
+    std::mutex& mtx = g_mutex[ hash_ptr( addr, MUTEX_BIT ) ];
+    mtx.lock();
     unsigned long* ptr       = addr + NR_BIT_WORD( nr );
     unsigned long  offset    = NR_BIT_OFFSET( nr );
     int            old_value = ( ( *ptr ) & ( 1UL << offset ) ) != 0;
-    set_bit( nr, addr );
+    *ptr |= ( 1UL << offset );
+    mtx.unlock();
     return old_value;
 }
 
@@ -401,9 +422,9 @@ int __get_block( super_block_t* sb, unsigned long ngp )
             else
                 goto repeat;
         }
+        ++ngp;
         if ( ngp == sb->nr_block )
             ngp = 0;
-        ++ngp;
     }
     return -1;
 found:
