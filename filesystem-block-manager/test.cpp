@@ -139,22 +139,22 @@ static unsigned long hash_ptr( const void* ptr, unsigned long bits )
 }
 void set_bit( unsigned long nr, unsigned long* addr )
 {
-    std::mutex& mtx = g_mutex[ hash_ptr( addr, MUTEX_BIT ) ];
-    mtx.lock();
+    std::mutex* mtx = &g_mutex[ hash_ptr( addr, MUTEX_BIT ) ];
+    mtx->lock();
     unsigned long* ptr    = addr + NR_BIT_WORD( nr );
     unsigned long  offset = NR_BIT_OFFSET( nr );
     *ptr |= ( 1UL << offset );
-    mtx.unlock();
+    mtx->unlock();
 }
 
 void clear_bit( unsigned long nr, unsigned long* addr )
 {
-    std::mutex& mtx = g_mutex[ hash_ptr( addr, MUTEX_BIT ) ];
-    mtx.lock();
+    std::mutex* mtx = &g_mutex[ hash_ptr( addr, MUTEX_BIT ) ];
+    mtx->lock();
     unsigned long* ptr    = addr + NR_BIT_WORD( nr );
     unsigned long  offset = NR_BIT_OFFSET( nr );
     *ptr &= ~( 1UL << offset );
-    mtx.unlock();
+    mtx->unlock();
 }
 
 int test_bit( unsigned long nr, unsigned long* addr )
@@ -166,13 +166,13 @@ int test_bit( unsigned long nr, unsigned long* addr )
 }
 int test_and_set_bit( unsigned long nr, unsigned long* addr )
 {
-    std::mutex& mtx = g_mutex[ hash_ptr( addr, MUTEX_BIT ) ];
-    mtx.lock();
+    std::mutex* mtx = &g_mutex[ hash_ptr( addr, MUTEX_BIT ) ];
+    mtx->lock();
     unsigned long* ptr       = addr + NR_BIT_WORD( nr );
     unsigned long  offset    = NR_BIT_OFFSET( nr );
     int            old_value = ( ( *ptr ) & ( 1UL << offset ) ) != 0;
     *ptr |= ( 1UL << offset );
-    mtx.unlock();
+    mtx->unlock();
     return old_value;
 }
 
