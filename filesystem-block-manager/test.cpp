@@ -336,47 +336,65 @@ struct inode_t* alloc_inode( super_block_t* sb )
     node->sb             = sb;
     return node;
 }
-static inline unsigned long find_next_bit( void* addr, unsigned long nr )
+
+static inline unsigned long find_next_bit( void* addr, unsigned long size, unsigned long start_bit )
 {
     unsigned long* pos = ( unsigned long* )addr;
     unsigned long  value;
-    unsigned long  index     = 0;
-    unsigned long  offset    = nr % NR_BITS_PER_LONG;
-    unsigned long  max_index = nr / NR_BITS_PER_LONG;
+    unsigned long  index        = 0;
+    unsigned long  last_offset  = ( size - 1 ) % NR_BITS_PER_LONG;
+    unsigned long  last_index   = ( size - 1 ) / NR_BITS_PER_LONG;
+    unsigned long  start_offset = start_bit % NR_BITS_PER_LONG;
+    unsigned long  start_index  = start_bit / NR_BITS_PER_LONG;
     unsigned long  search_len;
-    while ( !( value = ~*pos ) )
+    unsigned long  mask;
+    unsigned long  result;
+    pos += start_index;
+    value = ~*pos;
+    mask  = ~0UL << start_offset;
+    while ( !( value = ( ~*pos ) & mask ) )
     {
         ++pos;
         ++index;
-        if ( index > max_index )
+        mask = ~0UL;
+        if ( index > last_index )
             goto out;
     }
     search_len = NR_BITS_PER_LONG;
-    if ( index == max_index && offset != 0 )
+    if ( index == last_index )
     {
-        value &= ( ( 1UL << offset ) - 1 );
-        search_len = offset;
+        value &= ( ( 1UL << ( last_offset + 1 ) ) - 1 );
+        search_len = last_offset + 1;
     }
+    result = ~value;
     for ( unsigned long i = 0; i < search_len; i++ )
     {
-        if ( !test_bit( i, pos ) )
+        if ( !test_bit( i, &result ) )
             return i + index * NR_BITS_PER_LONG;
     }
 out:
-    return nr;
+    return size;
+}
+//******* 这里通过参数和返回值进行默认的类型转换(避免显式的类型转换) *********//
+static int find_next_block( void* addr, int size, unsigned long start_blk )
+{
+    int target_blk = find_next_bit( addr, size, start_blk );
+    if ( target_blk < size )
+        return target_blk;
+    return -1;
 }
 int __get_block( super_block_t* sb, unsigned long ngp )
 {
     if ( ngp >= sb->nr_groups )
         ngp = 0;
-    unsigned long ino;
+    int ino;
     for ( unsigned long i = 0; i < sb->nr_groups; i++ )
     {
         group_desc_t* desc = group_desc( sb, ngp );
         buffer_head*  bh   = sb_bread( sb, desc->bitmap_block );
     repeat:
-        ino = find_next_bit( bh->data, MAX_BLOCK_BIT );
-        if ( ino < MAX_BLOCK_BIT )
+        ino = find_next_block( bh->data, MAX_BLOCK_BIT, 22 );
+        if ( ino >= 0 )
         {
             if ( !test_and_set_bit( ino, ( unsigned long* )bh->data ) )
                 goto found;
@@ -586,6 +604,7 @@ int main()
         sz += strlen( tmp );
         if ( sz >= sizeof( buf ) )
         {
+            buf[ sizeof( buf ) - 2 ] = '\n';  //** 最后一行 换行 **//
             buf[ sizeof( buf ) - 1 ] = 0;
             break;
         }
