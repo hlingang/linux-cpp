@@ -20,11 +20,10 @@ struct list_head
     struct list_head* prev;
 };
 
-#define INIT_LIST_HEAD( ptr )    \
-    do                           \
-    {                            \
-        ( ptr )->next = ( ptr ); \
-        ( ptr )->prev = ( ptr ); \
+#define INIT_LIST_HEAD( ptr )                    \
+    do                                           \
+    {                                            \
+        ( ptr )->next = ( ptr )->prev = ( ptr ); \
     } while ( 0 )
 
 #define LIST_HEAD ( name ) struct list_head name = { &( name ), &( name ) }
@@ -169,12 +168,12 @@ int main()
     struct dentry* entry;
     list_for_each_entry( entry, &dentry_root.subdirs, sibling )
     {
-        printf( "First Level:[%p] %s(%lu)(pre:%p, next:%p)\n", entry, entry->name, entry->id, entry->sibling.prev,
+        printf( "== First Level:[%p] %s(%lu)(pre:%p, next:%p)\n", entry, entry->name, entry->id, entry->sibling.prev,
                 entry->sibling.next );
         struct dentry* sub_entry;
         list_for_each_entry( sub_entry, &entry->subdirs, sibling )
         {
-            printf( "---- Second Level:[%p] %s(%lu)(pre:%p[%p], next:%p[%p])\n", sub_entry, sub_entry->name,
+            printf( "==== Second Level:[%p] %s(%lu)(pre:%p[%p], next:%p[%p])\n", sub_entry, sub_entry->name,
                     sub_entry->id, sub_entry->sibling.prev, LIST_ENTRY( sub_entry->sibling.prev ),
                     sub_entry->sibling.next, LIST_ENTRY( sub_entry->sibling.next ) );
             struct dentry* sub_sub_entry;
