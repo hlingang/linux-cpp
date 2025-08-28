@@ -84,25 +84,25 @@ static void stats_dentry( struct dentry* root )
     printf( "\n==================== travel dentry tree ====================\n" );
     struct list_head* pos;
     struct dentry*    entry;
-    struct dentry*    this_parent = root;
+    struct dentry*    parent = root;
 repeat:
-    pos = this_parent->subdirs.next;
+    pos = parent->subdirs.next;
 resume:
-    while ( pos != &this_parent->subdirs )
+    while ( pos != &parent->subdirs )
     {
         entry = list_entry( pos, struct dentry, sibling );
         printf( "== entry[%p]:%s(%lu)\n", entry, entry->name, entry->id );
         if ( !list_empty( &entry->subdirs ) )  // 往下遍历
         {
-            this_parent = entry;
+            parent = entry;
             goto repeat;
         }
         pos = pos->next;
     }
-    if ( this_parent != root )
+    if ( parent != root )
     {
-        pos         = this_parent->sibling.next;  // 回到上一级
-        this_parent = this_parent->parent;        // 更新 parent
+        pos    = parent->sibling.next;  // 回到上一级
+        parent = parent->parent;        // 更新 parent
         goto resume;
     }
 }
@@ -112,26 +112,29 @@ static void remove_dentry( struct dentry* dir )
     printf( "\n==================== remove dentry tree ====================\n" );
     struct dentry* entry;
     struct dentry* parent = dir;
-repeat:
     while ( !list_empty( &parent->subdirs ) )
     {
-        entry  = list_entry( parent->subdirs.next, struct dentry, sibling );
-        parent = entry;
+    repeat:
+        while ( !list_empty( &parent->subdirs ) )
+        {
+            entry  = list_entry( parent->subdirs.next, struct dentry, sibling );
+            parent = entry;
+        }
+        entry  = parent;
+        parent = parent->parent;
+        struct list_head* next;
+        do
+        {
+            //*****  通过连续删除进行优化 **** //
+            struct dentry* tmp = entry;
+            next               = entry->sibling.next;
+            list_del( &tmp->sibling );
+            printf( "Free[%p]:%s(%lu)\n", tmp, tmp->name, tmp->id );
+            free( tmp );
+        } while ( next != &parent->subdirs && fetch_entry( entry, next ) && list_empty( &entry->subdirs ) );
+        if ( parent != dir )
+            goto repeat;
     }
-    entry  = parent;
-    parent = parent->parent;
-    struct list_head* next;
-    do
-    {
-        //*****  通过连续删除进行优化 **** //
-        struct dentry* tmp = entry;
-        next               = entry->sibling.next;
-        list_del( &tmp->sibling );
-        printf( "Free[%p]:%s(%lu)\n", tmp, tmp->name, tmp->id );
-        free( tmp );
-    } while ( next != &parent->subdirs && fetch_entry( entry, next ) && list_empty( &entry->subdirs ) );
-    if ( parent != dir || !list_empty( &dir->subdirs ) )
-        goto repeat;
 }
 //===============================================================
 
