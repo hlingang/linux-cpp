@@ -130,6 +130,31 @@ repeat:
         ret;                                   \
     } )
 #define next_entry( e ) ( ( struct entry* )( ( char* )( e ) + ( e )->entry_len ) )
+
+void* find_entry( struct inode* inode, struct entry* entry )
+{
+    unsigned long size   = inode->size;
+    unsigned long npages = ( size + PAGE_SIZE - 1 ) >> PAGE_SHIFT;
+    struct entry* e;
+    for ( unsigned long i = 0; i < npages; i++ )
+    {
+        char* page     = ( char* )inode->mapping[ i ];
+        char* end_addr = ( char* )page + last_bytes( size, i );
+        end_addr -= entry->entry_len;  // 保证最后一个 e->entry_len 是有效的 //
+        e = ( struct entry* )page;
+        for ( ; ( char* )e <= end_addr; )
+        {
+            if ( !e || !e->entry_len )
+                break;
+            if ( e->name_len == entry->name_len && !strncmp( e->name, entry->name, e->name_len ) )
+            {
+                return e;
+            }
+            e = next_entry( e );
+        }
+    }
+    return NULL;
+}
 void stats_inode( struct inode* inode )
 {
     printf( "\n==================== travel entry ====================\n" );
@@ -148,8 +173,8 @@ void stats_inode( struct inode* inode )
         {
             if ( !e || !e->entry_len )
                 break;
-            printf( "page[%lu] entry[%p]:%s(id:%lu, name_len:%lu, entry_len:%lu)\n", i, e, e->name, e->id, e->name_len,
-                    e->entry_len );
+            printf( "page[%lu] entry[%p vs find:%p]:%s(id:%lu, name_len:%lu, entry_len:%lu)\n", i, e,
+                    find_entry( inode, e ), e->name, e->id, e->name_len, e->entry_len );
             e = next_entry( e );
         }
     }
