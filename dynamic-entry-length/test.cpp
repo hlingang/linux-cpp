@@ -122,6 +122,13 @@ repeat:
         goto repeat;
     }
 }
+#define last_bytes( size, nr )                 \
+    ( {                                        \
+        unsigned ret = PAGE_SIZE;              \
+        if ( ( nr + 1 ) << PAGE_SHIFT > size ) \
+            ret = ( size & PAGE_MASK );        \
+        ret;                                   \
+    } )
 #define next_entry( e ) ( ( struct entry* )( ( char* )( e ) + ( e )->entry_len ) )
 void stats_inode( struct inode* inode )
 {
@@ -132,12 +139,12 @@ void stats_inode( struct inode* inode )
     cout << "inode size:" << inode->size << ", npages:" << npages << endl;
     for ( unsigned long i = 0; i < npages; i++ )
     {
-        void* page     = inode->mapping[ i ];
-        void* end_addr = ( char* )page + PAGE_SIZE
-                         - ( offsetof( struct entry, name ) + 1 );  // 保证最后一个 e->entry_len 是有效的 //
+        char* page     = ( char* )inode->mapping[ i ];
+        char* end_addr = ( char* )page + last_bytes( size, i );
+        end_addr -= ( offsetof( struct entry, name ) + 1 );  // 保证最后一个 e->entry_len 是有效的 //
         printf( "---- page[%lu]:(%p -- %p) ----\n", i, page, ( char* )page + PAGE_SIZE );
         e = ( struct entry* )page;
-        for ( ; e <= end_addr; )
+        for ( ; ( char* )e <= end_addr; )
         {
             if ( !e || !e->entry_len )
                 break;
