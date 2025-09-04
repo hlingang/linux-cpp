@@ -233,7 +233,8 @@ static void remap_range( unsigned long from, unsigned len, unsigned long paddr )
     unsigned end = from + len;
     from         = from & ~( PAGE_SIZE - 1 );  // 页对齐
     end          = ( end + PAGE_SIZE - 1 ) & ~( PAGE_SIZE - 1 );
-    pgd_t* pgd   = pgd_offset( g_pgd, from >> PAGE_SHIFT );
+    paddr &= ~PAGE_MASK;
+    pgd_t* pgd = pgd_offset( g_pgd, from >> PAGE_SHIFT );
     paddr -= from;
     unsigned      start = from;
     unsigned long pstart;
