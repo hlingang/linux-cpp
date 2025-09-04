@@ -130,6 +130,14 @@ unsigned long       page_bitmap[ 1024 ];
 struct inode_t*     bdev;
 //===============================================================
 
+unsigned long last_bytes( unsigned long from, unsigned long len )
+{
+    unsigned long end = from + len;  // END 节点不会包含在内
+    if ( end >= PAGE_SIZE )
+        end = PAGE_SIZE;
+    return end;
+}
+
 static unsigned long hash_ptr( const void* ptr, unsigned long bits )
 {
     unsigned long val  = ( unsigned long )ptr;
@@ -499,21 +507,10 @@ int write_inode( struct inode_t* inode, const char* buf, unsigned long len )
             iblock++;
             bh = bh->next;
         }
-        unsigned long from = pos & PAGE_MASK;
-        unsigned long left = PAGE_SIZE - from;
-        unsigned long to, nbytes;
-        if ( len > left )
-        {
-            to     = PAGE_SIZE;
-            nbytes = left;
-            len -= left;
-        }
-        else
-        {
-            to     = from + len;
-            nbytes = len;
-            len    = 0;
-        }
+        unsigned long from   = pos & PAGE_MASK;
+        unsigned long to     = last_bytes( from, len );
+        unsigned long nbytes = to - from;
+        len -= nbytes;
         void*         addr = ( char* )page->vir + from;
         unsigned long block_start, block_end;
         // prepare to write
