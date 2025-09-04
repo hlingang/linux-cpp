@@ -201,7 +201,7 @@ static void remap_pte_range( pmd_t* pmd, unsigned long from, unsigned long to, u
     printf( "== Remap PTE Range: from [0x%lx - 0x%lx] - [start:0x%lx]\n", from, to, paddr );
     do
     {
-        pstart             = paddr + pte_start;  // 优化[线性累计偏移量]的计算//
+        pstart             = paddr + pte_start;  // 优化[线性映射偏移量]的计算//
         unsigned long next = next_pte( pte_start, to );
         printf( "==== remap pte[%p]: %lu[start:0x%lx - next:0x%lx] - [physical-addr:0x%lx]\n", ( void* )pte_val( *pte ),
                 *( ( unsigned long* )pte_val( *pte ) ), pte_start, next, pstart );
@@ -220,7 +220,7 @@ static void remap_pmd_range( pgd_t* pgd, unsigned long from, unsigned long to, u
     unsigned long pstart;
     do
     {
-        pstart        = paddr + pmd_start;  // 优化[线性累计偏移量]的计算//
+        pstart        = paddr + pmd_start;  // 优化[线性映射偏移量]的计算//
         unsigned next = next_pmd( pmd_start, to );
         remap_pte_range( pmd, pmd_start, next, pstart );
         pmd_start = next;
