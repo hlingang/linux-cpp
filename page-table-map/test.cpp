@@ -18,11 +18,16 @@ using namespace std;
 ///////////////////// C 语言实现 /////////////////////////////////
 #define PAGE_SIZE 64
 #define PAGE_MASK ( PAGE_SIZE - 1 )
+#define PAGE_SHIFT 6
 #define PTE_BITS 3
 #define PMD_BITS 3
 #define PGD_BITS 3
 #define PMD_SHIFT 3
 #define PGD_SHIFT 6
+#define PTE_SIZE ( 1U << PTE_BITS )
+#define PMD_SIZE ( 1U << PMD_BITS )
+#define PGD_SIZE ( 1U << PGD_BITS )
+#define PTE_SIZE ( 1U << PTE_BITS )
 #define PTE_MASK ( ( 1U << PTE_BITS ) - 1 )
 #define PMD_MASK ( ( 1U << PMD_BITS ) - 1 )
 #define PGD_MASK ( ( 1U << PGD_BITS ) - 1 )
@@ -116,6 +121,132 @@ pte_t* pte_offset( pmd_t* pmd, unsigned long addr, unsigned long* pos = nullptr 
     return ( pte_t* )pmd_val( *pmd ) + index;
 }
 
+#define next_pgd( addr, bound )                                                              \
+    ( {                                                                                      \
+        unsigned long ret = ( ( ( addr ) + ( 1UL << ( PMD_BITS + PTE_BITS + PAGE_SHIFT ) ) ) \
+                              & ~( ( 1UL << ( PMD_BITS + PTE_BITS + PAGE_SHIFT ) ) - 1 ) );  \
+        if ( ret >= bound )                                                                  \
+            ret = bound;                                                                     \
+        ret;                                                                                 \
+    } )
+
+#define next_pmd( addr, bound )                                                                                      \
+    ( {                                                                                                              \
+        unsigned long ret =                                                                                          \
+            ( ( ( addr ) + ( 1UL << ( PTE_BITS + PAGE_SHIFT ) ) ) & ~( ( 1UL << ( PTE_BITS + PAGE_SHIFT ) ) - 1 ) ); \
+        if ( ret >= bound )                                                                                          \
+            ret = bound;                                                                                             \
+        ret;                                                                                                         \
+    } )
+
+#define next_pte( addr, bound )                                                                                \
+    ( {                                                                                                        \
+        unsigned long ret = ( ( ( addr ) + ( 1UL << ( PAGE_SHIFT ) ) ) & ~( ( 1UL << ( PAGE_SHIFT ) ) - 1 ) ); \
+        if ( ret >= bound )                                                                                    \
+            ret = bound;                                                                                       \
+        ret;                                                                                                   \
+    } )
+
+static void clear_pte_range( pmd_t* pmd, unsigned long from, unsigned long to )
+{
+    pte_t*        pte       = pte_offset( pmd, from >> PAGE_SHIFT );
+    unsigned long pte_start = from;
+    printf( "== Clear PTE Range: from [0x%lx - 0x%lx]\n", from, to );
+    do
+    {
+        unsigned long next = next_pte( pte_start, to );
+        printf( "==== clear pte[%p]: %lu[start:0x%lx - next:0x%lx]\n", ( void* )pte_val( *pte ),
+                *( ( unsigned long* )pte_val( *pte ) ), pte_start, next );
+        pte_start = next;
+        pte++;
+    } while ( pte_start != to );
+}
+
+static void clear_pmd_range( pgd_t* pgd, unsigned long from, unsigned long to )
+{
+    printf( "Clear PMD Range: from [0x%lx - 0x%lx]\n", from, to );
+    pmd_t*        pmd       = pmd_offset( pgd, from >> PAGE_SHIFT );
+    unsigned long pmd_start = from;
+    do
+    {
+        unsigned next = next_pmd( pmd_start, to );
+        clear_pte_range( pmd, pmd_start, next );
+        pmd_start = next;
+        pmd++;
+    } while ( pmd_start != to );
+}
+
+static void clear_range( unsigned long from, unsigned len )
+{
+    unsigned end   = from + len;
+    from           = from & ~( PAGE_SIZE - 1 );  // 页对齐
+    end            = ( end + PAGE_SIZE - 1 ) & ~( PAGE_SIZE - 1 );
+    pgd_t*   pgd   = pgd_offset( g_pgd, from >> PAGE_SHIFT );
+    unsigned start = from;
+    do
+    {
+        unsigned next = next_pgd( start, end );
+        clear_pmd_range( pgd, start, next );
+        start = next;
+        pgd++;
+    } while ( start != end );
+}
+
+static void remap_pte_range( pmd_t* pmd, unsigned long from, unsigned long to, unsigned long paddr )
+{
+    pte_t*        pte       = pte_offset( pmd, from >> PAGE_SHIFT );
+    unsigned long pte_start = from;
+    unsigned long pstart;
+    paddr -= from;
+    printf( "== Remap PTE Range: from [0x%lx - 0x%lx] - [start:0x%lx]\n", from, to, paddr );
+    do
+    {
+        pstart             = paddr + pte_start;  // 优化累计偏移量的计算//
+        unsigned long next = next_pte( pte_start, to );
+        printf( "==== remap pte[%p]: %lu[start:0x%lx - next:0x%lx] - [physical-addr:0x%lx]\n", ( void* )pte_val( *pte ),
+                *( ( unsigned long* )pte_val( *pte ) ), pte_start, next, pstart );
+        *pte      = make_pte( pstart );
+        pte_start = next;
+        pte++;
+    } while ( pte_start != to );
+}
+
+static void remap_pmd_range( pgd_t* pgd, unsigned long from, unsigned long to, unsigned long paddr )
+{
+    printf( "Remap PMD Range: from [0x%lx - 0x%lx] - [physical-addr:0x%lx]\n", from, to, paddr );
+    pmd_t*        pmd       = pmd_offset( pgd, from >> PAGE_SHIFT );
+    unsigned long pmd_start = from;
+    paddr -= from;
+    unsigned long pstart;
+    do
+    {
+        pstart        = paddr + pmd_start;  // 优化累计偏移量的计算//
+        unsigned next = next_pmd( pmd_start, to );
+        remap_pte_range( pmd, pmd_start, next, pstart );
+        pmd_start = next;
+        pmd++;
+    } while ( pmd_start != to );
+}
+
+static void remap_range( unsigned long from, unsigned len, unsigned long paddr )
+{
+    unsigned end = from + len;
+    from         = from & ~( PAGE_SIZE - 1 );  // 页对齐
+    end          = ( end + PAGE_SIZE - 1 ) & ~( PAGE_SIZE - 1 );
+    pgd_t* pgd   = pgd_offset( g_pgd, from >> PAGE_SHIFT );
+    paddr -= from;
+    unsigned      start = from;
+    unsigned long pstart;
+    do
+    {
+        pstart        = paddr + start;
+        unsigned next = next_pgd( start, end );
+        remap_pmd_range( pgd, start, next, pstart );
+        start = next;
+        pgd++;
+    } while ( start != end );
+}
+
 int main()
 {
     g_pgd = ( pgd_t* )malloc( sizeof( page_t ) );
@@ -129,7 +260,7 @@ int main()
         void*  page = ( void* )malloc( sizeof( page_t ) );
         memset( page, 0x00, sizeof( page_t ) );
         unsigned long* ptr = ( unsigned long* )page;
-        *ptr               = i + 1;
+        *ptr               = i + 0;
         *( ptr + 1 )       = i + 512;
         *pte               = ( pte_t ){ ( unsigned long )page };
         printf( "VAL:%d, PGD[%lu]: %lx, PMD[%lu]: %lx, PTE[%lu]: %lx\n", i, i_pgd, pgd_val( *pgd ), i_pmd,
@@ -144,5 +275,9 @@ int main()
         printf( "i:%d, pte=%p, val=%lu/%lu(delta:%lu)\n", i, ( void* )pte_val( *pte ), *ptr, *( ptr + 1 ),
                 *( ptr + 1 ) - *ptr );
     }
+    clear_range( 0, 0x7fba );
+    printf( "================= Clear Range End =================\n" );
+    remap_range( 0, 0x7fba, 0x12345678 );
+    printf( "================= Remap Range End =================\n" );
     return 0;
 }
