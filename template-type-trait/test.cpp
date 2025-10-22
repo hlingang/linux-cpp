@@ -19,7 +19,7 @@ class __Undefined;
 // type trait //
 /*
 1. 通过函数传递的实参对象进行类型萃取
-2. 通过显示的类型参数进行类型萃取
+2. 通过显式的类型参数进行类型萃取
 */
 template < typename Tp > void display_type( Tp&& __t )
 {
