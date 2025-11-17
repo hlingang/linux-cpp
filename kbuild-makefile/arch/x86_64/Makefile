@@ -1,0 +1,1 @@
+core-y += get_arch/
