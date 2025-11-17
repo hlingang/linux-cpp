@@ -1,0 +1,40 @@
+target=test
+
+ARCH=$(shell uname -m)
+PWD := $(shell pwd)
+
+core-dirs := a/ b/ get_arch/
+core-dirs := $(core-dirs:%/=%/built-in.o)
+
+all:$(target)
+
+$(core-dirs): prepare
+	make -C $(@D)
+
+$(target):$(core-dirs) test.o
+	gcc -o $@ $^
+%.o:%.c FORCE
+	gcc -c -o $@ $< -I. -I./include
+
+define clean_sub_dir
+	for obj_dir in $(core-dirs); do\
+		dir_name=$$(dirname $${obj_dir}); \
+		echo "clean in $${dir_name}"; \
+		make -C $${dir_name} clean; \
+	done
+endef
+
+prepare:
+	echo "Detected ARCH: $(ARCH)"
+	if [ -L $(PWD)/include/asm ]; then \
+		unlink include/asm; \
+	fi
+	ln -s ${PWD}/include/arch/$(ARCH) ${PWD}/include/asm
+
+FORCE:
+
+clean:
+	rm -rf $(target)
+	$(call clean_sub_dir)
+
+.PHONY: clean FORCE prepare
