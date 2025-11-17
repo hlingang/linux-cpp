@@ -1,1 +1,1 @@
-core-y += get_arch/
+core-$(ARCH_CONFIG_GET_ARCH) += $(PWD)/arch/$(ARCH)/get_arch/

@@ -3,9 +3,11 @@ target=test
 ARCH=$(shell uname -m)
 PWD := $(shell pwd)
 
-include $(PWD)/arch/$(ARCH)/Makefile
-
+include $(PWD)/.config
+include $(PWD)/arch/$(ARCH)/Makefile 
+core-$(CONFIG_GET_ARCH) += get_arch/
 core-y += a/ b/
+$(info "**-$(core-y)")
 core-dirs := $(core-y:%/=%/built-in.o)
 
 all:$(target)
