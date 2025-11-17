@@ -22,6 +22,9 @@ define clean_sub_dir
 		echo "clean in $${dir_name}"; \
 		make -C $${dir_name} clean; \
 	done
+	if [ -L $(PWD)/include/asm ]; then \
+		unlink include/asm; \
+	fi
 endef
 
 prepare:
