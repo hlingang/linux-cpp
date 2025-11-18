@@ -4,10 +4,9 @@ ARCH=$(shell uname -m)
 PWD := $(shell pwd)
 
 include $(PWD)/.config
-include $(PWD)/arch/$(ARCH)/Makefile 
-core-$(CONFIG_GET_ARCH) += get_arch/
-core-y += a/ b/
-$(info "**-$(core-y)")
+include $(PWD)/arch/$(ARCH)/Makefile     ## 导入arch相关的Makefile
+core-$(CONFIG_GET_ARCH) += module-lib/   ## 导入主模块
+core-y += module-a/ module-b/            ## 导入主模块
 core-dirs := $(core-y:%/=%/built-in.o)
 
 all:$(target)
