@@ -4,7 +4,8 @@ ARCH=$(shell uname -m)
 PWD := $(shell pwd)
 
 include $(PWD)/.config
-include $(PWD)/arch/$(ARCH)/Makefile     ## 导入arch相关的Makefile
+include $(PWD)/arch/$(ARCH)/Makefile     ## 导入arch相关的Makefile 
+## target 发生覆盖的时候，以最后一次定义为准，但是所有的 target 依赖都会生成
 core-$(CONFIG_GET_ARCH) += module-lib/   ## 导入主模块
 core-y += module-a/ module-b/            ## 导入主模块
 core-dirs := $(core-y:%/=%/built-in.o)
