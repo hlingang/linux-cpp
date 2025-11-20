@@ -1,6 +1,6 @@
 obj-y +=built-in.o
 lib_y := lib_a.o helper_a.o
-CLFAGS := -fPIC
+CFLAGS := -fPIC
 $(obj-y):$(lib_y) 
 	ld -r -o $@ $^
 %.o:%.c FORCE

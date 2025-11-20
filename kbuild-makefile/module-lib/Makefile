@@ -3,7 +3,7 @@ PWD := $(shell pwd)
 obj-y := get_arch.o
 obj-y += $(patsubst %.c,%.o, $(obj-y))
 target := built-in.o
-CLFAGS := -fPIC
+CFLAGS := -fPIC
 all:$(target)
 $(target):$(obj-y)
 	ld -r -o $@ $^

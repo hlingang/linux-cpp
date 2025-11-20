@@ -59,4 +59,4 @@ clean:
 .PHONY: clean FORCE prepare
 
 swig: FORCE
-	make -f $(PWD)/Makefile.swig all
+	make -f $(PWD)/Makefile.swig swig
