@@ -57,3 +57,6 @@ clean:
 	$(call clean_sub_dir)
 
 .PHONY: clean FORCE prepare
+
+swig: FORCE
+	make -f $(PWD)/Makefile.swig all
