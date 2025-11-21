@@ -62,4 +62,4 @@ swig: FORCE
 	make -f $(PWD)/Makefile.swig swig
 
 swig-link: FORCE
-	make -f $(PWD)/Makefile.swig.link swig
+	make -f $(PWD)/Makefile.swig.link swig model=$(model)

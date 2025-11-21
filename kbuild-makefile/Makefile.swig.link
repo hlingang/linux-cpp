@@ -13,18 +13,25 @@ MODULE_INTERFACE := $(MODULE_DIR)/$(MODULE_NAME).i
 PYTHON_INTERFACE := $(MODULE_DIR)/$(MODULE_NAME).py
 WRAP_OBJ := $(MODULE_DIR)/$(MODULE_NAME)_wrap.o
 WRAP_SRC := $(MODULE_DIR)/$(MODULE_NAME)_wrap.c
-STATIC_LIB := $(PWD)/build/lib/lib.so
+DYMIC_LIB := $(PWD)/build/lib/lib.so
+STATIC_LIB := $(PWD)/build/lib/lib.a
 SWIG_BUILD := $(PWD)/build/python
-
+MODEL_LIB := $(DYMIC_LIB)
 CFLAGS += -fPIC
+
+ifeq ("$(model)", "static")
+	MODEL_LIB := $(STATIC_LIB)
+endif
+
+all:$(MODULE_OBJ) install
 
 $(WRAP_OBJ):$(WRAP_SRC) prepare FORCE
 	gcc -c $(CFLAGS) -o $@ $< -I. -I./include
 
 $(MODULE_OBJ): $(WRAP_OBJ)
-	gcc -shared $(LDFLAGS) -o $@ $^ $(STATIC_LIB)
+	gcc -shared $(LDFLAGS) -Wl,--whole-archive  -o $@ $^ $(MODEL_LIB) -Wl,--no-whole-archive
 
-all:$(MODULE_OBJ) install
+
 install:
 	echo "installing python module..."
 	cp $(MODULE_OBJ) $(PYTHON_INTERFACE) $(SWIG_BUILD)
