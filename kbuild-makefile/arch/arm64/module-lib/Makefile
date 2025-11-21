@@ -3,7 +3,7 @@ lib_y := arch_get_arch.o
 $(obj-y):$(lib_y) 
 	ld -r -o $@ $^
 %.o:%.c FORCE
-	gcc -c -o $@ $<	-I. -I../ -I$(PWD)/include/
+	gcc -c -fPIC -o $@ $<	-I. -I../ -I$(PWD)/include/
 all: $(obj-y)
 FORCE:
 .PHONY: clean FORCE

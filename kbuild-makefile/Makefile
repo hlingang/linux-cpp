@@ -22,7 +22,7 @@ $(target):$(core-dirs) test.o
 	gcc -o $@ $^
 
 $(shared-lib): $(core-dirs)
-	gcc -shared -o $@ $^
+	gcc -shared -fPIC -o $@ $^
 
 $(static-lib): $(core-dirs)
 	ar rcs $@ $^
@@ -60,3 +60,6 @@ clean:
 
 swig: FORCE
 	make -f $(PWD)/Makefile.swig swig
+
+swig-link: FORCE
+	make -f $(PWD)/Makefile.swig.link swig
