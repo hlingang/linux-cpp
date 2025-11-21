@@ -19,6 +19,8 @@ SWIG_BUILD := $(PWD)/build/python
 MODEL_LIB := $(DYMIC_LIB)
 CFLAGS += -fPIC
 
+$(info "PWD=$(PWD)")
+
 ifeq ("$(model)", "static")
 	MODEL_LIB := $(STATIC_LIB)
 endif

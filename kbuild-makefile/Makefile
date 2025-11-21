@@ -59,7 +59,7 @@ clean:
 .PHONY: clean FORCE prepare
 
 swig: FORCE
-	make -f $(PWD)/Makefile.swig swig
+	make -f $(PWD)/scripts/Makefile.swig swig
 
 swig-link: FORCE
-	make -f $(PWD)/Makefile.swig.link swig model=$(model)
+	make -f $(PWD)/scripts/Makefile.swig.link swig model=$(model)
