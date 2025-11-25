@@ -16,13 +16,13 @@ WRAP_SRC := $(MODULE_DIR)/$(MODULE_NAME)_wrap.c
 DYMIC_LIB := $(PWD)/build/lib/lib.so
 STATIC_LIB := $(PWD)/build/lib/lib.a
 SWIG_BUILD := $(PWD)/build/python
-MODEL_LIB := $(DYMIC_LIB)
+MODULE_LIB := $(DYMIC_LIB)
 CFLAGS += -fPIC
 
 $(info "PWD=$(PWD)")
 
-ifeq ("$(model)", "static")
-	MODEL_LIB := $(STATIC_LIB)
+ifeq ("$(mode)", "static")
+	MODULE_LIB := $(STATIC_LIB)
 endif
 
 all:$(MODULE_OBJ) install
@@ -31,7 +31,7 @@ $(WRAP_OBJ):$(WRAP_SRC) prepare FORCE
 	gcc -c $(CFLAGS) -o $@ $< -I. -I./include
 
 $(MODULE_OBJ): $(WRAP_OBJ)
-	gcc -shared $(LDFLAGS) -Wl,--whole-archive  -o $@ $^ $(MODEL_LIB) -Wl,--no-whole-archive
+	gcc -shared $(LDFLAGS) -Wl,--whole-archive  -o $@ $^ $(MODULE_LIB) -Wl,--no-whole-archive
 
 
 install:
