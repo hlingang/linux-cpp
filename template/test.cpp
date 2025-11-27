@@ -62,8 +62,8 @@ template <> struct OR< false, false > : _false_type
 {
 };
 // OR 结构递推公式
-template < bool cond1, bool cond2, bool cond3, bool... condn >
-struct OR< cond1, cond2, cond3, condn... > : OR< cond1, OR< cond2, cond3, condn... >::value >
+template < bool cond1, bool cond2,  bool... condn >
+struct OR< cond1, cond2, condn... > : OR< cond1, OR< cond2, condn... >::value >
 {
 };
 // AND 结构通用模板
@@ -87,8 +87,8 @@ template <> struct AND< true, true > : _true_type
 {
 };
 // AND 结构递推模板
-template < bool cond1, bool cond2, bool cond3, bool... condn >
-struct AND< cond1, cond2, cond3, condn... > : AND< cond1, AND< cond2, cond3, condn... >::value >
+template < bool cond1, bool cond2, bool... condn >
+struct AND< cond1, cond2, condn... > : AND< cond1, AND< cond2, condn... >::value >
 {
 };
 // 通用型辅助结构

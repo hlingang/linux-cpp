@@ -27,7 +27,7 @@ tuple_impl<0, int, double, std::string, char>           // (t1)
 
 int main()
 {
-    ns_tuple_impl::tuple_impl<0, int, double, std::string, char> t1(42, 3.14, "Hello, World!", 'A');
+    ns_tuple_impl::tuple_impl<0, int, double, char, std::string> t1(42, 3.14, 'A', "Hello, World!" );
     std::cout << ns_tuple_impl::get<2>(t1) << std::endl;
     return 0;
 }

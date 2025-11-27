@@ -2,9 +2,9 @@
 #include <typeinfo>
 namespace ns_tuple_impl
 {
-template<size_t Idx, typename... Types> struct tuple_impl;
+template<size_t Idx, typename... Types> struct tuple_impl; // 1个或者多个参数(通用模板)
 
-template<size_t Idx, typename Head> struct BaseHead
+template<size_t Idx, typename Head> struct BaseHead   // 2个参数(特例模板)
 {
     BaseHead(): _M_head() {}
     BaseHead(const Head& head): _M_head(head) {std::cout << "Constructing BaseHead index " << Idx << ", Head: " << head << std::endl; }
@@ -12,7 +12,7 @@ template<size_t Idx, typename Head> struct BaseHead
     Head _M_head;
 };
 
-template<size_t Idx, typename Head, typename... Tail>
+template<size_t Idx, typename Head, typename... Tail> // 2个或者多个参数(递推模板)
 struct tuple_impl<Idx, Head, Tail...>:public tuple_impl<Idx + 1, Tail...>, BaseHead<Idx, Head>
 {
     typedef tuple_impl<Idx + 1, Tail...> _Inherited;

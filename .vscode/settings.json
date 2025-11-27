@@ -1,5 +1,5 @@
 {
-	"editor.formatOnSave": true,
+	"editor.formatOnSave": false,
 	"C_Cpp.intelliSenseEngine": "disabled",
 	"clangd.path": "clangd", // 直接使用环境变量
 	"clangd.arguments": [
@@ -33,13 +33,12 @@
 		"-I/usr/src/linux-headers-6.2.0-36-generic/arch/x86/include",
 		"-I/usr/src/linux-headers-6.2.0-36-generic/arch/x86/include/generated",
 		"-I/usr/src/linux-headers-6.2.0-36-generic/arch/ia64/include",
-
 		"-I/usr/src/linux-headers-5.15.0-89-generic/include",
 		"-I/usr/src/linux-headers-5.15.0-89-generic/usr/include",
 		"-I/usr/src/linux-headers-5.15.0-89-generic/arch/x86/include",
 		"-I/usr/src/linux-headers-5.15.0-89-generic/arch/x86/include/generated",
 		"-I/usr/src/linux-headers-5.15.0-89-generic/arch/ia64/include",
 	],
-	"cmake.sourceDirectory": "/home/huanglingang/project/linux-cpp/jsoncpp",
+	"cmake.sourceDirectory": "/home/huanglingang/Linux/linux-cpp/jsoncpp",
 	"cmake.options.statusBarVisibility": "visible"
 }
