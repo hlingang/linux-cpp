@@ -129,7 +129,7 @@ void work_thread_func()
     list_mutex.lock();
     for ( ;; )
     {
-        list_move( &work.node, &work_list );  // 保证聊表添加的安全性，避免重复添加
+        list_move( &work.node, &work_list );  // 保证链表添加的安全性，避免重复添加
         cout << "Thread " << work.who << " added to work list." << std::endl;
         cout << "Current work list size: " << list_size( &work_list ) << std::endl;
         list_mutex.unlock();
