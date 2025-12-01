@@ -10,6 +10,7 @@
 
 using namespace std;
 
+static const int e_exit    = -2;
 static const int e_init    = -1;
 static const int e_running = 0;
 static const int e_done    = 1;
@@ -84,6 +85,7 @@ public:
         auto __pthread = make_shared< std::thread >( [ this, id ]() -> void {
             ParallelThread& t = this->_M_data[ id ];
             t.thread_id       = this_thread::get_id();
+            t.index           = id;
             for ( ;; )
             {
                 do
@@ -91,10 +93,11 @@ public:
                     std::unique_lock< std::mutex > lk( this->_M_mtx );
                     t.status = e_running;
                     t.ready  = 1;  // start 前必须保证所有的线程 ready
+                    printf( "Thread[%s] Ready\n", get_thread_id( this_thread::get_id() ).c_str() );
                     this->start_cv.wait(
-                        lk, [ this, &t ] { return ( this->_M_status == e_running && t.call != nullptr ); } );
+                        lk, [ this, &t ] { return ( this->_M_status == e_exit || this->_M_status == e_running ); } );
                 } while ( 0 );
-                if ( this->_M_exit )
+                if ( this->_M_status == e_exit )
                 {
                     // printf( "Thread[%s] exit\n", get_thread_id( this_thread::get_id() ).c_str() );
                     t.exit = 1;
@@ -200,13 +203,31 @@ public:
         }
         this->_M_mtx.unlock();
     }
-    void Stop()
+    void WakeUp()
     {
         this->_M_mtx.lock();
-        this->_M_exit = 1;
+        start_cv.notify_all();
         this->_M_mtx.unlock();
-        Start();
+    }
+    void Stop()
+    {
+        WaitReady();  // 等待所有线程 Ready
+        this->_M_mtx.lock();
+        this->_M_status = e_exit;
+        this->_M_mtx.unlock();
+        WakeUp();
         WaitExit();
+        Reset();
+    }
+    void Reset()
+    {
+        for ( auto& t : this->_M_data )
+        {
+            if ( t.status == e_init )
+                continue;
+            __SetUp( t.index, nullptr, nullptr, nullptr );
+            this->_M_threads[ t.index ] = nullptr;
+        }
     }
     void Wait()
     {

@@ -29,7 +29,7 @@ int main()
     {
         p->Operation( i, ( void* )func, ( void* )&input[ i ], ( void* )&output[ i ] );
     }
-    for ( int id = 0; id < 10000; id++ )
+    for ( int id = 0; id < 1000; id++ )
     {
         p->Start();
         p->Wait();
