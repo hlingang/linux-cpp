@@ -29,7 +29,7 @@ int main()
     {
         p->Operation( i, ( void* )func, ( void* )&input[ i ], ( void* )&output[ i ] );
     }
-    for ( int id = 0; id < 10; id++ )
+    for ( int id = 0; id < 10000; id++ )
     {
         p->Start();
         p->Wait();
@@ -39,4 +39,6 @@ int main()
         }
         printf( "----------------------------------------------------\n" );
     }
+    p->Stop();
+    return 0;
 }
