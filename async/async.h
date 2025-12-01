@@ -24,7 +24,7 @@ std::string get_thread_id( thread::id __id )
 class ParallelWork
 {
 public:
-    struct ParallelThread
+    struct ThreadWrok
     {
         int             status;
         int             ready;
@@ -36,36 +36,36 @@ public:
         void*                    ret;    // return value
         ParallelWork*            pWork;
         shared_ptr< std::mutex > mtx;
-        ParallelThread()
+        ThreadWrok()
             : status( e_init ), ready( 0 ), index( -1 ), exit( 0 ), thread_id(), call( nullptr ), args( nullptr ),
               pWork( nullptr )
         {
         }
-        ParallelThread( const ParallelThread& t )            = default;
-        ParallelThread& operator=( const ParallelThread& t ) = default;
-        ParallelThread( ParallelThread&& t ) : ParallelThread( t ) {};
+        ThreadWrok( const ThreadWrok& t )            = default;
+        ThreadWrok& operator=( const ThreadWrok& t ) = default;
+        ThreadWrok( ThreadWrok&& t ) : ThreadWrok( t ) {};
     };
     int                                      _M_status;
     std::mutex                               _M_mtx;
     size_t                                   _M_sz;
     int                                      _M_exit;
     std::vector< shared_ptr< std::thread > > _M_threads;
-    std::vector< ParallelThread >            _M_data;
+    std::vector< ThreadWrok >                _M_works;
     condition_variable                       start_cv;  // start
     condition_variable                       done_cv;   // end
     ParallelWork( size_t sz = 32 ) : _M_status( e_init ), _M_sz( sz ), _M_exit( 0 )
     {
         _M_threads.resize( sz );
-        _M_data.resize( sz );
+        _M_works.resize( sz );
         SetUp();
     }
 
     void Operation( int id, void* func, void* args, void* ret )
     {
-        _M_data[ id ].call   = ( void ( * )( void*, void* ) )func;
-        _M_data[ id ].args   = args;
-        _M_data[ id ].ret    = ret;
-        _M_data[ id ].status = e_running;
+        _M_works[ id ].call   = ( void ( * )( void*, void* ) )func;
+        _M_works[ id ].args   = args;
+        _M_works[ id ].ret    = ret;
+        _M_works[ id ].status = e_running;
         if ( !_M_threads[ id ] )
         {
             auto __pthread = __CreateThread( id );
@@ -83,9 +83,9 @@ public:
     shared_ptr< std::thread > __CreateThread( int id )
     {
         auto __pthread = make_shared< std::thread >( [ this, id ]() -> void {
-            ParallelThread& t = this->_M_data[ id ];
-            t.thread_id       = this_thread::get_id();
-            t.index           = id;
+            ThreadWrok& t = this->_M_works[ id ];
+            t.thread_id   = this_thread::get_id();
+            t.index       = id;
             for ( ;; )
             {
                 do
@@ -110,7 +110,7 @@ public:
                 this->_M_mtx.lock();
                 t.status = e_done;
                 int id   = 0;
-                for ( auto& tt : this->_M_data )
+                for ( auto& tt : this->_M_works )
                 {
                     if ( tt.status == e_init )
                         continue;
@@ -135,11 +135,11 @@ public:
     }
     void __SetUp( int id, void ( *call )( void*, void* ), void* args, void* ret )
     {
-        _M_data[ id ].call   = call;
-        _M_data[ id ].args   = args;
-        _M_data[ id ].ret    = ret;
-        _M_data[ id ].pWork  = this;
-        _M_data[ id ].status = e_init;
+        _M_works[ id ].call   = call;
+        _M_works[ id ].args   = args;
+        _M_works[ id ].ret    = ret;
+        _M_works[ id ].pWork  = this;
+        _M_works[ id ].status = e_init;
     }
     void Start()
     {
@@ -152,7 +152,7 @@ public:
             this->_M_mtx.lock();
         }
         this->_M_status = e_running;
-        for ( auto& t : this->_M_data )
+        for ( auto& t : this->_M_works )
         {
             t.ready = 0;  // 清除 prepare 标志
         }
@@ -161,7 +161,7 @@ public:
     }
     bool AllReady()
     {
-        for ( const auto& t : this->_M_data )
+        for ( const auto& t : this->_M_works )
         {
             if ( t.status == e_init )
                 continue;
@@ -172,7 +172,7 @@ public:
     }
     bool AllExit()
     {
-        for ( const auto& t : this->_M_data )
+        for ( const auto& t : this->_M_works )
         {
             if ( t.status == e_init )
                 continue;
@@ -221,7 +221,7 @@ public:
     }
     void Reset()
     {
-        for ( auto& t : this->_M_data )
+        for ( auto& t : this->_M_works )
         {
             if ( t.status == e_init )
                 continue;
