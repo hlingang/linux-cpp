@@ -29,16 +29,29 @@ int main()
     {
         p->Operation( i, ( void* )func, ( void* )&input[ i ], ( void* )&output[ i ] );
     }
-    for ( int id = 0; id < 10000; id++ )
+    printf( "1. ==============================================================\n" );
+    for ( int id = 0; id < 1000; id++ )
     {
         p->Start();
         p->Wait();
         for ( int i = 0; i < sz; i++ )
         {
-            printf( "[%d] Output[%d] = %d\n", id, i, output[ i ] );
+            printf( "[%d] Output[%d] = %d\n", 1, i, output[ i ] );
         }
-        printf( "----------------------------------------------------\n" );
     }
     p->Stop();
+    for ( int i = 0; i < sz; ++i )
+    {
+        p->Operation( i, ( void* )func, ( void* )&input[ i ], ( void* )&output[ i ] );
+    }
+    p->Start();
+    p->Wait();
+    printf( "2. ==============================================================\n" );
+    for ( int i = 0; i < sz; i++ )
+    {
+        printf( "[%d] Output[%d] = %d\n", 2, i, output[ i ] );
+    }
+    p->Stop();
+
     return 0;
 }

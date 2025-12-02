@@ -79,13 +79,12 @@ public:
     int                       _M_status;
     std::mutex                _M_mtx;
     size_t                    _M_sz;
-    int                       _M_exit;
     std::vector< WorkThread > _M_threads;
     condition_variable        _M_start_cv;  // start
     condition_variable        _M_done_cv;   // end
     unsigned long             _M_start_ts;
     unsigned long             _M_done_ts;
-    ParallelWork( size_t sz = 32 ) : _M_status( e_init ), _M_sz( sz ), _M_exit( 0 ), _M_start_ts( 0 ), _M_done_ts( 0 )
+    ParallelWork( size_t sz = 32 ) : _M_status( e_init ), _M_sz( sz ), _M_start_ts( 0 ), _M_done_ts( 0 )
     {
         _M_threads.resize( sz );
         SetUp();
@@ -109,7 +108,7 @@ public:
     {
         for ( int i = 0; i < _M_sz; ++i )
         {
-            __SetUp( i, nullptr, nullptr, nullptr );
+            __InitEntry( i, nullptr, nullptr, nullptr );
         }
     }
     // 线程启动入参为当前线程的直接管理对象
@@ -163,13 +162,17 @@ public:
         } );
         return __pthread;
     }
-    void __SetUp( int id, void ( *call )( void*, void* ), void* args, void* ret )
+    void __InitEntry( int id, void ( *call )( void*, void* ), void* args, void* ret )
     {
-        _M_threads[ id ].call   = call;
-        _M_threads[ id ].args   = args;
-        _M_threads[ id ].ret    = ret;
-        _M_threads[ id ].pWork  = this;
-        _M_threads[ id ].status = e_init;
+        _M_threads[ id ].ready   = 0;
+        _M_threads[ id ].exit    = 0;
+        _M_threads[ id ].index   = id;
+        _M_threads[ id ].call    = call;
+        _M_threads[ id ].args    = args;
+        _M_threads[ id ].ret     = ret;
+        _M_threads[ id ].pWork   = this;
+        _M_threads[ id ].status  = e_init;
+        _M_threads[ id ].pThread = nullptr;
     }
     void WakeUp()
     {
@@ -189,17 +192,17 @@ public:
     }
     void Reset()
     {
+        this->_M_status   = e_init;
+        this->_M_start_ts = this->_M_done_ts = 0;
         for ( auto& t : this->_M_threads )
         {
             if ( t.status == e_init )
                 continue;
-            __SetUp( t.index, nullptr, nullptr, nullptr );
-            t.pThread = nullptr;
+            __InitEntry( t.index, nullptr, nullptr, nullptr );
         }
     }
     void Start()
     {
-
         WaitReady();
         this->_M_mtx.lock();
         this->_M_status = e_running;
