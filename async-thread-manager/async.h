@@ -117,21 +117,7 @@ public:
                 wkthread->call( wkthread->args, wkthread->ret );
                 wkthread->pWork->_M_mtx.lock();
                 wkthread->status = e_done;
-                int id           = 0;
-                for ( auto& tt : wkthread->pWork->_M_threads )
-                {
-                    if ( tt.status == e_init )
-                        continue;
-                    if ( tt.status == e_running )
-                        goto still_busy;
-                }
-                printf( "All Finish[thread:%s]\n", get_thread_id( this_thread::get_id() ).c_str() );
-                wkthread->pWork->_M_status = e_done;
-                wkthread->pWork->_M_done_cv.notify_all();  // 唤醒所有子线程
-                wkthread->pWork->_M_mtx.unlock();
-                continue;
-            still_busy:
-                do
+                if ( wkthread->pWork->IsBusy() )
                 {
                     wkthread->pWork->_M_mtx.unlock();
                     std::unique_lock< std::mutex > lk( wkthread->pWork->_M_mtx );
@@ -139,7 +125,14 @@ public:
                     wkthread->pWork->_M_done_cv.wait(
                         lk, [ wkthread ] { return ( wkthread->pWork->_M_status == e_done ); } );
                     wkthread->last_wake_ts = chrono::system_clock::now().time_since_epoch().count();
-                } while ( 0 );
+                }
+                else
+                {
+                    printf( "All Finish[thread:%s]\n", get_thread_id( this_thread::get_id() ).c_str() );
+                    wkthread->pWork->_M_status = e_done;
+                    wkthread->pWork->_M_done_cv.notify_all();  // 唤醒所有子线程
+                    wkthread->pWork->_M_mtx.unlock();
+                }
             }
         } );
         return __pthread;
@@ -151,6 +144,17 @@ public:
         _M_threads[ id ].ret    = ret;
         _M_threads[ id ].pWork  = this;
         _M_threads[ id ].status = e_init;
+    }
+    bool IsBusy()
+    {
+        for ( const auto& t : this->_M_threads )
+        {
+            if ( t.status == e_init )
+                continue;
+            if ( t.status == e_running )
+                return true;
+        }
+        return false;
     }
     bool IsReady()
     {
@@ -219,7 +223,7 @@ public:
             if ( t.status == e_init )
                 continue;
             __SetUp( t.index, nullptr, nullptr, nullptr );
-            this->_M_threads[ t.index ].pThread = nullptr;
+            t.pThread = nullptr;
         }
     }
     void Start()
