@@ -96,7 +96,6 @@ public:
         _M_threads[ id ].args   = args;
         _M_threads[ id ].ret    = ret;
         _M_threads[ id ].status = e_running;
-        _M_threads[ id ].index  = id;
         if ( !_M_threads[ id ].pThread )
         {
             auto __pthread = __CreateThread( &_M_threads[ id ] );
@@ -140,24 +139,24 @@ public:
                 if ( wkthread->call == nullptr )
                     continue;
                 wkthread->call( wkthread->args, wkthread->ret );
-                wkthread->pWork->_M_mtx.lock();
-                wkthread->status = e_done;
-                if ( wkthread->pWork->IsBusy() )
+                do
                 {
-                    wkthread->pWork->_M_mtx.unlock();
                     std::unique_lock< std::mutex > lk( wkthread->pWork->_M_mtx );
-                    wkthread->last_sleep_ts = chrono::system_clock::now().time_since_epoch().count();
-                    wkthread->pWork->_M_done_cv.wait(
-                        lk, [ wkthread ] { return ( wkthread->pWork->_M_status == e_done ); } );
-                    wkthread->last_wake_ts = chrono::system_clock::now().time_since_epoch().count();
-                }
-                else
-                {
-                    printf( "All Finish[thread:%s]\n", get_thread_id( this_thread::get_id() ).c_str() );
-                    wkthread->pWork->_M_status = e_done;
-                    wkthread->pWork->_M_done_cv.notify_all();  // 唤醒所有子线程
-                    wkthread->pWork->_M_mtx.unlock();
-                }
+                    wkthread->status = e_done;
+                    if ( wkthread->pWork->IsBusy() )
+                    {
+                        wkthread->last_sleep_ts = chrono::system_clock::now().time_since_epoch().count();
+                        wkthread->pWork->_M_done_cv.wait(
+                            lk, [ wkthread ] { return ( wkthread->pWork->_M_status == e_done ); } );
+                        wkthread->last_wake_ts = chrono::system_clock::now().time_since_epoch().count();
+                    }
+                    else
+                    {
+                        printf( "All Finish[thread:%s]\n", get_thread_id( this_thread::get_id() ).c_str() );
+                        wkthread->pWork->_M_status = e_done;
+                        wkthread->pWork->_M_done_cv.notify_all();  // 唤醒所有子线程
+                    }
+                } while ( 0 );
             }
         } );
         return __pthread;
@@ -176,16 +175,17 @@ public:
     }
     void WakeUp()
     {
-        this->_M_mtx.lock();
+        std::lock_guard< std::mutex > lk( this->_M_mtx );
         _M_start_cv.notify_all();
-        this->_M_mtx.unlock();
     }
     void Stop()
     {
         WaitReady();  // 等待所有线程 Ready
-        this->_M_mtx.lock();
-        this->_M_status = e_exit;
-        this->_M_mtx.unlock();
+        do
+        {
+            std::lock_guard< std::mutex > lk( this->_M_mtx );
+            this->_M_status = e_exit;
+        } while ( 0 );
         WakeUp();
         WaitExit();
         Reset();
@@ -204,7 +204,7 @@ public:
     void Start()
     {
         WaitReady();
-        this->_M_mtx.lock();
+        std::lock_guard< std::mutex > lk( this->_M_mtx );
         this->_M_status = e_running;
         for ( auto& t : this->_M_threads )
         {
@@ -212,7 +212,6 @@ public:
         }
         _M_start_ts = chrono::system_clock::now().time_since_epoch().count();
         _M_start_cv.notify_all();
-        this->_M_mtx.unlock();
     }
     void Wait()
     {
