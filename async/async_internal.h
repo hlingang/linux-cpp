@@ -21,34 +21,31 @@ std::string get_thread_id( thread::id __id )
     ss << __id;
     return ss.str();
 }
-class ParallelWork;
-struct WorkThread
-{
-    int             status;
-    int             ready;
-    int             index;
-    int             exit;
-    std::thread::id thread_id;
-    void ( *call )( void*, void* );  // function
-    void*                     args;  // args
-    void*                     ret;   // return value
-    ParallelWork*             pWork;
-    shared_ptr< std::mutex >  mtx;
-    shared_ptr< std::thread > pThread;
-    unsigned long             last_sleep_ts;
-    unsigned long             last_wake_ts;
-    WorkThread()
-        : status( e_init ), ready( 0 ), index( -1 ), exit( 0 ), thread_id(), call( nullptr ), args( nullptr ),
-          pWork( nullptr ), pThread( nullptr ), last_sleep_ts( 0 ), last_wake_ts( 0 )
-    {
-    }
-    WorkThread( const WorkThread& t )            = default;
-    WorkThread& operator=( const WorkThread& t ) = default;
-    WorkThread( WorkThread&& t ) : WorkThread( t ) {};
-};
 class ParallelWork
 {
 public:
+    struct WorkThread
+    {
+        int             status;
+        int             ready;
+        int             index;
+        int             exit;
+        std::thread::id thread_id;
+        void ( *call )( void*, void* );  // function
+        void*                     args;  // args
+        void*                     ret;   // return value
+        ParallelWork*             pWork;
+        shared_ptr< std::mutex >  mtx;
+        shared_ptr< std::thread > pThread;
+        WorkThread()
+            : status( e_init ), ready( 0 ), index( -1 ), exit( 0 ), thread_id(), call( nullptr ), args( nullptr ),
+              pWork( nullptr ), pThread( nullptr )
+        {
+        }
+        WorkThread( const WorkThread& t )            = default;
+        WorkThread& operator=( const WorkThread& t ) = default;
+        WorkThread( WorkThread&& t ) : WorkThread( t ) {};
+    };
     int                       _M_status;
     std::mutex                _M_mtx;
     size_t                    _M_sz;
@@ -56,9 +53,7 @@ public:
     std::vector< WorkThread > _M_threads;
     condition_variable        _M_start_cv;  // start
     condition_variable        _M_done_cv;   // end
-    unsigned long             _M_start_ts;
-    unsigned long             _M_done_ts;
-    ParallelWork( size_t sz = 32 ) : _M_status( e_init ), _M_sz( sz ), _M_exit( 0 ), _M_start_ts( 0 ), _M_done_ts( 0 )
+    ParallelWork( size_t sz = 32 ) : _M_status( e_init ), _M_sz( sz ), _M_exit( 0 )
     {
         _M_threads.resize( sz );
         SetUp();
@@ -70,10 +65,9 @@ public:
         _M_threads[ id ].args   = args;
         _M_threads[ id ].ret    = ret;
         _M_threads[ id ].status = e_running;
-        _M_threads[ id ].index  = id;
         if ( !_M_threads[ id ].pThread )
         {
-            auto __pthread = __CreateThread( &_M_threads[ id ] );
+            auto __pthread = __CreateThread( id );
             __pthread->detach();
             _M_threads[ id ].pThread = __pthread;
         }
@@ -85,38 +79,37 @@ public:
             __SetUp( i, nullptr, nullptr, nullptr );
         }
     }
-    shared_ptr< std::thread > __CreateThread( WorkThread* wkthread )
+    shared_ptr< std::thread > __CreateThread( int id )
     {
-        auto __pthread = make_shared< std::thread >( [ wkthread ]() -> void {
-            wkthread->thread_id = this_thread::get_id();
+        auto __pthread = make_shared< std::thread >( [ this, id ]() -> void {
+            WorkThread& t = this->_M_threads[ id ];
+            t.thread_id   = this_thread::get_id();
+            t.index       = id;
             for ( ;; )
             {
                 do
                 {
-                    std::unique_lock< std::mutex > lk( wkthread->pWork->_M_mtx );
-                    wkthread->status = e_running;
-                    wkthread->ready  = 1;  // start 前必须保证所有的线程 ready
-                    // printf( "Thread[%s] Ready\n", get_thread_id( this_thread::get_id() ).c_str() );
-                    wkthread->last_sleep_ts = chrono::system_clock::now().time_since_epoch().count();
-                    wkthread->pWork->_M_start_cv.wait( lk, [ wkthread ] {
-                        return ( wkthread->pWork->_M_status == e_exit || wkthread->pWork->_M_status == e_running );
-                    } );
-                    wkthread->last_wake_ts = chrono::system_clock::now().time_since_epoch().count();
+                    std::unique_lock< std::mutex > lk( this->_M_mtx );
+                    t.status = e_running;
+                    t.ready  = 1;  // start 前必须保证所有的线程 ready
+                    printf( "Thread[%s] Ready\n", get_thread_id( this_thread::get_id() ).c_str() );
+                    this->_M_start_cv.wait(
+                        lk, [ this, &t ] { return ( this->_M_status == e_exit || this->_M_status == e_running ); } );
                 } while ( 0 );
-                if ( wkthread->pWork->_M_status == e_exit )
+                if ( this->_M_status == e_exit )
                 {
                     // printf( "Thread[%s] exit\n", get_thread_id( this_thread::get_id() ).c_str() );
-                    wkthread->exit = 1;
+                    t.exit = 1;
                     return;
                 }
                 // printf( "Thread[%s] start work\n", get_thread_id( this_thread::get_id() ).c_str() );
-                if ( wkthread->call == nullptr )
+                if ( t.call == nullptr )
                     continue;
-                wkthread->call( wkthread->args, wkthread->ret );
-                wkthread->pWork->_M_mtx.lock();
-                wkthread->status = e_done;
-                int id           = 0;
-                for ( auto& tt : wkthread->pWork->_M_threads )
+                t.call( t.args, t.ret );
+                this->_M_mtx.lock();
+                t.status = e_done;
+                int id   = 0;
+                for ( auto& tt : this->_M_threads )
                 {
                     if ( tt.status == e_init )
                         continue;
@@ -124,19 +117,16 @@ public:
                         goto still_busy;
                 }
                 printf( "All Finish[thread:%s]\n", get_thread_id( this_thread::get_id() ).c_str() );
-                wkthread->pWork->_M_status = e_done;
-                wkthread->pWork->_M_done_cv.notify_all();  // 唤醒所有子线程
-                wkthread->pWork->_M_mtx.unlock();
+                this->_M_status = e_done;
+                this->_M_done_cv.notify_all();  // 唤醒所有子线程
+                this->_M_mtx.unlock();
                 continue;
             still_busy:
                 do
                 {
-                    wkthread->pWork->_M_mtx.unlock();
-                    std::unique_lock< std::mutex > lk( wkthread->pWork->_M_mtx );
-                    wkthread->last_sleep_ts = chrono::system_clock::now().time_since_epoch().count();
-                    wkthread->pWork->_M_done_cv.wait(
-                        lk, [ wkthread ] { return ( wkthread->pWork->_M_status == e_done ); } );
-                    wkthread->last_wake_ts = chrono::system_clock::now().time_since_epoch().count();
+                    this->_M_mtx.unlock();
+                    std::unique_lock< std::mutex > lk( this->_M_mtx );
+                    this->_M_done_cv.wait( lk, [ this, &t ] { return ( this->_M_status == e_done ); } );
                 } while ( 0 );
             }
         } );
@@ -154,7 +144,7 @@ public:
     {
         this->_M_mtx.lock();
         // 忙等优化 //(短时间等待)
-        while ( !this->IsReady() )
+        while ( !this->AllReady() )
         {
             this->_M_mtx.unlock();
             this_thread::yield();
@@ -165,11 +155,10 @@ public:
         {
             t.ready = 0;  // 清除 prepare 标志
         }
-        _M_start_ts = chrono::system_clock::now().time_since_epoch().count();
         _M_start_cv.notify_all();
         this->_M_mtx.unlock();
     }
-    bool IsReady()
+    bool AllReady()
     {
         for ( const auto& t : this->_M_threads )
         {
@@ -180,7 +169,7 @@ public:
         }
         return true;
     }
-    bool IsExit()
+    bool AllExit()
     {
         for ( const auto& t : this->_M_threads )
         {
@@ -194,7 +183,7 @@ public:
     void WaitReady()
     {
         this->_M_mtx.lock();
-        while ( !this->IsReady() )
+        while ( !this->AllReady() )
         {
             this->_M_mtx.unlock();
             this_thread::yield();
@@ -205,7 +194,7 @@ public:
     void WaitExit()
     {
         this->_M_mtx.lock();
-        while ( !this->IsExit() )
+        while ( !this->AllExit() )
         {
             this->_M_mtx.unlock();
             this_thread::yield();
@@ -243,7 +232,6 @@ public:
     {
         std::unique_lock< std::mutex > lk( this->_M_mtx );
         _M_done_cv.wait( lk, [ this ] { return this->_M_status == e_done; } );  // wait all done
-        _M_done_ts = chrono::system_clock::now().time_since_epoch().count();
     }
 };  // namespace async
 inline ParallelWork* GetParallelWork( size_t sz )
