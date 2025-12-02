@@ -86,6 +86,7 @@ public:
             __SetUp( i, nullptr, nullptr, nullptr );
         }
     }
+    // 线程启动入参为当前线程的直接管理对象
     shared_ptr< std::thread > __CreateThread( WorkThread* wkthread )
     {
         auto __pthread = make_shared< std::thread >( [ wkthread ]() -> void {
@@ -150,25 +151,6 @@ public:
         _M_threads[ id ].ret    = ret;
         _M_threads[ id ].pWork  = this;
         _M_threads[ id ].status = e_init;
-    }
-    void Start()
-    {
-        this->_M_mtx.lock();
-        // 忙等优化 //(短时间等待)
-        while ( !this->IsReady() )
-        {
-            this->_M_mtx.unlock();
-            this_thread::yield();
-            this->_M_mtx.lock();
-        }
-        this->_M_status = e_running;
-        for ( auto& t : this->_M_threads )
-        {
-            t.ready = 0;  // 清除 prepare 标志
-        }
-        _M_start_ts = chrono::system_clock::now().time_since_epoch().count();
-        _M_start_cv.notify_all();
-        this->_M_mtx.unlock();
     }
     bool IsReady()
     {
@@ -239,6 +221,20 @@ public:
             __SetUp( t.index, nullptr, nullptr, nullptr );
             this->_M_threads[ t.index ].pThread = nullptr;
         }
+    }
+    void Start()
+    {
+
+        WaitReady();
+        this->_M_mtx.lock();
+        this->_M_status = e_running;
+        for ( auto& t : this->_M_threads )
+        {
+            t.ready = 0;  // 清除 prepare 标志
+        }
+        _M_start_ts = chrono::system_clock::now().time_since_epoch().count();
+        _M_start_cv.notify_all();
+        this->_M_mtx.unlock();
     }
     void Wait()
     {
