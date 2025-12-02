@@ -9,7 +9,8 @@
 #include <unistd.h>
 
 using namespace std;
-
+namespace ns_async
+{
 static const int e_exit    = -2;
 static const int e_init    = -1;
 static const int e_running = 0;
@@ -251,3 +252,4 @@ inline ParallelWork* GetParallelWork( size_t sz )
     static ParallelWork instance( sz );
     return &instance;
 }
+}  // namespace ns_async

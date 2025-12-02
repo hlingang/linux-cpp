@@ -21,15 +21,15 @@ void func( void* args, void* ret )
 
 int main()
 {
-    int           input[ 8 ]{ 9, 2, 3, 4, 5, 6, 7, 8 };
-    int           output[ 8 ]{ 0, 0, 0, 0, 0, 0, 0, 0 };
-    int           sz = 8;
-    ParallelWork* p  = GetParallelWork( sz );
+    int                     input[ 8 ]{ 9, 2, 3, 4, 5, 6, 7, 8 };
+    int                     output[ 8 ]{ 0, 0, 0, 0, 0, 0, 0, 0 };
+    int                     sz = 8;
+    ns_async::ParallelWork* p  = ns_async::GetParallelWork( sz );
     for ( int i = 0; i < sz; ++i )
     {
         p->Operation( i, ( void* )func, ( void* )&input[ i ], ( void* )&output[ i ] );
     }
-    for ( int id = 0; id < 1000; id++ )
+    for ( int id = 0; id < 10000; id++ )
     {
         p->Start();
         p->Wait();
