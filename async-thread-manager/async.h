@@ -9,6 +9,32 @@
 #include <unistd.h>
 
 using namespace std;
+
+#define DEFINE_TEST_FUNC( name, flag, val, ret ) \
+    bool name()                                  \
+    {                                            \
+        for ( const auto& t : this->_M_threads ) \
+        {                                        \
+            if ( t.status == e_init )            \
+                continue;                        \
+            if ( t.flag == val )                 \
+                return ret;                      \
+        }                                        \
+        return !( ret );                         \
+    }
+#define DEFINE_WAIT_FUNC( name, func ) \
+    void name()                        \
+    {                                  \
+        this->_M_mtx.lock();           \
+        while ( !this->func() )        \
+        {                              \
+            this->_M_mtx.unlock();     \
+            this_thread::yield();      \
+            this->_M_mtx.lock();       \
+        }                              \
+        this->_M_mtx.unlock();         \
+    }
+
 namespace ns_async
 {
 static const int e_exit    = -2;
@@ -145,61 +171,6 @@ public:
         _M_threads[ id ].pWork  = this;
         _M_threads[ id ].status = e_init;
     }
-    bool IsBusy()
-    {
-        for ( const auto& t : this->_M_threads )
-        {
-            if ( t.status == e_init )
-                continue;
-            if ( t.status == e_running )
-                return true;
-        }
-        return false;
-    }
-    bool IsReady()
-    {
-        for ( const auto& t : this->_M_threads )
-        {
-            if ( t.status == e_init )
-                continue;
-            if ( !t.ready )
-                return false;
-        }
-        return true;
-    }
-    bool IsExit()
-    {
-        for ( const auto& t : this->_M_threads )
-        {
-            if ( t.status == e_init )
-                continue;
-            if ( !t.exit )
-                return false;
-        }
-        return true;
-    }
-    void WaitReady()
-    {
-        this->_M_mtx.lock();
-        while ( !this->IsReady() )
-        {
-            this->_M_mtx.unlock();
-            this_thread::yield();
-            this->_M_mtx.lock();
-        }
-        this->_M_mtx.unlock();
-    }
-    void WaitExit()
-    {
-        this->_M_mtx.lock();
-        while ( !this->IsExit() )
-        {
-            this->_M_mtx.unlock();
-            this_thread::yield();
-            this->_M_mtx.lock();
-        }
-        this->_M_mtx.unlock();
-    }
     void WakeUp()
     {
         this->_M_mtx.lock();
@@ -246,6 +217,11 @@ public:
         _M_done_cv.wait( lk, [ this ] { return this->_M_status == e_done; } );  // wait all done
         _M_done_ts = chrono::system_clock::now().time_since_epoch().count();
     }
+    DEFINE_TEST_FUNC( IsBusy, status, e_running, true )
+    DEFINE_TEST_FUNC( IsReady, ready, 0, false )
+    DEFINE_TEST_FUNC( IsExit, exit, 0, false )
+    DEFINE_WAIT_FUNC( WaitReady, IsReady )
+    DEFINE_WAIT_FUNC( WaitExit, IsExit )
 };  // namespace async
 inline ParallelWork* GetParallelWork( size_t sz )
 {
