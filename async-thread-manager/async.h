@@ -22,17 +22,16 @@ using namespace std;
         }                                        \
         return !( ret );                         \
     }
-#define DEFINE_WAIT_FUNC( name, func ) \
-    void name()                        \
-    {                                  \
-        this->_M_mtx.lock();           \
-        while ( !this->func() )        \
-        {                              \
-            this->_M_mtx.unlock();     \
-            this_thread::yield();      \
-            this->_M_mtx.lock();       \
-        }                              \
-        this->_M_mtx.unlock();         \
+#define DEFINE_WAIT_FUNC( name, func )                     \
+    void name()                                            \
+    {                                                      \
+        std::unique_lock< std::mutex > lk( this->_M_mtx ); \
+        while ( !this->func() )                            \
+        {                                                  \
+            lk.unlock();                                   \
+            this_thread::yield();                          \
+            lk.lock();                                     \
+        }                                                  \
     }
 
 namespace ns_async
