@@ -134,7 +134,8 @@ public:
                     wkthread->exit = 1;
                     return;
                 }
-                // printf( "Thread[%s] start work\n", get_thread_id( this_thread::get_id() ).c_str() );
+                printf( "Thread[%s] start work[%llu]\n", get_thread_id( this_thread::get_id() ).c_str(),
+                        wkthread->last_wake_ts );
                 if ( wkthread->call == nullptr )
                     continue;
                 wkthread->call( wkthread->args, wkthread->ret );
@@ -177,7 +178,7 @@ public:
         std::lock_guard< std::mutex > lk( this->_M_mtx );
         _M_start_cv.notify_all();
     }
-    void Stop()
+    void Exit()
     {
         WaitReady();  // 等待所有线程 Ready
         do

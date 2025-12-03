@@ -39,7 +39,7 @@ int main()
             printf( "[%d] Output[%d] = %d\n", 1, i, output[ i ] );
         }
     }
-    p->Stop();
+    p->Exit();
     for ( int i = 0; i < sz; ++i )
     {
         p->Operation( i, ( void* )func, ( void* )&input[ i ], ( void* )&output[ i ] );
@@ -51,7 +51,7 @@ int main()
     {
         printf( "[%d] Output[%d] = %d\n", 2, i, output[ i ] );
     }
-    p->Stop();
+    p->Exit();
     printf( "End. ================================\n" );
     return 0;
 }
