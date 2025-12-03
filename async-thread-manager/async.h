@@ -86,10 +86,10 @@ public:
     ParallelWork( size_t sz = 32 ) : _M_status( e_init ), _M_sz( sz ), _M_start_ts( 0 ), _M_done_ts( 0 )
     {
         _M_threads.resize( sz );
-        SetUp();
+        Init();
     }
 
-    void Operation( int id, void* func, void* args, void* ret )
+    void SetUp( int id, void* func, void* args, void* ret )
     {
         _M_threads[ id ].call   = ( void ( * )( void*, void* ) )func;
         _M_threads[ id ].args   = args;
@@ -102,7 +102,7 @@ public:
             _M_threads[ id ].pThread = __pthread;
         }
     }
-    void SetUp()
+    void Init()
     {
         for ( int i = 0; i < _M_sz; ++i )
         {
@@ -134,7 +134,7 @@ public:
                     wkthread->exit = 1;
                     return;
                 }
-                printf( "Thread[%s] start work[%llu]\n", get_thread_id( this_thread::get_id() ).c_str(),
+                printf( "Thread[%s] start work[%lu]\n", get_thread_id( this_thread::get_id() ).c_str(),
                         wkthread->last_wake_ts );
                 if ( wkthread->call == nullptr )
                     continue;
@@ -178,14 +178,15 @@ public:
         std::lock_guard< std::mutex > lk( this->_M_mtx );
         _M_start_cv.notify_all();
     }
+    void SetExit()
+    {
+        std::lock_guard< std::mutex > lk( this->_M_mtx );
+        this->_M_status = e_exit;
+    }
     void Exit()
     {
         WaitReady();  // 等待所有线程 Ready
-        do
-        {
-            std::lock_guard< std::mutex > lk( this->_M_mtx );
-            this->_M_status = e_exit;
-        } while ( 0 );
+        SetExit();
         WakeUp();
         WaitExit();
         Reset();

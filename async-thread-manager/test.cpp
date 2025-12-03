@@ -27,7 +27,7 @@ int main()
     ns_async::ParallelWork* p  = ns_async::GetParallelWork( sz );
     for ( int i = 0; i < sz; ++i )
     {
-        p->Operation( i, ( void* )func, ( void* )&input[ i ], ( void* )&output[ i ] );
+        p->SetUp( i, ( void* )func, ( void* )&input[ i ], ( void* )&output[ i ] );
     }
     printf( "1. ==================================\n" );
     for ( int id = 0; id < 1000; id++ )
@@ -42,7 +42,7 @@ int main()
     p->Exit();
     for ( int i = 0; i < sz; ++i )
     {
-        p->Operation( i, ( void* )func, ( void* )&input[ i ], ( void* )&output[ i ] );
+        p->SetUp( i, ( void* )func, ( void* )&input[ i ], ( void* )&output[ i ] );
     }
     p->Start();
     p->Wait();
