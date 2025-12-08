@@ -229,9 +229,9 @@ public:
     DEFINE_WAIT_FUNC( WaitReady, IsReady )
     DEFINE_WAIT_FUNC( WaitExit, IsExit )
 };  // namespace async
-inline ParallelWork* GetParallelWork( size_t sz )
+inline shared_ptr< ParallelWork > GetParallelWork( size_t sz )
 {
-    static ParallelWork instance( sz );
-    return &instance;
+    return make_shared< ParallelWork >( sz );
 }
+using ParallelWork_S_ptr_t = shared_ptr< ParallelWork >;
 }  // namespace ns_async
