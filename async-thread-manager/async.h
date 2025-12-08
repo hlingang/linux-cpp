@@ -41,11 +41,15 @@ static const int e_init    = -1;
 static const int e_running = 0;
 static const int e_done    = 1;
 
-std::string get_thread_id( thread::id __id )
+template < typename Tp > inline std::string Stringify( const Tp& __id )
 {
     stringstream ss;
     ss << __id;
     return ss.str();
+}
+template <> inline std::string Stringify( const std::string& __id )
+{
+    return __id;
 }
 class ParallelWork;
 struct WorkThread
@@ -121,7 +125,7 @@ public:
                     std::unique_lock< std::mutex > lk( wkthread->pWork->_M_mtx );
                     wkthread->status = e_running;
                     wkthread->ready  = 1;  // start 前必须保证所有的线程 ready
-                    // printf( "Thread[%s] Ready\n", get_thread_id( this_thread::get_id() ).c_str() );
+                    // printf( "Thread[%s] Ready\n", Stringify( this_thread::get_id() ).c_str() );
                     wkthread->last_sleep_ts = chrono::system_clock::now().time_since_epoch().count();
                     wkthread->pWork->_M_start_cv.wait( lk, [ wkthread ] {
                         return ( wkthread->pWork->_M_status == e_exit || wkthread->pWork->_M_status == e_running );
@@ -130,11 +134,11 @@ public:
                 } while ( 0 );
                 if ( wkthread->pWork->_M_status == e_exit )
                 {
-                    // printf( "Thread[%s] exit\n", get_thread_id( this_thread::get_id() ).c_str() );
+                    // printf( "Thread[%s] exit\n", Stringify( this_thread::get_id() ).c_str() );
                     wkthread->exit = 1;
                     return;
                 }
-                printf( "Thread[%s] start work[%lu]\n", get_thread_id( this_thread::get_id() ).c_str(),
+                printf( "Thread[%s] start work[%lu]\n", Stringify( this_thread::get_id() ).c_str(),
                         wkthread->last_wake_ts );
                 if ( wkthread->call == nullptr )
                     continue;
@@ -152,7 +156,7 @@ public:
                     }
                     else
                     {
-                        printf( "All Finish[thread:%s]\n", get_thread_id( this_thread::get_id() ).c_str() );
+                        printf( "All Finish[thread:%s]\n", Stringify( this_thread::get_id() ).c_str() );
                         wkthread->pWork->_M_status = e_done;
                         wkthread->pWork->_M_done_cv.notify_all();  // 唤醒所有子线程
                     }
