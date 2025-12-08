@@ -99,12 +99,11 @@ public:
         _M_threads[ id ].args   = args;
         _M_threads[ id ].ret    = ret;
         _M_threads[ id ].status = e_running;
-        if ( !_M_threads[ id ].pThread )
-        {
-            auto __pthread = __CreateThread( &_M_threads[ id ] );
-            __pthread->detach();
-            _M_threads[ id ].pThread = __pthread;
-        }
+        if ( _M_threads[ id ].pThread )
+            return;
+        auto __pthread = __CreateThread( &_M_threads[ id ] );
+        __pthread->detach();
+        _M_threads[ id ].pThread = __pthread;
     }
     void Init()
     {
