@@ -56,8 +56,9 @@ template < size_t N > typename _S_tuple_seq< N >::type _S_make_tuple_index()
 // 将 tuple 打包成 可调用对象
 template < typename _Tuple > struct Invoker : public BaseInvoker
 {
-    _Tuple _M_tuple;
+    _Tuple _M_tuple;  // 保存对象实例 传递信息
     Invoker( _Tuple&& _t ) : _M_tuple( std::move( _t ) ) {}
+    // 接口的单一化分离 //
     template < size_t... Is > void _M_invoke( _S_tuple_index< Is... > )
     {
         return std::__invoke( get< Is >( _M_tuple )... );
@@ -91,6 +92,7 @@ public:
     ~InvokerInterface()
     {
         delete _S_invoker;
+        _S_invoker = nullptr;
     }
 
 private:
