@@ -32,19 +32,25 @@ template < size_t... Is > struct _S_tuple_index
 {
 };
 // 递归获取序列 //
+
+// 通用模板
 template < size_t... Is > struct _S_tuple_seq
 {
     using type = __undefined;
 };
+// 递归特例模板
 template < size_t N, size_t... M > struct _S_tuple_seq< N, M... > : _S_tuple_seq< N - 1, N - 1, M... >
 {
 };
+// 特例模板
 template < size_t... Is > struct _S_tuple_seq< 0, 0, Is... >
 {
+    // 保存类型信息
     using type = _S_tuple_index< 0, Is... >;
 };
 template < size_t N > typename _S_tuple_seq< N >::type _S_make_tuple_index()
 {
+    // 通过返回实例对象传递类型信息
     return typename _S_tuple_seq< N >::type();
 }
 // 将 tuple 打包成 可调用对象
@@ -67,6 +73,7 @@ public:
     template < typename Callable, typename... Args > InvokerInterface( Callable&& _f, Args... args )
     {
         using _Tuple = tuple< Callable, Args... >;
+        // 通过创建对象实例 传递信息 [入参] -> [tuple对象] -> [invoker对象]
         _S_invoker =
             _S_make_invoker( _S_make_tuple( std::forward< Callable >( _f ), std::forward< Args >( args )... ) );
         _S_invoker->operator()();
