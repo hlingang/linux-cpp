@@ -14,7 +14,8 @@ using namespace std;
 
 struct BaseInvoker
 {
-    virtual void operator()() {};
+    // virtual interface define
+    virtual void operator()() = 0;
 };
 // 萃取 tuple size
 template < typename... Args > struct _S_tuple_size
@@ -60,10 +61,10 @@ template < typename _Tuple > struct Invoker : public BaseInvoker
         return _M_invoke( _S_make_tuple_index< _S_tuple_size< decltype( _M_tuple ) >::value >() );
     }
 };
-class InvokerWrap
+class InvokerInterface
 {
 public:
-    template < typename Callable, typename... Args > InvokerWrap( Callable&& _f, Args... args )
+    template < typename Callable, typename... Args > InvokerInterface( Callable&& _f, Args... args )
     {
         using _Tuple = tuple< Callable, Args... >;
         _S_invoker =
@@ -80,7 +81,7 @@ public:
     {
         return new Invoker< _Tuple >( std::forward< _Tuple >( _t ) );
     }
-    ~InvokerWrap()
+    ~InvokerInterface()
     {
         delete _S_invoker;
     }

@@ -19,7 +19,7 @@ int main()
     for ( int i = 0; i < 10; i++ )
     {
         snprintf( buf, sizeof( buf ), "I am Invoker-%d", i );
-        InvokerWrap( f, i + 10, buf );
+        InvokerInterface( f, i + 10, buf );
     }
     return 0;
 }
