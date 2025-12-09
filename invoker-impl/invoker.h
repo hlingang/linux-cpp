@@ -34,29 +34,30 @@ template < size_t... Is > struct _S_tuple_index
 // 递归获取序列 //
 
 // 通用模板
-template < size_t... Is > struct _S_tuple_seq
+template < size_t... Is > struct _S_tuple_sequence
 {
     using type = __undefined;
 };
 // 递归特例模板
-template < size_t N, size_t... M > struct _S_tuple_seq< N, M... > : _S_tuple_seq< N - 1, N - 1, M... >
+template < size_t N, size_t... M > struct _S_tuple_sequence< N, M... > : _S_tuple_sequence< N - 1, N - 1, M... >
 {
 };
 // 特例模板
-template < size_t... Is > struct _S_tuple_seq< 0, 0, Is... >
+template < size_t... Is > struct _S_tuple_sequence< 0, 0, Is... >
 {
     // 保存类型信息
     using type = _S_tuple_index< 0, Is... >;
 };
-template < size_t N > typename _S_tuple_seq< N >::type _S_make_tuple_index()
+template < size_t N > typename _S_tuple_sequence< N >::type _S_make_tuple_index()
 {
     // 通过返回实例对象传递类型信息
-    return typename _S_tuple_seq< N >::type();
+    return typename _S_tuple_sequence< N >::type();
 }
 // 将 tuple 打包成 可调用对象
 template < typename _Tuple > struct Invoker : public BaseInvoker
 {
     _Tuple _M_tuple;  // 保存对象实例 传递信息
+    // 通用引用传递参数
     Invoker( _Tuple&& _t ) : _M_tuple( std::move( _t ) ) {}
     // 接口的单一化分离 //
     template < size_t... Is > void _M_invoke( _S_tuple_index< Is... > )
@@ -71,7 +72,8 @@ template < typename _Tuple > struct Invoker : public BaseInvoker
 class InvokerInterface
 {
 public:
-    template < typename Callable, typename... Args > InvokerInterface( Callable&& _f, Args... args )
+    // 通用引用传递参数
+    template < typename Callable, typename... Args > InvokerInterface( Callable&& _f, Args&&... args )
     {
         using _Tuple = tuple< Callable, Args... >;
         // 通过创建对象实例 传递信息 [入参] -> [tuple对象] -> [invoker对象]
