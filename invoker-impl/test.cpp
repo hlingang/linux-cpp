@@ -22,4 +22,6 @@ int main()
         InvokerInterface( f, i + 10, buf );
     }
     return 0;
+
+    shared_ptr< int > ss;
 }
