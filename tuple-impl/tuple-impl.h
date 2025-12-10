@@ -32,7 +32,7 @@ struct _Tuple_impl< N, Tp, Args... > : _Tuple_base< N, Tp >, _Tuple_impl< N + 1,
         : _Base( std::forward< Tp >( _t ) ), _Inherited( std::forward< Args >( args )... )
     {
     }
-    static decltype( _Base::value ) get( const _Tuple_impl& _tl )
+    static auto get( const _Tuple_impl& _tl ) -> decltype( _Base::value )
     {
         return _Base::get( _tl );
     }
@@ -44,7 +44,7 @@ template < typename... Args > struct tuple : _Tuple_impl< 0, Args... >
 };
 // 接口函数定义
 template < size_t N, typename... Args >  // 这里进行自动类型转换 //
-decltype( _Tuple_impl< N, Args... >::_Base::value ) get( const _Tuple_impl< N, Args... >& _t )
+auto get( const _Tuple_impl< N, Args... >& _t ) -> decltype( _Tuple_impl< N, Args... >::_Base::value )
 {
     using _Base = typename _Tuple_impl< N, Args... >::_Base;
     return _Base::get( _t );
