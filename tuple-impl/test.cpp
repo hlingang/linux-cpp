@@ -1,12 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include <iostream>
-#include <algorithm>
-#include <memory>
-#include <tuple>
-#include <sstream>
-#include <thread>
 #include "tuple-impl.h"
 
 using namespace std;
