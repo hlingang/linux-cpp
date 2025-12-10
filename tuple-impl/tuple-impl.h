@@ -1,16 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <thread>
-#include <memory>
-#include <mutex>
-#include <condition_variable>
-#include <sstream>
-#include <string>
-#include <unistd.h>
 #include <utility>
-
-using namespace std;
-
 namespace ns_tuple
 {
 template < size_t N, typename Tp > struct _Tuple_base
