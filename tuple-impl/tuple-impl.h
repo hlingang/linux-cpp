@@ -17,6 +17,7 @@ template < size_t N, typename Tp > struct _Tuple_base
 {
     Tp value;
     _Tuple_base( Tp&& __value ) : value( std::forward< Tp >( __value ) ) {}
+    // 此处定义 get() 函数的目的是为了完成入参类型向基类类型的自动类型转换 //
     static Tp get( const _Tuple_base& _tb )
     {
         return _tb.value;
