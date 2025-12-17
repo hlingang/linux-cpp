@@ -7,6 +7,7 @@
 #include <sstream>
 #include <string>
 #include <unistd.h>
+#include <stdarg.h>
 
 using namespace std;
 
@@ -59,6 +60,8 @@ struct WorkThread
     int             index;
     int             exit;
     std::thread::id thread_id;
+    const char*     thread_name;
+    char            __tname[ 32 ];
     void ( *call )( void*, void* );  // function
     void*                     args;  // args
     void*                     ret;   // return value
@@ -68,9 +71,10 @@ struct WorkThread
     unsigned long             last_sleep_ts;
     unsigned long             last_wake_ts;
     WorkThread()
-        : status( e_init ), ready( 0 ), index( -1 ), exit( 0 ), thread_id(), call( nullptr ), args( nullptr ),
-          pWork( nullptr ), pThread( nullptr ), last_sleep_ts( 0 ), last_wake_ts( 0 )
+        : status( e_init ), ready( 0 ), index( -1 ), exit( 0 ), thread_id(), thread_name( nullptr ), call( nullptr ),
+          args( nullptr ), pWork( nullptr ), pThread( nullptr ), last_sleep_ts( 0 ), last_wake_ts( 0 )
     {
+        memset( __tname, 0x00, sizeof( __tname ) );
     }
     WorkThread( const WorkThread& t )            = default;
     WorkThread& operator=( const WorkThread& t ) = default;
@@ -93,7 +97,8 @@ public:
         Init();
     }
 
-    void SetUp( int id, void* func, void* args, void* ret )
+    void __attribute__( ( nonnull( 6 ) ) ) SetUp( int id, void* func, void* args, void* ret,
+                                                  const char* format = nullptr, ... )
     {
         _M_threads[ id ].call   = ( void ( * )( void*, void* ) )func;
         _M_threads[ id ].args   = args;
@@ -104,6 +109,24 @@ public:
         auto __pthread = __CreateThread( &_M_threads[ id ] );
         __pthread->detach();
         _M_threads[ id ].pThread = __pthread;
+        if ( !format )
+            return;
+        char    __buf[ 1024 ] = { 0 };  // max temp buffer
+        va_list va_args;
+        va_start( va_args, format );
+        vsnprintf( __buf, sizeof( __buf ), format, va_args );
+        va_end( va_args );
+        auto len = strlen( __buf );
+        if ( len <= sizeof( _M_threads[ id ].__tname ) - 1 )
+        {
+            memcpy( __buf, _M_threads[ id ].__tname, len );
+            _M_threads[ id ].thread_name = _M_threads[ id ].__tname;
+            return;
+        }
+        auto* __ptr = ::operator new( len + 1 );
+        memset( __ptr, 0x00, len + 1 );
+        memcpy( __ptr, __buf, len );
+        _M_threads[ id ].thread_name = ( char* )__ptr;
     }
     void Init()
     {
@@ -132,11 +155,7 @@ public:
                     wkthread->last_wake_ts = chrono::system_clock::now().time_since_epoch().count();
                 } while ( 0 );
                 if ( wkthread->pWork->_M_status == e_exit )
-                {
-                    // printf( "Thread[%s] exit\n", Stringify( this_thread::get_id() ).c_str() );
-                    wkthread->exit = 1;
-                    return;
-                }
+                    break;
                 printf( "Thread[%s] start work[%lu]\n", Stringify( this_thread::get_id() ).c_str(),
                         wkthread->last_wake_ts );
                 if ( wkthread->call == nullptr )
@@ -161,6 +180,11 @@ public:
                     }
                 } while ( 0 );
             }
+            std::unique_lock< std::mutex > lk( wkthread->pWork->_M_mtx );
+            if ( wkthread->thread_name && wkthread->thread_name != wkthread->__tname )
+                ::operator delete( ( void* )wkthread->thread_name );
+            // printf( "Thread[%s] exit\n", Stringify( this_thread::get_id() ).c_str() );
+            wkthread->exit = 1;
         } );
         return __pthread;
     }
