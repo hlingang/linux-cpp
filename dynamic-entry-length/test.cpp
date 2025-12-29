@@ -117,7 +117,7 @@ repeat:
     }
     else
     {
-        inode->size += PAGE_SIZE - offset;
+        inode->size += PAGE_SIZE - offset;  // 引入空洞 //
         cout << "page full, need next page: " << index << endl;
         goto repeat;
     }
