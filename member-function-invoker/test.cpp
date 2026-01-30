@@ -19,15 +19,18 @@ int main()
     MemberCls  obj;
     MemberCls* pObj = &obj;
     member_invoker  = &MemberCls::memberFunction;
-    for ( int i = 0; i < 30; i += 6 )
+
+    for ( int i = 0; i < 30; i += 8 )
     {
-        ( obj.*member_invoker )( i );
-        ( pObj->*member_invoker )( i + 1 );
+        obj.invoker( i + 0 );
+        pObj->invoker( i + 1 );
+        ( obj.*member_invoker )( i + 2 );
+        ( pObj->*member_invoker )( i + 3 );
 
-        ( obj.*( obj._M_ops.__call ) )( i + 2 );
-        ( pObj->*( obj._M_ops.__call ) )( i + 3 );
+        ( obj.*( obj._M_ops.__call ) )( i + 4 );
+        ( pObj->*( obj._M_ops.__call ) )( i + 5 );
 
-        ( obj.*( pObj->_M_ops.__call ) )( i + 4 );
-        ( pObj->*( pObj->_M_ops.__call ) )( i + 5 );
+        ( obj.*( pObj->_M_ops.__call ) )( i + 6 );
+        ( pObj->*( pObj->_M_ops.__call ) )( i + 7 );
     }
 }

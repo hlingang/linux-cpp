@@ -30,4 +30,8 @@ public:
     {
         _M_ops.__call = &MemberCls::memberFunction;
     }
+    void invoker( int i )
+    {
+        ( this->*( _M_ops.__call ) )( i );
+    }
 };
