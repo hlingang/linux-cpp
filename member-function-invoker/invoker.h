@@ -63,9 +63,9 @@ public:
         printf( "Member Function Invoke test-2[%d]\n", a );
         return 0;
     }
-    MemberOps_t< 0 >  _M_ops;
-    MemberOps_t< 1 >* _M_p_ops_1;
-    MemberOps_t< 2 >* _M_p_ops_2;
+    MemberOps_t< OPS_BASE >   _M_ops;
+    MemberOps_t< OPS_COND1 >* _M_p_ops_1;
+    MemberOps_t< OPS_COND2 >* _M_p_ops_2;
     MemberCls()
     {
         _M_ops.__call = &MemberCls::memberFunction;
