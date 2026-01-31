@@ -20,7 +20,7 @@ int main()
     MemberCls* pObj = &obj;
     member_invoker  = &MemberCls::memberFunction;
 
-    for ( int i = 0; i < 30; i += 8 )
+    for ( int i = 0; i < 30; i += 12 )
     {
         obj.invoker( i + 0 );
         pObj->invoker( i + 1 );
@@ -32,5 +32,11 @@ int main()
 
         ( obj.*( pObj->_M_ops.__call ) )( i + 6 );
         ( pObj->*( pObj->_M_ops.__call ) )( i + 7 );
+
+        ( obj.*( obj._M_p_ops_1->__call ) )( i + 8 );
+        ( pObj->*( obj._M_p_ops_1->__call ) )( i + 9 );
+
+        ( obj.*( obj._M_p_ops_2->__call ) )( i + 10 );
+        ( pObj->*( obj._M_p_ops_2->__call ) )( i + 11 );
     }
 }
