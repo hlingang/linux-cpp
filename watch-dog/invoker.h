@@ -72,7 +72,8 @@ public:
                 continue;
             }
             auto now = static_cast< unsigned long >( time( nullptr ) );
-            // 通过判断看门狗的时间戳判断看门狗线程[进程]在一段时间内是否得到调度 //
+            // 通过判断看门狗的时间戳判断看门狗线程[进程]在一段时间内是否得到调度执行
+            // 如果看门狗线程长时间得不到执行，说明其他线程长时间占据CPU资源，导致看门狗线程得不到调度，说明系统可能出现了死锁或者其他问题
             if ( now > _M_touch_ts + TIMEOUT )
             {
                 std::cout << "watch dog timeout, last sched ts: " << _M_touch_ts << ", now: " << now << std::endl;
@@ -83,13 +84,13 @@ public:
             check_hung_task( now );
         }
     }
-    // 检查正常 [task] 是否长时间得不到调度 //
+    // 检查正常 [task] 是否长时间得不到调度(长时间休眠) //
     void check_hung_task( unsigned long __now )
     {
         if ( _M_last_count != _M_sched_count )
         {
             _M_last_count    = _M_sched_count;
-            _M_last_sched_ts = __now;
+            _M_last_sched_ts = __now;  // 此处没有记录精确时间，而是通过 count 记录颗粒化时间
             return;
         }
         printf( "check hung task now: %lu, _M_last_sched_ts: %lu\n", __now, _M_last_sched_ts );
