@@ -21,11 +21,10 @@ public:
     unsigned long              _M_sched_count;
     unsigned long              _M_last_count;
     unsigned long              _M_last_sched_ts;
-    static bool                running;
+    bool                       running;
     static const unsigned long TIMEOUT = 5;  // seconds
-    WatchDog() : _M_mutex(), _M_touch_ts( 0 ), _M_sched_count( 0 ), _M_last_count( 0 )
+    WatchDog() : _M_mutex(), _M_touch_ts( 0 ), _M_sched_count( 0 ), _M_last_count( 0 ), running( true )
     {
-        running = true;
         thread t1( &WatchDog::work, this );
         thread t2( &WatchDog::touch, this );
         thread t3( &WatchDog::watch, this );
@@ -103,4 +102,3 @@ public:
         }
     }
 };
-bool WatchDog::running = false;
