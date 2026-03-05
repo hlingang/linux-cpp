@@ -250,8 +250,8 @@ void* memchr_2( void* s1, const char c, size_t n )
 
 /**
  * strpbrk - Find the first occurrence of a set of characters
- * @cs: The string to be searched
- * @ct: The characters to search for
+ * @s1: The string to be searched
+ * @s2: The characters to search for
  */
 char* strpbrk( const char* s1, const char* s2 )
 {
