@@ -195,7 +195,7 @@ int memcmp_3( void* s1, void* s2, size_t n )
 {
     char* __s1 = ( char* )s1;
     char* __s2 = ( char* )s2;
-    while ( n-- && *__s1 == *__s2 )  // 条件判断中的自增和自减操作会带来副作用
+    while ( n-- && *__s1 == *__s2 )  // 条件判断中的[后]自增和[后]自减操作会带来副作用
         __s1++, __s2++;
     return ++n ? int( *__s1 ) - int( *__s2 ) : 0;
 }
