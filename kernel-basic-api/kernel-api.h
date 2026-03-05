@@ -101,7 +101,7 @@ char* strchr( const char* s, char c )
 
 char* strnchr( const char* s, char c, size_t maxlen )
 {
-    for ( ; *s != '\0' && maxlen > 0; s++, maxlen-- )
+    for ( ; *s != '\0' && maxlen; s++, maxlen-- )
     {
         if ( *s == c )
             return ( char* )s;
@@ -123,6 +123,8 @@ char* strstrip( char* s )
 
 void* memcpy( void* dest, void* src, size_t n )
 {
+    if ( !n )
+        return dest;
     char* __dest = ( char* )dest;
     char* __src  = ( char* )src;
     do
@@ -171,8 +173,8 @@ int memcmp( void* s1, void* s2, size_t n )
 {
     char* __s1 = ( char* )s1;
     char* __s2 = ( char* )s2;
-    while ( n-- && *__s1 == *__s2 )
-        __s1++, __s2++;
+    while ( n && *__s1 == *__s2 )
+        __s1++, __s2++, n--;
     return n ? int( *__s1 ) - int( *__s2 ) : 0;
 }
 
@@ -180,12 +182,22 @@ int memcmp_2( void* s1, void* s2, size_t n )
 {
     char* __s1 = ( char* )s1;
     char* __s2 = ( char* )s2;
-    while ( n-- )
+    while ( n )
     {
         if ( *__s1 != *__s2 )
             return int( *__s1 ) - int( *__s2 );
+        __s1++, __s2++, n--;
     }
     return 0;
+}
+
+int memcmp_3( void* s1, void* s2, size_t n )
+{
+    char* __s1 = ( char* )s1;
+    char* __s2 = ( char* )s2;
+    while ( n-- && *__s1 == *__s2 )  // 条件判断中的自增和自减操作会带来副作用
+        __s1++, __s2++;
+    return ++n ? int( *__s1 ) - int( *__s2 ) : 0;
 }
 
 char* strstr( const char* s1, const char* s2 )
@@ -194,8 +206,8 @@ char* strstr( const char* s1, const char* s2 )
         return nullptr;
     const char* __s1  = s1;
     const char* __s2  = s2;
-    const char* __end = s1 + strlen( s1 ) - strlen( s2 );
-    while ( __s1 <= __end && memcmp( ( void* )__s1, ( void* )__s2, strlen( s2 ) ) )
+    const char* __end = __s1 + strlen( __s1 ) - strlen( __s2 );
+    while ( __s1 <= __end && memcmp( ( void* )__s1, ( void* )__s2, strlen( __s2 ) ) )
         ++__s1;
     return __s1 <= __end ? ( char* )__s1 : nullptr;
 }
@@ -206,11 +218,12 @@ char* strstr_2( const char* s1, const char* s2 )
         return nullptr;
     const char* __s1  = s1;
     const char* __s2  = s2;
-    const char* __end = s1 + strlen( s1 ) - strlen( s2 );
-    while ( __s1 <= __end && memcmp( ( void* )__s1, ( void* )__s2, strlen( s2 ) ) )
+    const char* __end = __s1 + strlen( __s1 ) - strlen( __s2 );
+    while ( __s1 <= __end && memcmp( ( void* )__s1, ( void* )__s2, strlen( __s2 ) ) )
     {
         if ( !memcmp( ( void* )__s1, ( void* )__s2, strlen( __s2 ) ) )
             return ( char* )__s1;
+        ++__s1;
     }
     return nullptr;
 }
@@ -218,19 +231,19 @@ char* strstr_2( const char* s1, const char* s2 )
 void* memchr( void* s1, const char c, size_t n )
 {
     char* __s1 = ( char* )s1;
-    while ( n-- && *__s1 != c )
-        __s1++;
+    while ( n && *__s1 != c )
+        __s1++, n--;
     return n ? ( char* )__s1 : nullptr;
 }
 
 void* memchr_2( void* s1, const char c, size_t n )
 {
     char* __s1 = ( char* )s1;
-    while ( n-- )
+    while ( n )
     {
         if ( *__s1 == c )
             return ( char* )__s1;
-        __s1++;
+        __s1++, n--;
     }
     return nullptr;
 }
@@ -255,6 +268,17 @@ char* strpbrk( const char* s1, const char* s2 )
         __s1++;
     }
     return nullptr;
+}
+char* strcat( char* s1, char* s2 )
+{
+    char* __s1 = ( char* )s1;
+    while ( *__s1 )
+        __s1++;
+    const char* __s2 = s2;
+    while ( *__s2 )
+        *__s1++ = *__s2++;
+    *__s1 = '\0';
+    return ( char* )s1;
 }
 }  // namespace ns_kapi
 

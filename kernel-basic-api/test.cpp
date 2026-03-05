@@ -24,8 +24,10 @@ int main()
     char        buf[] = " asuroesik  ";  // save on stack
     const char* ret2  = ns_kapi::strstrip( buf );
     char*       ret3  = ns_kapi::strpbrk( "suyfireuoiu", "abrcde" );
+    char*       ret4  = ns_kapi::strstr( "hello, world, welcome!", "world" );
     cout << "memcmp result: " << ret1 << endl;
     cout << "strstrip result: " << ret2 << endl;
     cout << "strpbrk result: " << ret3 << endl;
+    cout << "strstr result: " << ret4 << endl;
     return 0;
 }
