@@ -10,6 +10,8 @@
 using namespace std;
 using namespace ns_kapi;
 
+int __undefined_fn() __attribute__( ( weak ) );  // 声明一个弱符号函数，允许链接器在链接阶段忽略未定义的符号
+
 int main()
 {
     const char*   s1     = "abc";
@@ -29,5 +31,8 @@ int main()
     cout << "strstrip result: " << ret2 << endl;
     cout << "strpbrk result: " << ret3 << endl;
     cout << "strstr result: " << ret4 << endl;
+    if ( __undefined_fn )
+        __undefined_fn();
+    int is __attribute__( ( unused ) ) = 99;
     return 0;
 }
