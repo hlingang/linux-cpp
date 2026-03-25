@@ -102,6 +102,14 @@ void __i_nonnull( 1 ) test_nonnull_params( int* a )  // 增加编译期的参数
 {
     printf( "This is an non-null params function.\n" );
 }
+extern "C" {
+void i_am_alias_name();  // c++ 会混淆函数签名
+}
+void i_am_alias_name()
+{
+    printf( "I am alias rename\n" );
+}
+void test_alias_rename() __attribute__( ( alias( "i_am_alias_name" ) ) );
 
 //---------------------------------------------THE-END-------------------------------------------------------//
 
@@ -120,5 +128,6 @@ int main()
     printf( "aligend_struct p_b :%p\n", &s_a.b );
     printf( "aligend_struct p_c :%p\n", &s_a.c );
     printf( "aligend_struct size:%zu\n", sizeof( s_a ) );
+    i_am_alias_name();
     return 0;
 }
