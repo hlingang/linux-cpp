@@ -54,6 +54,7 @@ struct __bindActor< cmdtype< ncmd, nsub, nargs >,
 2. 通用模板可继承特化模板(支持递归继承)，用于自动初始化非特化的模板。
 3. 特化模板的存在不依赖通用模板，两者相互独立，但是特化模板的参数必须满足通用模板的参数要求。
 4. 偏特化参数和通用模板参数(默认参数/指定参数)重合时，优先匹配偏特化模板, 因为偏特化优先级更高。
+5. 参数匹配顺序: (1) 匹配通用模板检查并且确定参数，(2) 根据参数选择偏特化模板替换通用模板，(3) 是否替换成功?
 */
 template < int Cmd, int SubCmd = 0, int Args = -1 > struct CmdActor : public CmdActor< Cmd, SubCmd, -1 >
 {
