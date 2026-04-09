@@ -52,6 +52,7 @@ struct __bindActor< cmdtype< ncmd, nsub, nargs >,
 /*
 1. 通用模板和(偏)特化模板是平等的，互斥的，但是两者的优先级不一样，特化模板的优先级高于通用模板
 2. 通用模板可继承特化模板(支持递归继承)，用于自动初始化非特化的模板。
+3. 特化模板的存在不依赖通用模板，两者相互独立，但是特化模板的参数必须满足通用模板的参数要求。
 */
 template < int Cmd, int SubCmd = 0, int Args = -1 > struct CmdActor : public CmdActor< Cmd, SubCmd, -1 >
 {
