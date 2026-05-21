@@ -1,17 +1,12 @@
 
 #include <iostream>
 #include <unistd.h>
-<<<<<<< HEAD
-using namespace std;
-
-int main()
-{
-    printf( "test.cpp::main(), pid: %d\n", getpid() );
-#ifdef WIN
-    printf( "**WINDOWS ENBALE**" );
-=======
 #include <thread>
 #include <chrono>
+#include <sys/time.h>
+#include <limits.h>
+#include <pthread.h>
+#include <numeric>
 using namespace std;
 
 void thread_func()
@@ -32,7 +27,6 @@ int main()
     printf( "**WINDOWS ENBALE(64)**" );
 #endif
 #if defined( WIN32 ) || defined( WIN64 )
->>>>>>> 3f1f247 ([mod] add cross-compiler)
     char c;
     std::cin >> c;
 #endif

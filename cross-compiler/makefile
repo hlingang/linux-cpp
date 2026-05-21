@@ -6,7 +6,9 @@ CXX := g++
 TARGET := test
 CXXFLAGS := -g -ggdb -std=c++17 -I.
 
-all:
+all: target cross-ndk32 cross-ndk cross-win32 cross-win m32
+
+target:
 	$(CXX) $(CXXFLAGS) -o $(TARGET) test.cpp
 
 .PHONY: clean prepare
@@ -18,7 +20,7 @@ cross-ndk32:
 	CXX=armv7a-linux-androideabi21-clang++ \
 	TARGET=$(TARGET)-ndk32 \
 	CXXFLAGS="$(CXXFLAGS) -static -D__NDK32__" \
-	all
+	target
 
 cross-ndk:
 	export NDK_HOME=~/android-ndk-r26d;\
@@ -27,25 +29,25 @@ cross-ndk:
 	CXX=aarch64-linux-android21-clang++ \
 	TARGET=$(TARGET)-ndk \
 	CXXFLAGS="$(CXXFLAGS) -static -D__NDK__" \
-	all
+	target
 cross-win32: 
 	$(MAKE) \
 	CXX=i686-w64-mingw32-g++ \
 	TARGET=$(TARGET)-win32.exe \
 	CXXFLAGS="$(CXXFLAGS) -static -static-libgcc -static-libstdc++ -D__WIN32__" \
-	all 
+	target 
 cross-win: 
 	$(MAKE) \
 	CXX=x86_64-w64-mingw32-g++ \
 	TARGET=$(TARGET)-win.exe \
 	CXXFLAGS="$(CXXFLAGS) -static -static-libgcc -static-libstdc++ -D__WIN64__" \
-	all 
+	target 
 
 m32:
 	$(MAKE) \
 	TARGET=$(TARGET)-32 \
 	CXXFLAGS="$(CXXFLAGS) -m32" \
-	all
+	target
 clean:
 	rm -rf test
 	rm -rf test-ndk32 test-ndk test-win32.exe test-win.exe test-32
