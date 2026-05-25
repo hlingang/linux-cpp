@@ -20,9 +20,7 @@ template < bool cond > struct __m_cond_type
     static const bool value = cond;
 };
 using __m_false_type = __m_cond_type< false >;
-
-using __m_true_type = __m_cond_type< true >;
-
+using __m_true_type  = __m_cond_type< true >;
 template < bool... > struct __And_ops__ : __m_false_type
 {
 };
@@ -30,36 +28,23 @@ template < bool... > struct __And_ops__ : __m_false_type
 template < bool cond > struct __And_ops__< cond > : __m_cond_type< cond >
 {
 };
-
-template < bool cond1, bool cond2 > struct __And_ops__< cond1, cond2 > : __m_false_type
+template < bool cond1, bool cond2 > struct __And_ops__< cond1, cond2 > : __m_cond_type< cond1 && cond2 >
 {
 };
-
-template <> struct __And_ops__< true, true > : __m_true_type
-{
-};
-
 template < bool cond1, bool... cond2 >
 struct __And_ops__< cond1, cond2... > : __And_ops__< cond1, __And_ops__< cond2... >::value >
 {
 };
-
 template < bool... > struct __Or_ops__ : __m_false_type
 {
 };
-
 template < bool cond > struct __Or_ops__< cond > : __m_cond_type< cond >
 {
 };
 
-template < bool cond1, bool cond2 > struct __Or_ops__< cond1, cond2 > : __m_true_type
+template < bool cond1, bool cond2 > struct __Or_ops__< cond1, cond2 > : __m_cond_type< cond1 || cond2 >
 {
 };
-
-template <> struct __Or_ops__< false, false > : __m_false_type
-{
-};
-
 template < bool cond1, bool... cond2 >
 struct __Or_ops__< cond1, cond2... > : __Or_ops__< cond1, __Or_ops__< cond2... >::value >
 {
