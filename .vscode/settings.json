@@ -79,4 +79,5 @@
 		"stop_token": "cpp"
 	},
 	"cmake.ignoreCMakeListsMissing": true,
+	"deepseek-copilot.baseUrl": "https://vastapi.vastaitech.com/v1",
 }
