@@ -9,19 +9,16 @@
 #include <numeric>
 using namespace std;
 /*
-1. 通用模板可以继承偏特化模板(递推)，但是不能继承全特化模板。
+1. 通用模板可以继承偏特化模板(递推)，也可以继承全特化模板。继承全特化版本的前，必须要有全特化模板的实现。
 2. 通用模板和偏特化模板独立互斥，但是全特化模板不能单独存在，全特化模板在编译期会被视为具体类(具有完整实现的类)。
 */
 
-// template < typename Tp, typename Up > struct _S_inherite : public _S_inherite< int, int >
-// {
-// };
-
-template < typename Tp, typename Up > struct _S_inherite : public _S_inherite< Tp, int >
+/** ====================== inherite partial template  ====================== **/
+template < typename Tp, typename Up > struct _S_inherite_partial : public _S_inherite_partial< Tp, int >
 {
 };
 
-template < typename Tp > struct _S_inherite< Tp, int >
+template < typename Tp > struct _S_inherite_partial< Tp, int >
 {
     bool validate()
     {
@@ -30,18 +27,28 @@ template < typename Tp > struct _S_inherite< Tp, int >
     int _M_value;
 };
 
-template <> struct _S_inherite< int, int >
+/** ====================== inherite full template  ====================== **/
+
+template < typename Tp, typename Up > struct _S_inherite_full;
+template <> struct _S_inherite_full< int, int >;
+
+template <> struct _S_inherite_full< int, int >
 {
     bool validate()
     {
-        return false;
+        return true;
     }
     int _M_value;
+};
+template < typename Tp, typename Up > struct _S_inherite_full : public _S_inherite_full< int, int >
+{
 };
 
 int main()
 {
-    _S_inherite< double, char > _s;
-    cout << "validate: " << _s.validate() << endl;
+    _S_inherite_partial< double, char > _s_partial;
+    _S_inherite_full< int, int >        _s_full;
+    cout << "validate: " << _s_partial.validate() << endl;
+    cout << "validate: " << _s_full.validate() << endl;
     return 0;
 }
