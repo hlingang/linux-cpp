@@ -3,6 +3,7 @@
 #include <flush_base.h>
 #include <ring-buffer.h>
 #include <fstream>
+#include <ring-buffer-manager.h>
 
 using namespace std;
 
@@ -45,10 +46,12 @@ template < typename Tp > struct FileBuffer : public FlushBase
     FileBuffer( const char* __name ) : name( __name ), m_nbytes( 0 )
     {
         fs.open( name, ios::in | ios::out | ios::binary | ios::trunc );
+        set_buff_type( _B_FILE_BUFF );
     }
     FileBuffer( const string& __name ) : name( __name )
     {
         fs.open( name, ios::in | ios::out | ios::binary | ios::trunc );
+        set_buff_type( _B_FILE_BUFF );
     }
     int overflow( int wait = 0 ) override
     {
@@ -71,7 +74,10 @@ template < typename Tp > FileBuffer< Tp >* get_file_buffer()
 {
     static FileBuffer< Tp > __file_buffer( string( domin_type< Tp >::name ) + "-" + string( "data.bin" ) );
     static std::once_flag   __flag;
-    std::call_once( __flag, []() { register_ring_buffer( &__file_buffer ); } );
+    std::call_once( __flag, []() {
+        printf( "file ring-buff=[%p]\n", &__file_buffer );
+        register_ring_buffer( &__file_buffer );
+    } );
     return &__file_buffer;
 }
 template < typename Tp > int write_to_file_buffer( Tp&& value, int id )

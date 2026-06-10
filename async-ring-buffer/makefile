@@ -8,7 +8,7 @@ CXXFLAGS := -g -ggdb -std=c++17 -I.
 
 all: target 
 target:
-	$(CXX) $(CXXFLAGS) -o $(TARGET) ring-buffer.cpp ring-buffer-flush.cpp test.cpp
+	$(CXX) $(CXXFLAGS) -o $(TARGET) ring-buffer.cpp ring-buffer-flush.cpp ring-buffer-manager.cpp test.cpp
 clean:
 	rm -rf test *.bin
 	

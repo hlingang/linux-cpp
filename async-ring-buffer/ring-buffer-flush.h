@@ -6,6 +6,7 @@
 #include <thread>
 #include <flush_base.h>
 #include <iostream>
+#include <list>
 
 enum FlushStatus
 {
@@ -13,26 +14,15 @@ enum FlushStatus
     _B_SYNC,
 };
 
+enum RingBufferType
+{
+    _B_RING_BUFF,
+    _B_FILE_BUFF,
+    _B_BUFF_TYPE_NUM,
+};
+
 #define B_SYNC ( 1U << _B_SYNC )
 #define B_SCHE ( 1U << _B_SCHE )
-
-struct RingBufferManager
-{
-    std::vector< FlushBase* > ring_buffer_list;
-    std::mutex                m_mtx;
-    void                      overflow()
-    {
-        std::lock_guard< std::mutex > lock( m_mtx );
-        for ( auto* buffer : ring_buffer_list )
-        {
-            buffer->overflow( 1 );
-        }
-    }
-    void __register_ring_buff( FlushBase* ring_buff )
-    {
-        ring_buffer_list.push_back( ring_buff );
-    }
-};
 
 class RingBufferFlush
 {
@@ -51,10 +41,7 @@ public:
 };
 RingBufferFlush*                get_ring_buffer_flush();
 void                            request_flush( FlushBase* );
-RingBufferManager*              get_ring_buffer_manager();
-void                            register_ring_buffer( FlushBase* ring_buff );
-void                            overflow_ring_buff();
-void                            do_exit();
+void                            exit_flush();
 template < typename Lock > void wait_status( int* status, int bitmap, int target, Lock* __lock )
 {
     do

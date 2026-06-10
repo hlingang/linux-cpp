@@ -77,21 +77,7 @@ void request_flush( FlushBase* ptr )
     get_ring_buffer_flush()->__request_flush( ptr );
 }
 
-RingBufferManager* get_ring_buffer_manager()
+void exit_flush()
 {
-    static RingBufferManager __ring_buff_manger{};
-    return &__ring_buff_manger;
-}
-
-void register_ring_buffer( FlushBase* ring_buff )
-{
-    get_ring_buffer_manager()->__register_ring_buff( ring_buff );
-}
-void do_exit()
-{
-    return get_ring_buffer_flush()->__stop();
-}
-void overflow_ring_buff()
-{
-    return get_ring_buffer_manager()->overflow();
+    get_ring_buffer_flush()->__stop();
 }

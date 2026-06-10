@@ -1,6 +1,7 @@
 #include <ring-buffer.h>
 #include <ring-buffer-flush.h>
 #include <file-buffer.h>
+#include <ring-buffer-manager.h>
 
 using namespace std;
 
@@ -67,8 +68,8 @@ int RingBufferHeader::flush()
         if ( header.payload != nullptr )
         {
             payload_t* payload = reinterpret_cast< payload_t* >( header.payload );
-            printf( "payload->start_time=%ld\n", payload->start_time );
             write_to_file_buffer( *payload, i );
+            printf( "[this:%p]write to file buff: payload->start_time=%ld\n", ( void* )this, payload->start_time );
         }
     }
     m_buffer.__reset();
@@ -78,6 +79,7 @@ int RingBufferHeader::flush()
 RingBuffer::RingBuffer() : buffer_id( 0 )
 {
     this->status = 0;
+    set_buff_type( _B_RING_BUFF );
 }
 void RingBuffer::swap()
 {

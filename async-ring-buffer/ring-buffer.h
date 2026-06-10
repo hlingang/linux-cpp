@@ -126,6 +126,7 @@ public:
             overflow();
             ret = m_buffer.emplace_back( std::forward< Tp >( value ) );  //******* Tp 类型的完美转发 ********//
         }
+        printf( "thread[%lu] emplace back ret=[%p]\n", ( pthread_t )pthread_self(), ( void* )ret );
         return ret;
     }
 };
