@@ -5,7 +5,8 @@
 
 using namespace std;
 
-RingBufferBase::RingBufferBase() : write_pos( 0 ), read_pos( 0 ), m_index( 0 ), capacity( BUF_SIZE )
+RingBufferBase::RingBufferBase()
+    : write_pos( 0 ), read_pos( 0 ), m_index( 0 ), capacity( BUF_SIZE ), m_domain_buff( nullptr )
 {
     m_data = new char[ BUF_SIZE ];
 }
@@ -69,7 +70,7 @@ int RingBufferHeader::flush()
         {
             payload_t* payload = reinterpret_cast< payload_t* >( header.payload );
             write_to_file_buffer( *payload, i );
-            printf( "[BUFF:%d]write to file buff: payload->start_time=%ld\n", this->get_buff_id(),
+            printf( "[BUFF:%d]write to file buff: payload->start_time=%ld\n", this->get_domain_buff()->m_buffer_id,
                     payload->start_time );
         }
     }
@@ -77,20 +78,11 @@ int RingBufferHeader::flush()
     m_index = 0;
     return 0;
 }
-
-int RingBufferHeader::set_buff_id( int __id )
-{
-    return m_id = __id;
-}
-
-int RingBufferHeader::get_buff_id()
-{
-    return m_id;
-}
-RingBuffer::RingBuffer() : buffer_id( 0 )
+RingBuffer::RingBuffer()
 {
     this->status = 0;
     set_buff_type( _B_RING_BUFF );
+    set_domain_buff( this );
 }
 void RingBuffer::swap()
 {
@@ -103,6 +95,12 @@ RingBuffer::buffer_t& RingBuffer::get_swap()
 RingBuffer::buffer_t& RingBuffer::get_buff()
 {
     return m_buffer;
+}
+
+void RingBuffer::set_domain_buff( void* __buff )
+{
+    m_buffer.set_domain_buff( __buff );
+    m_swap_buffer.set_domain_buff( __buff );
 }
 
 int RingBuffer::overflow( int wait )
@@ -126,12 +124,4 @@ int RingBuffer::flush()
 void RingBuffer::register_self()
 {
     register_ring_buffer( this );
-}
-
-int RingBuffer::set_buff_id( int __id )
-{
-    FlushBase::set_buff_id( __id );
-    m_buffer.set_buff_id( __id );
-    m_swap_buffer.set_buff_id( __id );
-    return m_buffer.get_buff_id();
 }

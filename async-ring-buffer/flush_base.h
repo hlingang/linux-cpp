@@ -4,7 +4,7 @@
 struct FlushBase
 {
     int         m_type;
-    int         m_id;
+    int         m_buffer_id;
     int         status;
     virtual int flush()                  = 0;
     virtual int overflow( int wait = 0 ) = 0;
@@ -18,11 +18,11 @@ struct FlushBase
     }
     virtual int set_buff_id( int __id )
     {
-        return m_id = __id;
+        return m_buffer_id = __id;
     }
     int get_buff_id()
     {
-        return m_id;
+        return m_buffer_id;
     }
 };
 #endif

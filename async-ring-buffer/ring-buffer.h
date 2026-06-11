@@ -37,6 +37,7 @@ private:
     uint64_t   m_index;
     uint64_t   capacity;
     std::mutex m_mtx;
+    FlushBase* m_domain_buff;
 
 public:
     RingBufferBase();
@@ -69,6 +70,14 @@ public:
         new ( ptr ) Up( std::forward< Tp >( arg ) );
         return ptr;
     }
+    void set_domain_buff( void* __buff )
+    {
+        m_domain_buff = ( FlushBase* )__buff;
+    }
+    FlushBase* get_domain_buff()
+    {
+        return m_domain_buff;
+    }
 };
 
 class RingBufferHeader
@@ -81,7 +90,6 @@ private:
     buffer_t           m_buffer;
     uint64_t           m_index;
     std::mutex         m_mtx;
-    int                m_id;
 
 public:
     RingBufferHeader();
@@ -89,8 +97,6 @@ public:
     RingBufferHeader&              swap( RingBufferHeader& other );
     uint64_t                       get_index();
     int                            flush();
-    int                            set_buff_id( int __id );
-    int                            get_buff_id();
     template < typename Tp > char* emplace_back( Tp&& arg )
     {
         auto* payload = m_buffer.emplace_back( std::forward< Tp >( arg ) );
@@ -102,13 +108,20 @@ public:
         m_header.at( id ) = header;
         return payload;
     }
+    void set_domain_buff( void* __buff )
+    {
+        m_buffer.set_domain_buff( __buff );
+    }
+    FlushBase* get_domain_buff()
+    {
+        return m_buffer.get_domain_buff();
+    }
 };
 
 class RingBuffer : public FlushBase
 {
 public:
     using buffer_t = RingBufferHeader;
-    uint64_t           buffer_id;
     buffer_t           m_buffer;
     buffer_t           m_swap_buffer;
     condition_variable m_cv;
@@ -121,7 +134,7 @@ public:
     buffer_t&                      get_buff();
     void                           register_self();
     void                           wait_complete();
-    int                            set_buff_id( int __id );
+    void                           set_domain_buff( void* __buff );
     template < typename Tp > char* emplace_back( Tp&& value )
     {
         char* ret;

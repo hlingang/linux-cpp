@@ -47,11 +47,13 @@ template < typename Tp > struct FileBuffer : public FlushBase
     {
         fs.open( name, ios::in | ios::out | ios::binary | ios::trunc );
         set_buff_type( _B_FILE_BUFF );
+        set_domain_buff( this );
     }
     FileBuffer( const string& __name ) : name( __name )
     {
         fs.open( name, ios::in | ios::out | ios::binary | ios::trunc );
         set_buff_type( _B_FILE_BUFF );
+        set_domain_buff( this );
     }
     int overflow( int wait = 0 ) override
     {
@@ -68,6 +70,10 @@ template < typename Tp > struct FileBuffer : public FlushBase
         status &= ~B_SYNC;
         m_cv.notify_one();
         return 0;
+    }
+    void set_domain_buff( void* __buff )
+    {
+        m_buffer.set_domain_buff( __buff );
     }
 };
 template < typename Tp > FileBuffer< Tp >* get_file_buffer()
