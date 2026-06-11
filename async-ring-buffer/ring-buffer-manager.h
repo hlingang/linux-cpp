@@ -10,6 +10,7 @@ struct RingBufferManager
     std::mutex              m_mtx;
     void                    overflow();
     void                    __register_ring_buff( FlushBase* ring_buff );
+    int                     __get_offset();
 };
 RingBufferManager* get_ring_buffer_manager();
 void               register_ring_buffer( FlushBase* ring_buff );

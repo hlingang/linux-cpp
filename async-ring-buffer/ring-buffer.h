@@ -81,6 +81,7 @@ private:
     buffer_t           m_buffer;
     uint64_t           m_index;
     std::mutex         m_mtx;
+    int                m_id;
 
 public:
     RingBufferHeader();
@@ -88,6 +89,8 @@ public:
     RingBufferHeader&              swap( RingBufferHeader& other );
     uint64_t                       get_index();
     int                            flush();
+    int                            set_buff_id( int __id );
+    int                            get_buff_id();
     template < typename Tp > char* emplace_back( Tp&& arg )
     {
         auto* payload = m_buffer.emplace_back( std::forward< Tp >( arg ) );
@@ -118,6 +121,7 @@ public:
     buffer_t&                      get_buff();
     void                           register_self();
     void                           wait_complete();
+    int                            set_buff_id( int __id );
     template < typename Tp > char* emplace_back( Tp&& value )
     {
         char* ret;
