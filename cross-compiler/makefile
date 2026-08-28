@@ -8,10 +8,11 @@ CXXFLAGS := -g -ggdb -std=c++17 -I.
 
 all: target cross-ndk32 cross-ndk cross-win32 cross-win m32
 
-target:
-	$(CXX) $(CXXFLAGS) -o $(TARGET) test.cpp
 
-.PHONY: clean prepare
+$(TARGET):test.cpp | FORCE
+	$(CXX) $(CXXFLAGS) -o $@  $^
+
+.PHONY: clean prepare FORCE
 
 cross-ndk32:
 	export NDK_HOME=~/android-ndk-r26d; \
@@ -34,13 +35,13 @@ cross-win32:
 	$(MAKE) \
 	CXX=i686-w64-mingw32-g++ \
 	TARGET=$(TARGET)-win32.exe \
-	CXXFLAGS="$(CXXFLAGS) -static -static-libgcc -static-libstdc++ -D__WIN32__" \
+	CXXFLAGS="$(CXXFLAGS) -static -static-libgcc -static-libstdc++ -D__WIN32__ -DWIN32_WINNT=0x0601 -DWINVER=0x0601" \
 	target 
 cross-win: 
 	$(MAKE) \
 	CXX=x86_64-w64-mingw32-g++ \
 	TARGET=$(TARGET)-win.exe \
-	CXXFLAGS="$(CXXFLAGS) -static -static-libgcc -static-libstdc++ -D__WIN64__" \
+	CXXFLAGS="$(CXXFLAGS) -static -static-libgcc -static-libstdc++ -D__WIN64__ -DWIN32_WINNT=0x0601 -DWINVER=0x0601" \
 	target 
 
 m32:

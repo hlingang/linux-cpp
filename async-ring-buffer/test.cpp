@@ -71,3 +71,12 @@ int main()
     wait_done();
     return 0;
 }
+#include <stack>
+#include <queue>
+#include <deque>
+
+stack< int >          s1;
+queue< int >          s2;
+deque< int >          s3;
+priority_queue< int > s4;
+vector< int >         s5;
